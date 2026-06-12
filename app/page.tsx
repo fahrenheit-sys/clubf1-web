@@ -1,11 +1,9 @@
 import Image from "next/image";
 import WaitlistForm from "./waitlist-form";
 
-// TODO: replace href values with the real handles once confirmed.
 const socials = [
-  { name: "Instagram", href: "https://instagram.com/" },
-  { name: "Facebook", href: "https://facebook.com/" },
-  { name: "TikTok", href: "https://tiktok.com/" },
+  { name: "Instagram", href: "https://www.instagram.com/fahrenheit_one" },
+  { name: "Facebook", href: "https://www.facebook.com/FahrenheitOne/" },
 ];
 
 const pillars = [
