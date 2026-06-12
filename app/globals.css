@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  /* Fahrenheit One brand palette (shared with the dashboard) */
+  --forest: #2f3e2e;
+  --green-mid: #4a6b50;
+  --green-light: #d4e8d6;
+  --terra: #8b3a2e;
+  --brick: #b85042;
+  --gold: #e8a020;
+  --gold-light: #fff3cc;
+  --cream: #faf6f0;
+  --cream-2: #ede8df;
+  --slate: #44546a;
+  --charcoal: #2c3e50;
+  --ink: #1d1d1f;
+  --muted: #6e6e73;
+  --line: #e3ddd2;
+}
+
+@theme inline {
+  --color-forest: var(--forest);
+  --color-green-mid: var(--green-mid);
+  --color-green-light: var(--green-light);
+  --color-terra: var(--terra);
+  --color-brick: var(--brick);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-cream: var(--cream);
+  --color-cream-2: var(--cream-2);
+  --color-slate: var(--slate);
+  --color-charcoal: var(--charcoal);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* tiny utility for the mono eyebrow labels */
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
