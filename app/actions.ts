@@ -23,6 +23,29 @@ const FIELD_IDS = {
   is_hakoah_member: "V78R8ELPqNcpgjWpPMuc",
 };
 
+const DASHBOARD_WEBHOOK_URL =
+  process.env.DASHBOARD_WEBHOOK_URL || "https://dashboard.clubf1.tech/api/webhook/ghl";
+
+// Best-effort sync of an opt-in to the dashboard's Supabase webhook. Never blocks
+// the user — the contact is already safely in GHL; this is the analytics mirror.
+async function syncToDashboard(payload: unknown): Promise<void> {
+  const secret = process.env.GHL_WEBHOOK_SECRET;
+  if (!secret) {
+    console.warn("GHL_WEBHOOK_SECRET not set — skipping dashboard sync");
+    return;
+  }
+  try {
+    const r = await fetch(DASHBOARD_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-ghl-secret": secret },
+      body: JSON.stringify(payload),
+    });
+    if (!r.ok) console.error("Dashboard sync failed", r.status, await r.text());
+  } catch (err) {
+    console.error("Dashboard sync error", err);
+  }
+}
+
 const TRIBE_TAG: Record<string, string> = {
   "Early Morning (5–8am)": "tribe::6am-crew",
   "Mid Morning (8–11am)": "tribe::school-run-squad",
@@ -116,6 +139,28 @@ export async function submitOptIn(input: OptInInput): Promise<OptInResult> {
       console.error("GHL upsert failed", res.status, await res.text());
       return { ok: false, error: "Something went wrong on our end. Please try again." };
     }
+
+    // Mirror the lead into Supabase / the dashboard (best-effort).
+    await syncToDashboard({
+      type: "opt_in",
+      contact: {
+        firstName,
+        lastName,
+        email,
+        phone,
+        tags,
+        pipelineStage: "VIP Waitlist",
+        customField: {
+          year_of_birth: String(yob),
+          preferred_time: input.preferredTime,
+          membership_interest: input.interest,
+          ...(track === "community"
+            ? { is_hakoah_member: input.isHakoahMember === "Yes" ? "Yes" : "No" }
+            : {}),
+        },
+      },
+    });
+
     return { ok: true };
   } catch (err) {
     console.error("GHL upsert error", err);
