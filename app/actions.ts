@@ -69,11 +69,26 @@ export async function submitOptIn(input: OptInInput): Promise<OptInResult> {
     return { ok: false, error: "We couldn't submit that just now. Please try again shortly." };
   }
 
-  const tags = ["track::community", "source::opt-in-form", `type::${input.interest.toLowerCase()}`];
+  const track = input.track === "local" ? "local" : "community";
+
+  const tags = [`track::${track}`, "source::opt-in-form", `type::${input.interest.toLowerCase()}`];
   const tribe = TRIBE_TAG[input.preferredTime];
   if (tribe) tags.push(tribe);
   const gen = generationTag(yob);
   if (gen) tags.push(gen);
+
+  const customFields: { id: string; value: string }[] = [
+    { id: FIELD_IDS.preferred_time, value: input.preferredTime },
+    { id: FIELD_IDS.membership_interest, value: input.interest },
+    { id: FIELD_IDS.year_of_birth, value: String(yob) },
+  ];
+  // The Hakoah-member question is only asked on the community page.
+  if (track === "community") {
+    customFields.push({
+      id: FIELD_IDS.is_hakoah_member,
+      value: input.isHakoahMember === "Yes" ? "Yes" : "No",
+    });
+  }
 
   const body = {
     locationId,
@@ -81,14 +96,9 @@ export async function submitOptIn(input: OptInInput): Promise<OptInResult> {
     lastName,
     email,
     phone: phone || undefined,
-    source: "clubf1.com.au community opt-in",
+    source: `clubf1.com.au ${track} opt-in`,
     tags,
-    customFields: [
-      { id: FIELD_IDS.preferred_time, value: input.preferredTime },
-      { id: FIELD_IDS.membership_interest, value: input.interest },
-      { id: FIELD_IDS.year_of_birth, value: String(yob) },
-      { id: FIELD_IDS.is_hakoah_member, value: input.isHakoahMember === "Yes" ? "Yes" : "No" },
-    ],
+    customFields,
   };
 
   try {

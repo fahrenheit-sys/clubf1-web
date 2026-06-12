@@ -14,6 +14,7 @@ export const PREFERRED_TIME_OPTIONS = [
 export const INTEREST_OPTIONS = ["Fitness", "Wellness", "Lifestyle"] as const;
 
 export type OptInInput = {
+  track: "community" | "local";
   firstName: string;
   lastName: string;
   email: string;
@@ -21,7 +22,7 @@ export type OptInInput = {
   preferredTime: string;
   interest: string;
   yearOfBirth: string;
-  isHakoahMember: string; // "Yes" | "No"
+  isHakoahMember?: string; // "Yes" | "No" — community only
 };
 
 export type OptInResult = { ok: true } | { ok: false; error: string };
