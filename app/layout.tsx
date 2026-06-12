@@ -20,15 +20,18 @@ const mono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fahrenheit One @ Hakoah White City — Founding Members",
+  metadataBase: new URL("https://www.clubf1.com.au"),
+  title: "Fahrenheit One @ Hakoah White City — Launching Soon",
   description:
-    "A premium fitness and wellness club opening at Hakoah White City, April 2027. Join the founders list and lock in your rate for life.",
+    "A premium fitness and wellness club coming to Hakoah White City, April 2027. Follow the journey and be first through the doors.",
   openGraph: {
-    title: "Fahrenheit One @ Hakoah White City — Founding Members",
-    description: "Our community's club. Be one of its founders. Opening April 2027.",
+    title: "Fahrenheit One @ Hakoah White City — Launching Soon",
+    description: "Something extraordinary is coming. Opening April 2027.",
     type: "website",
+    url: "https://www.clubf1.com.au",
   },
-  robots: { index: false, follow: false }, // pre-launch — keep out of search until ready
+  // Root brand page is public/indexable; campaign pages (/community, /local)
+  // set their own robots:noindex.
 };
 
 export default function RootLayout({

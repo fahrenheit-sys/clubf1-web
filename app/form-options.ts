@@ -25,3 +25,9 @@ export type OptInInput = {
 };
 
 export type OptInResult = { ok: true } | { ok: false; error: string };
+
+// Lightweight "be first to know" capture on the root launching-soon page.
+export type WaitlistInput = {
+  firstName: string;
+  email: string;
+};

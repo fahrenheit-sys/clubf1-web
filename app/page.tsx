@@ -1,131 +1,98 @@
 import Image from "next/image";
-import OptInForm from "./opt-in-form";
+import WaitlistForm from "./waitlist-form";
 
-const ecosystem = [
-  { title: "Gym & Group Fitness", body: "A premium training floor and a full class timetable, seven days a week." },
-  { title: "Recovery Centre", body: "Sauna, ice, and dedicated recovery space to train smarter and live longer." },
-  { title: "Wellness Circuit & Yoga", body: "Guided wellness programming, yoga, and eGym smart strength." },
-  { title: "25m Pool & Swim", body: "Part of the new White City aquatic precinct, right on your doorstep." },
-  { title: "Pickleball & Courts", body: "The fastest-growing sport in the country — and a community around it." },
-  { title: "Run Club & Community", body: "A socially connected club where you're recognised, supported, and motivated." },
+// TODO: replace href values with the real handles once confirmed.
+const socials = [
+  { name: "Instagram", href: "https://instagram.com/" },
+  { name: "Facebook", href: "https://facebook.com/" },
+  { name: "TikTok", href: "https://tiktok.com/" },
 ];
 
-const founderBenefits = [
-  { title: "Rate locked for life", body: "Founders lock in their founding rate permanently — it never goes up." },
-  { title: "First access", body: "VIP priority when founding memberships open, before anyone else." },
-  { title: "Shape the club", body: "Founders help define the programming, the culture, and the community." },
-  { title: "Founder events", body: "Exclusive previews and gatherings on the road to opening day." },
+const pillars = [
+  { title: "Train", body: "A premium gym floor, group fitness, and eGym smart strength — guided every step." },
+  { title: "Restore", body: "A dedicated recovery centre and wellness circuit built for longevity, not just workouts." },
+  { title: "Belong", body: "Pool, pickleball, run club, and a socially connected community at Hakoah White City." },
 ];
 
 export default function Home() {
   return (
-    <main className="bg-cream text-ink">
+    <main className="bg-forest text-cream">
       {/* ───────── Hero ───────── */}
-      <section className="relative overflow-hidden bg-forest text-cream">
-        <div className="absolute inset-0 opacity-[0.07] [background:radial-gradient(circle_at_30%_20%,#fff_0,transparent_45%)]" />
-        <div className="relative mx-auto max-w-5xl px-6 py-20 sm:py-28">
+      <section className="relative flex min-h-[88vh] flex-col items-center justify-center overflow-hidden px-6 text-center">
+        <div className="absolute inset-0 opacity-[0.08] [background:radial-gradient(circle_at_50%_30%,#fff_0,transparent_55%)]" />
+        <div className="relative">
           <Image
             src="/fahrenheit-one-logo.png"
             alt="Fahrenheit One"
-            width={150}
-            height={48}
-            className="mb-10 h-12 w-auto brightness-0 invert"
+            width={190}
+            height={60}
+            className="mx-auto mb-10 h-14 w-auto brightness-0 invert"
             priority
           />
-          <div className="eyebrow text-[11px] text-gold mb-5">
-            Fahrenheit One @ Hakoah White City
+          <div className="eyebrow text-[11px] text-gold mb-6">
+            @ Hakoah White City · Launching April 2027
           </div>
           <h1 className="font-[family-name:var(--font-display)] text-4xl font-medium leading-[1.05] sm:text-6xl">
-            Our community's club.
+            Something extraordinary
             <br />
-            <span className="text-gold">Be one of its founders.</span>
+            <span className="text-gold">is coming.</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-cream/80">
-            A premium fitness and wellness home opening at Hakoah White City in
-            April 2027. Founding members lock in their rate for life — and help
-            shape the club from day one.
+          <p className="mx-auto mt-6 max-w-xl text-lg text-cream/80">
+            Fahrenheit One is a premium fitness and wellness club being built at
+            the heart of the new Hakoah White City. Follow the journey — and be
+            first through the doors.
           </p>
-          <a
-            href="#join"
-            className="mt-9 inline-block rounded-lg bg-gold px-7 py-4 font-medium text-forest transition hover:brightness-105"
-          >
-            Join the Founders List
-          </a>
+
+          {/* Social CTAs */}
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+            {socials.map((s) => (
+              <a
+                key={s.name}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg border border-white/25 px-5 py-2.5 text-sm font-medium text-cream transition hover:border-gold hover:text-gold"
+              >
+                {s.name}
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ───────── Vision ───────── */}
-      <section className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <div className="eyebrow text-[11px] text-green-mid mb-4">The vision</div>
-        <h2 className="font-[family-name:var(--font-display)] text-3xl font-medium leading-tight sm:text-4xl">
-          Something extraordinary is being built in White City.
-        </h2>
-        <p className="mt-6 text-lg leading-relaxed text-muted">
-          A generational rebuild of the Hakoah campus — pools, courts, gardens,
-          and gathering places. At its heart sits Fahrenheit One: not a gym, but a
-          premium fitness and wellness ecosystem designed around community,
-          guidance, and belonging.
-        </p>
-      </section>
-
-      {/* ───────── Ecosystem ───────── */}
-      <section className="bg-cream-2 py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="eyebrow text-[11px] text-green-mid mb-3 text-center">Inside the club</div>
-          <h2 className="mb-12 text-center font-[family-name:var(--font-display)] text-3xl font-medium sm:text-4xl">
-            One membership. A whole ecosystem.
-          </h2>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {ecosystem.map((f) => (
-              <div key={f.title} className="rounded-2xl border border-line bg-white p-7">
-                <h3 className="mb-2 font-[family-name:var(--font-display)] text-xl font-medium text-forest">
-                  {f.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted">{f.body}</p>
+      {/* ───────── What it is ───────── */}
+      <section className="border-t border-white/10 px-6 py-20">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+            {pillars.map((p) => (
+              <div key={p.title} className="rounded-2xl border border-white/10 bg-white/[0.03] p-7">
+                <div className="eyebrow mb-2 text-[11px] text-gold">{p.title}</div>
+                <p className="text-sm leading-relaxed text-cream/75">{p.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ───────── Founder benefits ───────── */}
-      <section className="mx-auto max-w-5xl px-6 py-20">
-        <div className="eyebrow text-[11px] text-gold mb-3 text-center">Why found</div>
-        <h2 className="mb-12 text-center font-[family-name:var(--font-display)] text-3xl font-medium sm:text-4xl">
-          Founders get the best of everything.
-        </h2>
-        <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
-          {founderBenefits.map((b) => (
-            <div key={b.title} className="bg-white p-8">
-              <h3 className="mb-2 font-[family-name:var(--font-display)] text-xl font-medium text-forest">
-                {b.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-muted">{b.body}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ───────── Opt-in ───────── */}
-      <section id="join" className="bg-forest py-20">
-        <div className="mx-auto max-w-2xl px-6">
-          <div className="eyebrow text-[11px] text-gold mb-3 text-center">Join the founders list</div>
-          <h2 className="mb-3 text-center font-[family-name:var(--font-display)] text-3xl font-medium text-cream sm:text-4xl">
-            Claim your place.
+      {/* ───────── Notify capture ───────── */}
+      <section className="border-t border-white/10 px-6 py-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl font-medium sm:text-4xl">
+            Be first to know.
           </h2>
-          <p className="mb-10 text-center text-cream/70">
-            No payment today — just tell us a little about you and we'll keep you
-            first in line.
+          <p className="mx-auto mt-4 mb-9 max-w-md text-cream/70">
+            Drop your details and we'll keep you posted as the club takes shape —
+            previews, milestones, and your invitation to join.
           </p>
-          <div className="rounded-2xl bg-cream p-6 sm:p-9">
-            <OptInForm />
-          </div>
+          <WaitlistForm />
         </div>
       </section>
 
       {/* ───────── Footer ───────── */}
-      <footer className="bg-forest pb-12 text-center text-cream/50">
-        <div className="eyebrow text-[10px]">@ Hakoah White City · Opening April 2027</div>
+      <footer className="border-t border-white/10 px-6 py-10 text-center">
+        <div className="eyebrow text-[10px] text-cream/45">
+          Fahrenheit One @ Hakoah White City · Opening April 2027
+        </div>
       </footer>
     </main>
   );

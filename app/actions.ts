@@ -10,6 +10,7 @@ import {
   INTEREST_OPTIONS,
   type OptInInput,
   type OptInResult,
+  type WaitlistInput,
 } from "./form-options";
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
@@ -108,6 +109,53 @@ export async function submitOptIn(input: OptInInput): Promise<OptInResult> {
     return { ok: true };
   } catch (err) {
     console.error("GHL upsert error", err);
+    return { ok: false, error: "Network error. Please try again." };
+  }
+}
+
+// Lightweight waitlist capture from the root "launching soon" page. General
+// public interest — tagged source::organic + track::local (the public/Eastern
+// Suburbs audience; community signups come through /community). No pipeline.
+export async function submitWaitlist(input: WaitlistInput): Promise<OptInResult> {
+  const firstName = input.firstName?.trim();
+  const email = input.email?.trim().toLowerCase();
+
+  if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))
+    return { ok: false, error: "Please enter a valid email address." };
+
+  const token = process.env.GHL_PRIVATE_TOKEN;
+  const locationId = process.env.GHL_LOCATION_ID;
+  if (!token || !locationId) {
+    console.error("Missing GHL_PRIVATE_TOKEN / GHL_LOCATION_ID env vars");
+    return { ok: false, error: "We couldn't submit that just now. Please try again shortly." };
+  }
+
+  const body = {
+    locationId,
+    firstName: firstName || undefined,
+    email,
+    source: "clubf1.com.au launching-soon waitlist",
+    tags: ["source::organic", "track::local"],
+  };
+
+  try {
+    const res = await fetch(`${GHL_BASE}/contacts/upsert`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Version: "2021-07-28",
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+      console.error("GHL waitlist upsert failed", res.status, await res.text());
+      return { ok: false, error: "Something went wrong on our end. Please try again." };
+    }
+    return { ok: true };
+  } catch (err) {
+    console.error("GHL waitlist upsert error", err);
     return { ok: false, error: "Network error. Please try again." };
   }
 }
