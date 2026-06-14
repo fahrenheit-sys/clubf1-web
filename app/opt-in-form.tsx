@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { submitOptIn } from "./actions";
 import {
   PREFERRED_TIME_OPTIONS,
   INTEREST_OPTIONS,
   type OptInInput,
 } from "./form-options";
+import { captureTracking, fireLeadConversion, newEventId } from "./lib/tracking";
 
 const years = Array.from({ length: 2013 - 1925 }, (_, i) => 2012 - i); // 2012 → 1925
 
@@ -30,15 +31,28 @@ export default function OptInForm({ track }: { track: "community" | "local" }) {
   const [done, setDone] = useState(false);
   const [pending, start] = useTransition();
 
+  // Capture ad attribution (utm_*, gclid, fbclid, _fbp/_fbc) once on mount.
+  const tracking = useRef<ReturnType<typeof captureTracking>>({});
+  useEffect(() => {
+    tracking.current = captureTracking();
+  }, []);
+
   const set = (k: keyof OptInInput, v: string) => setForm((p) => ({ ...p, [k]: v }));
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    // One id shared by the client Pixel event and the server CAPI call (dedup).
+    const eventId = newEventId();
     start(async () => {
-      const res = await submitOptIn(form);
-      if (res.ok) setDone(true);
-      else setError(res.error);
+      const res = await submitOptIn({
+        ...form,
+        tracking: { ...tracking.current, eventId },
+      });
+      if (res.ok) {
+        fireLeadConversion({ eventId, track, interest: form.interest });
+        setDone(true);
+      } else setError(res.error);
     });
   };
 

@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { submitWaitlist } from "./actions";
+import { captureTracking, fireLeadConversion, newEventId } from "./lib/tracking";
 
 export default function WaitlistForm() {
   const [firstName, setFirstName] = useState("");
@@ -10,13 +11,25 @@ export default function WaitlistForm() {
   const [done, setDone] = useState(false);
   const [pending, start] = useTransition();
 
+  const tracking = useRef<ReturnType<typeof captureTracking>>({});
+  useEffect(() => {
+    tracking.current = captureTracking();
+  }, []);
+
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    const eventId = newEventId();
     start(async () => {
-      const res = await submitWaitlist({ firstName, email });
-      if (res.ok) setDone(true);
-      else setError(res.error);
+      const res = await submitWaitlist({
+        firstName,
+        email,
+        tracking: { ...tracking.current, eventId },
+      });
+      if (res.ok) {
+        fireLeadConversion({ eventId, track: "local", interest: "waitlist" });
+        setDone(true);
+      } else setError(res.error);
     });
   };
 

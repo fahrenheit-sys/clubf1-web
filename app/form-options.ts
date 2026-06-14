@@ -13,6 +13,24 @@ export const PREFERRED_TIME_OPTIONS = [
 
 export const INTEREST_OPTIONS = ["Fitness", "Wellness", "Lifestyle"] as const;
 
+// Ad-attribution + conversion-matching params captured client-side from the URL
+// (utm_*, gclid, fbclid) and the browser (Meta _fbp/_fbc cookies). `eventId` is a
+// per-submission id shared between the client Pixel `Lead` event and the
+// server-side Conversions API call so Meta deduplicates the two into one.
+export type TrackingParams = {
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmTerm?: string;
+  utmContent?: string;
+  gclid?: string;
+  fbclid?: string;
+  fbp?: string;
+  fbc?: string;
+  eventId?: string;
+  pageUrl?: string;
+};
+
 export type OptInInput = {
   track: "community" | "local";
   firstName: string;
@@ -23,6 +41,7 @@ export type OptInInput = {
   interest: string;
   yearOfBirth: string;
   isHakoahMember?: string; // "Yes" | "No" — community only
+  tracking?: TrackingParams;
 };
 
 export type OptInResult = { ok: true } | { ok: false; error: string };
@@ -31,4 +50,5 @@ export type OptInResult = { ok: true } | { ok: false; error: string };
 export type WaitlistInput = {
   firstName: string;
   email: string;
+  tracking?: TrackingParams;
 };

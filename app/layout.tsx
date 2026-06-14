@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter, DM_Mono } from "next/font/google";
 import "./globals.css";
+import Analytics from "./analytics";
 
 const display = Fraunces({
   variable: "--font-display",
@@ -42,7 +43,10 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${sans.variable} ${mono.variable} h-full antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

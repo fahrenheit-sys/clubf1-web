@@ -5,12 +5,15 @@
 // tribe, generation). A GHL workflow (trigger: tag `source::opt-in-form` added)
 // then creates the pipeline opportunity and syncs the lead to Supabase.
 
+import crypto from "crypto";
+import { headers } from "next/headers";
 import {
   PREFERRED_TIME_OPTIONS,
   INTEREST_OPTIONS,
   type OptInInput,
   type OptInResult,
   type WaitlistInput,
+  type TrackingParams,
 } from "./form-options";
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
@@ -43,6 +46,96 @@ async function syncToDashboard(payload: unknown): Promise<void> {
     if (!r.ok) console.error("Dashboard sync failed", r.status, await r.text());
   } catch (err) {
     console.error("Dashboard sync error", err);
+  }
+}
+
+// ───────────────────────── Meta Conversions API ─────────────────────────
+// Server-side "Lead" event. Runs only when both a Pixel ID and a CAPI token are
+// configured, so it's inert until those env vars are set. Shares `eventId` with
+// the browser Pixel event so Meta deduplicates the pair into a single Lead.
+const META_API_VERSION = "v21.0";
+
+const sha256 = (v: string) => crypto.createHash("sha256").update(v).digest("hex");
+const hashNorm = (v?: string) => (v ? sha256(v.trim().toLowerCase()) : undefined);
+
+// Normalise an AU mobile to E.164-without-plus for Meta (e.g. 0412… → 61412…).
+function hashPhone(p?: string): string | undefined {
+  if (!p) return undefined;
+  let d = p.replace(/\D/g, "");
+  if (!d) return undefined;
+  if (d.startsWith("0") && d.length === 10) d = "61" + d.slice(1);
+  else if (d.length === 9) d = "61" + d;
+  return sha256(d);
+}
+
+async function sendMetaLead(args: {
+  email?: string;
+  phone?: string;
+  firstName?: string;
+  lastName?: string;
+  track: string;
+  interest?: string;
+  tracking?: TrackingParams;
+}): Promise<void> {
+  const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+  const token = process.env.META_CAPI_TOKEN;
+  if (!pixelId || !token) return; // not configured — no-op
+
+  const t = args.tracking ?? {};
+  let clientIp: string | undefined;
+  let userAgent: string | undefined;
+  try {
+    const h = await headers();
+    userAgent = h.get("user-agent") ?? undefined;
+    clientIp = (h.get("x-forwarded-for") ?? "").split(",")[0].trim() || undefined;
+  } catch {
+    /* headers unavailable — send without them */
+  }
+
+  const user_data: Record<string, unknown> = {};
+  const em = hashNorm(args.email);
+  if (em) user_data.em = [em];
+  const ph = hashPhone(args.phone);
+  if (ph) user_data.ph = [ph];
+  const fn = hashNorm(args.firstName);
+  if (fn) user_data.fn = [fn];
+  const ln = hashNorm(args.lastName);
+  if (ln) user_data.ln = [ln];
+  if (t.fbp) user_data.fbp = t.fbp;
+  if (t.fbc) user_data.fbc = t.fbc;
+  if (clientIp) user_data.client_ip_address = clientIp;
+  if (userAgent) user_data.client_user_agent = userAgent;
+
+  const event = {
+    event_name: "Lead",
+    event_time: Math.floor(Date.now() / 1000),
+    action_source: "website",
+    event_id: t.eventId,
+    event_source_url: t.pageUrl,
+    user_data,
+    custom_data: {
+      content_name: `${args.track} opt-in`,
+      content_category: args.interest,
+    },
+  };
+
+  // Optional: route to Events Manager → Test Events while verifying the setup.
+  const testCode = process.env.META_CAPI_TEST_EVENT_CODE;
+  const payload: Record<string, unknown> = { data: [event] };
+  if (testCode) payload.test_event_code = testCode;
+
+  try {
+    const res = await fetch(
+      `https://graph.facebook.com/${META_API_VERSION}/${pixelId}/events?access_token=${encodeURIComponent(token)}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      },
+    );
+    if (!res.ok) console.error("Meta CAPI failed", res.status, await res.text());
+  } catch (err) {
+    console.error("Meta CAPI error", err);
   }
 }
 
@@ -140,26 +233,45 @@ export async function submitOptIn(input: OptInInput): Promise<OptInResult> {
       return { ok: false, error: "Something went wrong on our end. Please try again." };
     }
 
-    // Mirror the lead into Supabase / the dashboard (best-effort).
-    await syncToDashboard({
-      type: "opt_in",
-      contact: {
-        firstName,
-        lastName,
+    // Fire-and-forget the two best-effort downstreams in parallel: the dashboard
+    // webhook (→ Supabase, carrying UTM attribution) and the Meta Conversions API.
+    await Promise.allSettled([
+      syncToDashboard({
+        type: "opt_in",
+        contact: {
+          firstName,
+          lastName,
+          email,
+          phone,
+          tags,
+          pipelineStage: "VIP Waitlist",
+          // The dashboard webhook reads attributionSource.utm* and normalises it
+          // into lead_source for the analytics.
+          attributionSource: {
+            utmSource: input.tracking?.utmSource ?? null,
+            utmMedium: input.tracking?.utmMedium ?? null,
+            utmCampaign: input.tracking?.utmCampaign ?? null,
+          },
+          customField: {
+            year_of_birth: String(yob),
+            preferred_time: input.preferredTime,
+            membership_interest: input.interest,
+            ...(track === "community"
+              ? { is_hakoah_member: input.isHakoahMember === "Yes" ? "Yes" : "No" }
+              : {}),
+          },
+        },
+      }),
+      sendMetaLead({
         email,
         phone,
-        tags,
-        pipelineStage: "VIP Waitlist",
-        customField: {
-          year_of_birth: String(yob),
-          preferred_time: input.preferredTime,
-          membership_interest: input.interest,
-          ...(track === "community"
-            ? { is_hakoah_member: input.isHakoahMember === "Yes" ? "Yes" : "No" }
-            : {}),
-        },
-      },
-    });
+        firstName,
+        lastName,
+        track,
+        interest: input.interest,
+        tracking: input.tracking,
+      }),
+    ]);
 
     return { ok: true };
   } catch (err) {
@@ -208,6 +320,14 @@ export async function submitWaitlist(input: WaitlistInput): Promise<OptInResult>
       console.error("GHL waitlist upsert failed", res.status, await res.text());
       return { ok: false, error: "Something went wrong on our end. Please try again." };
     }
+    // Server-side Meta Lead (email match only) — no-op until CAPI env is set.
+    await sendMetaLead({
+      email,
+      firstName,
+      track: "local",
+      interest: "waitlist",
+      tracking: input.tracking,
+    });
     return { ok: true };
   } catch (err) {
     console.error("GHL waitlist upsert error", err);
