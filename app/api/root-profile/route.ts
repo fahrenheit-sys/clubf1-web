@@ -68,7 +68,8 @@ export async function POST(req: NextRequest) {
   const tribeCode  = TRIBE_CODE[preferredTime]
   const validYob   = yob >= 1920 && yob <= 2013
 
-  const tags: string[] = []
+  // Always re-send the base tags so they survive a GHL tag-replace on upsert
+  const tags: string[] = ['source::organic', 'track::local']
   if (interest === 'not-sure') {
     tags.push('type::not-sure')
   } else if (interest) {
