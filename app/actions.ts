@@ -24,6 +24,7 @@ const FIELD_IDS = {
   membership_interest: "Kg9YVN5qI4GLbTsy9Nll",
   year_of_birth: "Sf0Cb9ESgch7087rQyzo",
   is_hakoah_member: "V78R8ELPqNcpgjWpPMuc",
+  gen_tribe_code: "bOKu2Y5nLIzHmi6fKXuX",
 };
 
 const DASHBOARD_WEBHOOK_URL =
@@ -158,6 +159,28 @@ function generationTag(yob: number): string | null {
   return "gen::silent-gen";
 }
 
+const TRIBE_CODE: Record<string, string> = {
+  "Early Morning (5–8am)": "morning",
+  "Mid Morning (8–11am)": "school_run",
+  "Lunchtime (11am–2pm)": "lunch_break",
+  "Afternoon (2–5pm)": "afternoon",
+  "Evening (5–8pm)": "evening",
+  Weekends: "weekend",
+};
+
+function computeGenTribeCode(yob: number, preferredTime: string): string | null {
+  const tribe = TRIBE_CODE[preferredTime];
+  if (!tribe || !yob) return null;
+  let gen: string;
+  if (yob >= 2010) gen = "gen_alpha";
+  else if (yob >= 1997) gen = "gen_z";
+  else if (yob >= 1981) gen = "millennial";
+  else if (yob >= 1965) gen = "gen_x";
+  else if (yob >= 1946) gen = "boomer";
+  else gen = "silent_gen";
+  return `${gen}_${tribe}`;
+}
+
 export async function submitOptIn(input: OptInInput): Promise<OptInResult> {
   const firstName = input.firstName?.trim();
   const lastName = input.lastName?.trim();
@@ -198,6 +221,8 @@ export async function submitOptIn(input: OptInInput): Promise<OptInResult> {
     { id: FIELD_IDS.membership_interest, value: input.interest },
     { id: FIELD_IDS.year_of_birth, value: String(yob) },
   ];
+  const genTribeCode = computeGenTribeCode(yob, input.preferredTime);
+  if (genTribeCode) customFields.push({ id: FIELD_IDS.gen_tribe_code, value: genTribeCode });
   // The Hakoah-member question is only asked on the community page.
   if (track === "community") {
     customFields.push({
