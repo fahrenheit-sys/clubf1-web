@@ -837,6 +837,164 @@
       text-align: right;
     }
 
+    /* ─────────── PROFILE POPUP ─────────── */
+    #profile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(0, 0, 0, 0.72);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    #profile-card {
+      background: var(--forest);
+      max-width: 500px;
+      width: 100%;
+      padding: 44px 48px 40px;
+      position: relative;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    }
+
+    #popup-close {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.35);
+      font-size: 26px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 4px 8px;
+      transition: color 0.2s;
+    }
+
+    #popup-close:hover { color: rgba(255,255,255,0.7); }
+
+    .popup-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .popup-heading {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .popup-sub {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 30px;
+    }
+
+    .popup-field { margin-bottom: 14px; }
+
+    .popup-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 7px;
+    }
+
+    .popup-select,
+    .popup-input {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.13);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      outline: none;
+      border-radius: 2px;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: border-color 0.2s;
+    }
+
+    .popup-select:focus,
+    .popup-input:focus { border-color: var(--gold); }
+
+    .popup-select option { background: var(--forest); }
+
+    .popup-input::placeholder { color: rgba(255,255,255,0.25); }
+
+    .popup-btn-primary {
+      width: 100%;
+      padding: 15px;
+      background: var(--gold);
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--forest);
+      cursor: pointer;
+      border-radius: 2px;
+      margin-bottom: 10px;
+      transition: opacity 0.2s;
+    }
+
+    .popup-btn-primary:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .popup-btn-skip {
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.38);
+      cursor: pointer;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .popup-btn-skip:hover {
+      border-color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.6);
+    }
+
+    #popup-error {
+      font-size: 12px;
+      color: #e57373;
+      text-align: center;
+      margin-top: 8px;
+      display: none;
+    }
+
+    #popup-done {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    #popup-done .popup-eyebrow { margin-bottom: 16px; }
+    #popup-done .popup-heading { margin-bottom: 10px; }
+
+    @media (max-width: 540px) {
+      #profile-card { padding: 32px 24px 28px; }
+      .popup-heading { font-size: 22px; }
+    }
+
     /* ─── MOBILE ─── */
     @media (max-width: 900px) {
       .hero-images { grid-template-columns: 1fr; height: 240px; padding: 0 20px; }
@@ -1253,6 +1411,60 @@
   </div>
 </div>
 
+<!-- PROFILE POPUP -->
+<div id="profile-overlay">
+  <div id="profile-card">
+    <button id="popup-close" aria-label="Close">×</button>
+
+    <!-- Form state -->
+    <div id="popup-form-state">
+      <p class="popup-eyebrow">One more thing</p>
+      <h3 class="popup-heading">Help us personalise<br>your experience.</h3>
+      <p class="popup-sub">Three quick questions — so your updates are relevant to you, not just generic.</p>
+
+      <div class="popup-field">
+        <label class="popup-label" for="popup-interest">What interests you most?</label>
+        <select class="popup-select" id="popup-interest">
+          <option value="">Select an option</option>
+          <option value="Lifestyle">Lifestyle — fitness, wellness &amp; recovery</option>
+          <option value="Fitness">Fitness — gym &amp; group classes</option>
+          <option value="Wellness">Wellness — recovery &amp; wellness circuit</option>
+          <option value="not-sure">Not sure yet</option>
+        </select>
+      </div>
+
+      <div class="popup-field">
+        <label class="popup-label" for="popup-time">When do you usually train?</label>
+        <select class="popup-select" id="popup-time">
+          <option value="">Select an option</option>
+          <option value="Early Morning (5–8am)">Early Morning (5–8am)</option>
+          <option value="Mid Morning (8–11am)">Mid Morning (8–11am)</option>
+          <option value="Lunchtime (11am–2pm)">Lunchtime (11am–2pm)</option>
+          <option value="Afternoon (2–5pm)">Afternoon (2–5pm)</option>
+          <option value="Evening (5–8pm)">Evening (5–8pm)</option>
+          <option value="Weekends">Weekends</option>
+        </select>
+      </div>
+
+      <div class="popup-field">
+        <label class="popup-label" for="popup-yob">Year of birth</label>
+        <input class="popup-input" id="popup-yob" type="text" inputmode="numeric" maxlength="4" placeholder="e.g. 1985">
+      </div>
+
+      <button class="popup-btn-primary" id="popup-submit">Personalise My Experience</button>
+      <button class="popup-btn-skip" id="popup-skip">Skip for now</button>
+      <p id="popup-error"></p>
+    </div>
+
+    <!-- Done state -->
+    <div id="popup-done">
+      <p class="popup-eyebrow">All set</p>
+      <h3 class="popup-heading">You're on the list.</h3>
+      <p class="popup-sub">We'll keep you updated as we count down to opening day — with content that's actually relevant to you.</p>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer class="site-footer">
   <div>
@@ -1289,7 +1501,9 @@
     }, i * STAGGER_MS);
   });
 
-  // VIP form submission → /api/waitlist → GHL
+  // ── VIP form ────────────────────────────────────────────────────────────
+  let submittedEmail = '';
+
   document.getElementById('vip-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn      = document.getElementById('vip-submit-btn');
@@ -1300,25 +1514,30 @@
     feedback.style.color = 'var(--light)';
     feedback.textContent = '';
 
+    const email = this.email.value.trim();
+
     try {
       const res    = await fetch('/api/waitlist', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({
           firstName: this.firstName.value.trim(),
-          email:     this.email.value.trim(),
+          email,
           phone:     this.phone.value.trim(),
         }),
       });
       const result = await res.json();
 
       if (result.ok) {
+        submittedEmail = email;
         // Fire pixel conversion events
         if (window.fbq) fbq('track', 'Lead');
         if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-18238493597/1klWCM-U474cEJ2n5fhD' });
-        // Show success, hide form
+        // Show success message, hide form
         document.getElementById('vip-form').style.display    = 'none';
         document.getElementById('form-success').style.display = 'block';
+        // Show profile popup after a short delay
+        setTimeout(showPopup, 1500);
       } else {
         feedback.style.color = '#c0392b';
         feedback.textContent = result.error || 'Something went wrong. Please try again.';
@@ -1332,6 +1551,75 @@
       btn.disabled    = false;
     }
   });
+
+  // ── Profile popup ────────────────────────────────────────────────────────
+  function showPopup() {
+    const overlay = document.getElementById('profile-overlay');
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePopup() {
+    const overlay = document.getElementById('profile-overlay');
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('popup-close').addEventListener('click', closePopup);
+  document.getElementById('popup-skip').addEventListener('click', closePopup);
+
+  // Close on backdrop click
+  document.getElementById('profile-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closePopup();
+  });
+
+  document.getElementById('popup-submit').addEventListener('click', async function() {
+    const interest     = document.getElementById('popup-interest').value;
+    const preferredTime = document.getElementById('popup-time').value;
+    const yearOfBirth  = document.getElementById('popup-yob').value.trim();
+    const errorEl      = document.getElementById('popup-error');
+
+    errorEl.style.display = 'none';
+
+    if (!interest)     { showPopupError('Please select what interests you.'); return; }
+    if (!preferredTime){ showPopupError('Please tell us when you train.'); return; }
+    if (!yearOfBirth || !/^\d{4}$/.test(yearOfBirth) || +yearOfBirth < 1920 || +yearOfBirth > 2013) {
+      showPopupError('Please enter a valid year of birth (e.g. 1985).');
+      return;
+    }
+
+    this.disabled = true;
+    this.textContent = 'Saving…';
+
+    try {
+      const res = await fetch('/api/root-profile', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ email: submittedEmail, interest, preferredTime, yearOfBirth }),
+      });
+      const result = await res.json();
+
+      if (result.ok) {
+        document.getElementById('popup-form-state').style.display = 'none';
+        document.getElementById('popup-done').style.display = 'block';
+        setTimeout(closePopup, 3000);
+      } else {
+        this.disabled = false;
+        this.textContent = 'Personalise My Experience';
+        showPopupError(result.error || 'Something went wrong. Please try again.');
+      }
+    } catch {
+      this.disabled = false;
+      this.textContent = 'Personalise My Experience';
+      showPopupError('Network error. Please try again.');
+    }
+  });
+
+  function showPopupError(msg) {
+    const el = document.getElementById('popup-error');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
 </script>
 
 </body>
