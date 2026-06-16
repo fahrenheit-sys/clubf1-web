@@ -5,6 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fahrenheit One — Launching Soon</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1736346084028502');
+    fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id=1736346084028502&ev=PageView&noscript=1"/></noscript>
+
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18238493597"></script>
+  <script>
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date());
+    gtag('config','AW-18238493597');
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -45,7 +67,7 @@
       border-bottom: 1px solid var(--rule);
     }
 
-    .nav-logo { height: 52px; display: block; }
+    .nav-logo { height: 56px; display: block; }
 
     .nav-right {
       display: flex;
@@ -771,7 +793,7 @@
     }
 
     .footer-logo {
-      height: 52px;
+      height: 56px;
       display: block;
       filter: brightness(0) invert(1);
       opacity: 0.85;
@@ -1158,13 +1180,18 @@
     <div class="vip-divider"></div>
 
     <p class="vip-form-label">Register your interest — takes 30 seconds</p>
-    <form class="vip-form" onsubmit="return false;">
-      <input type="text" placeholder="First name">
-      <input type="email" placeholder="Email address">
-      <input type="tel" placeholder="Mobile number">
+
+    <div id="form-success" style="display:none; padding:24px 0 8px; font-size:15px; font-weight:600; color:var(--forest);">
+      You're on the list. We'll be in touch soon.
+    </div>
+
+    <form class="vip-form" id="vip-form">
+      <input type="text" name="firstName" placeholder="First name">
+      <input type="email" name="email" placeholder="Email address" required>
+      <input type="tel" name="phone" placeholder="Mobile number">
       <div class="vip-form-btn">
-        <button type="submit">Join the VIP List</button>
-        <span class="vip-note">No spam · No commitment · Unsubscribe any time</span>
+        <button type="submit" id="vip-submit-btn">Submit</button>
+        <span id="form-feedback" class="vip-note"></span>
       </div>
     </form>
 
@@ -1188,8 +1215,7 @@
 </footer>
 
 <script>
-  // Crossfade tile animation — add more <img> tags inside any .tile-images
-  // to extend the cycle. No other changes needed.
+  // Crossfade tile animation
   const INTERVAL   = 3800;
   const STAGGER_MS = 700;
 
@@ -1198,9 +1224,7 @@
       tile.querySelectorAll('.tile-images img, .tile-images .tile-placeholder')
     );
     if (imgs.length <= 1) return;
-
     let current = 0;
-
     setTimeout(() => {
       setInterval(() => {
         imgs[current].classList.remove('active');
@@ -1208,6 +1232,50 @@
         imgs[current].classList.add('active');
       }, INTERVAL);
     }, i * STAGGER_MS);
+  });
+
+  // VIP form submission → /api/waitlist → GHL
+  document.getElementById('vip-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn      = document.getElementById('vip-submit-btn');
+    const feedback = document.getElementById('form-feedback');
+
+    btn.textContent = 'Submitting…';
+    btn.disabled    = true;
+    feedback.style.color = 'var(--light)';
+    feedback.textContent = '';
+
+    try {
+      const res    = await fetch('/api/waitlist', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({
+          firstName: this.firstName.value.trim(),
+          email:     this.email.value.trim(),
+          phone:     this.phone.value.trim(),
+        }),
+      });
+      const result = await res.json();
+
+      if (result.ok) {
+        // Fire pixel conversion events
+        if (window.fbq) fbq('track', 'Lead');
+        if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-18238493597/1klWCM-U474cEJ2n5fhD' });
+        // Show success, hide form
+        document.getElementById('vip-form').style.display    = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        feedback.style.color = '#c0392b';
+        feedback.textContent = result.error || 'Something went wrong. Please try again.';
+        btn.textContent = 'Submit';
+        btn.disabled    = false;
+      }
+    } catch {
+      feedback.style.color = '#c0392b';
+      feedback.textContent = 'Network error. Please try again.';
+      btn.textContent = 'Submit';
+      btn.disabled    = false;
+    }
   });
 </script>
 
