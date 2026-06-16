@@ -129,11 +129,11 @@
     .zones-section { padding: 80px 0; border-top: 1px solid var(--rule); }
     .zones-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
     .zones-header { margin-bottom: 48px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: end; }
-    .zones-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--rule); }
-    .zone-card { padding: 40px 36px; border-right: 1px solid var(--rule); }
+    .zones-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--rule); }
+    .zone-card { padding: 36px 26px; border-right: 1px solid var(--rule); }
     .zone-card:last-child { border-right: none; }
     .zone-num { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
-    .zone-title { font-size: clamp(22px, 2.2vw, 30px); font-weight: 800; letter-spacing: -0.8px; color: var(--ink); margin-bottom: 14px; line-height: 1.1; }
+    .zone-title { font-size: clamp(19px, 1.7vw, 25px); font-weight: 800; letter-spacing: -0.6px; color: var(--ink); margin-bottom: 14px; line-height: 1.1; }
     .zone-body { font-size: 13px; font-weight: 300; line-height: 1.75; color: var(--mid); margin-bottom: 20px; }
     .zone-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
     .zone-list li { font-size: 11px; font-weight: 500; color: var(--ink); display: flex; align-items: center; gap: 10px; }
@@ -190,7 +190,7 @@
     .pillar.alt .pillar-body { background: var(--cream); order: -1; }
     .pillar.dark .pillar-body { background: var(--forest); }
     .pillar-num { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-    .pillar-price { font-size: 11px; font-weight: 500; letter-spacing: 1px; margin-bottom: 18px; }
+    .pillar-price { display: none; font-size: 11px; font-weight: 500; letter-spacing: 1px; margin-bottom: 18px; }
     .pillar.dark .pillar-price { color: rgba(255,255,255,0.4); }
     .pillar:not(.dark) .pillar-price { color: var(--mid); }
     .pillar-title { font-size: clamp(28px, 3vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.0; margin-bottom: 16px; }
@@ -339,7 +339,7 @@
 <!-- STATS -->
 <div class="stats">
   <div class="stat">
-    <div class="stat-n">3 <span style="font-size:18px;letter-spacing:-0.5px;font-weight:700;">Zones</span></div>
+    <div class="stat-n">4 <span style="font-size:18px;letter-spacing:-0.5px;font-weight:700;">Floors</span></div>
     <div class="stat-l" style="letter-spacing:0.5px;">Fitness · Wellness · Recovery</div>
   </div>
   <div class="stat">
@@ -356,54 +356,69 @@
   </div>
 </div>
 
-<!-- WHAT IS F1 — three zones (the product, front and centre) -->
+<!-- WHAT IS F1 — four floors (the product, front and centre) -->
 <section class="zones-section">
   <div class="zones-inner">
     <div class="zones-header">
       <div>
         <p class="section-tag">What is Fahrenheit One</p>
-        <h2 class="section-headline">Three zones.<br>One membership.</h2>
+        <h2 class="section-headline">Four floors.<br>One membership.</h2>
       </div>
       <p class="section-body">
-        Fahrenheit One is not a standard gym. It is a complete fitness and wellness ecosystem — three distinct zones designed to work together. Train, recover, and move better, all under one roof. The best-equipped, most purposefully designed fitness destination the Eastern Suburbs has ever seen.
+        Fahrenheit One is not a standard gym. It is a complete fitness and wellness ecosystem spread across four purpose-built floors — each with its own focus, working together as one membership. The best-equipped, most purposefully designed fitness destination the Eastern Suburbs has ever seen.
       </p>
     </div>
     <div class="zones-grid">
       <div class="zone-card">
-        <p class="zone-num">Zone 01</p>
-        <h3 class="zone-title">Fitness &amp; Training</h3>
-        <p class="zone-body">A premium gym floor built for every training style. Free weights, functional zones, group fitness studios and the latest equipment — guided by eGym technology that tracks your progress automatically.</p>
+        <p class="zone-num">Level 1</p>
+        <h3 class="zone-title">The Recovery Floor</h3>
+        <p class="zone-body">Full recovery suite — saunas, cold therapy and guided restoration, all on one floor.</p>
         <ul class="zone-list">
-          <li>Premium Strength &amp; Cardio Floor</li>
+          <li>Change Rooms</li>
+          <li>Traditional Sauna</li>
+          <li>IR Sauna</li>
+          <li>Steam Room</li>
+          <li>Ice Shower</li>
+          <li>LED Therapy</li>
+          <li>Cryo Starbed</li>
+          <li>Compression Boots</li>
+          <li>Massage Chairs</li>
+        </ul>
+      </div>
+      <div class="zone-card">
+        <p class="zone-num">Level 2</p>
+        <h3 class="zone-title">The Training Floor</h3>
+        <p class="zone-body">Free weights, pin-loaded machines and cardio — the engine room of the club.</p>
+        <ul class="zone-list">
+          <li>Cardio Zone</li>
+          <li>Functional Fitness Zone</li>
+          <li>Free Weights</li>
+          <li>Pin Load Weights</li>
+          <li>Spin Studio</li>
+        </ul>
+      </div>
+      <div class="zone-card">
+        <p class="zone-num">Level 3</p>
+        <h3 class="zone-title">The Studio Floor</h3>
+        <p class="zone-body">Reformer, mat, barre and boxing studios — purpose-built for every class on the timetable.</p>
+        <ul class="zone-list">
+          <li>EGYM</li>
           <li>Pilates Reformer Studio</li>
-          <li>Functional Training Zone</li>
-          <li>100+ Group Fitness Classes</li>
-          <li>eGym Smart Training Technology</li>
-          <li>Personal Training</li>
+          <li>Pilates/Yoga Mat Studio</li>
+          <li>Barre Studio</li>
+          <li>Stretch Area</li>
+          <li>Boxing Zone</li>
+          <li>Les Mills Studio</li>
         </ul>
       </div>
       <div class="zone-card">
-        <p class="zone-num">Zone 02</p>
-        <h3 class="zone-title">Recovery Centre</h3>
-        <p class="zone-body">Recovery is not a bonus — it is half the result. The F1 Recovery Centre gives you access to tools that were once available only to professional athletes, built into your everyday membership.</p>
+        <p class="zone-num">Podium Level</p>
+        <h3 class="zone-title">The Podium</h3>
+        <p class="zone-body">Step outside without leaving the building. Pool, pickleball and the F1 Run Club.</p>
         <ul class="zone-list">
-          <li>Sauna &amp; Steam Room</li>
-          <li>Cryo Bed &amp; Ice Shower</li>
-          <li>Compression Therapy</li>
-          <li>Stretch &amp; Mobility Zone</li>
-          <li>Infrared Therapy</li>
-        </ul>
-      </div>
-      <div class="zone-card">
-        <p class="zone-num">Zone 03</p>
-        <h3 class="zone-title">Wellness Circuit</h3>
-        <p class="zone-body">Guided wellness programming for longevity, mindfulness and active recovery. Yoga, mindful movement, and a supervised circuit designed for all ages and fitness levels.</p>
-        <ul class="zone-list">
-          <li>Yoga &amp; Hot Yoga</li>
-          <li>Barre &amp; Pilates Mat</li>
-          <li>Mindful Movement</li>
-          <li>eGym Wellness Circuit</li>
-          <li>Stretch Classes</li>
+          <li>Heated Lap Pool</li>
+          <li>Pickleball Court</li>
+          <li>Run Club</li>
         </ul>
       </div>
     </div>
