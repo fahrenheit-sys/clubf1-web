@@ -54,17 +54,11 @@
 
     /* ─── NAV ─── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 60px;
-      height: 64px;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 60px; height: 64px;
       background: rgba(255,255,255,0.94);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--rule);
     }
     .nav-logo { height: 60px; display: block; }
@@ -79,31 +73,22 @@
     /* ─── HERO ─── */
     .hero { background: var(--forest); padding: 112px 60px 60px; }
     .hero-inner { max-width: 1200px; margin: 0 auto; }
-
     .hero-label {
       display: inline-flex; align-items: center; gap: 10px;
       font-size: 11px; font-weight: 600; letter-spacing: 3px;
       text-transform: uppercase; color: var(--gold); margin-bottom: 28px;
     }
-    .hero-label::before {
-      content: ''; display: inline-block; width: 24px; height: 1px; background: var(--gold);
-    }
-
+    .hero-label::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--gold); }
     .hero-headline {
       font-size: clamp(48px, 7.5vw, 100px);
       font-weight: 800; line-height: 0.92; letter-spacing: -3px; color: var(--white);
     }
     .hero-headline .word { display: block; }
     .hero-headline .word-gold { color: var(--gold); }
-
     .hero-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.12); margin: 36px 0; }
-
-    .hero-bottom {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
-    }
+    .hero-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; }
     .hero-statement { font-size: 17px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.6); }
     .hero-statement strong { color: var(--white); font-weight: 500; }
-
     .hero-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
     .btn-gold {
       display: inline-block; background: var(--gold); color: var(--forest);
@@ -118,9 +103,7 @@
       gap: 8px; padding: 0 60px; max-width: 1200px; margin: 0 auto; height: 360px;
     }
     .hero-images > div { position: relative; overflow: hidden; background: var(--cream); }
-    .hero-images > div img {
-      width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease;
-    }
+    .hero-images > div img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
     .hero-images > div:hover img { transform: scale(1.03); }
     .img-caption {
       position: absolute; bottom: 14px; left: 16px;
@@ -129,164 +112,122 @@
     }
 
     /* ─── STATS ─── */
-    .stats {
-      border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
-      margin: 56px 60px; display: flex;
-    }
-    .stat {
-      flex: 1; padding: 36px 0; text-align: center; border-right: 1px solid var(--rule);
-    }
+    .stats { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 56px 60px; display: flex; }
+    .stat { flex: 1; padding: 36px 0; text-align: center; border-right: 1px solid var(--rule); }
     .stat:last-child { border-right: none; }
     .stat-n { font-size: 38px; font-weight: 800; letter-spacing: -2px; color: var(--ink); line-height: 1; margin-bottom: 8px; }
     .stat-n span { color: var(--gold); }
     .stat-l { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--mid); }
 
-    /* ─── SHARED SECTION LAYOUT ─── */
-    .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
-    .section-tag {
-      font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 16px;
-    }
-    .section-headline {
-      font-size: clamp(28px, 3.5vw, 46px); font-weight: 800;
-      letter-spacing: -1.5px; line-height: 1.05; color: var(--ink); margin-bottom: 28px;
-    }
-    .section-body {
-      font-size: 16px; font-weight: 300; line-height: 1.85; color: var(--mid); margin-bottom: 18px;
-    }
+    /* ─── SHARED ─── */
+    .section-tag { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .section-headline { font-size: clamp(28px, 3.5vw, 46px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; color: var(--ink); }
+    .section-body { font-size: 16px; font-weight: 300; line-height: 1.85; color: var(--mid); }
     .section-body strong { color: var(--ink); font-weight: 500; }
-    .section-body:last-child { margin-bottom: 0; }
 
-    /* ─── WHITE CITY STORY ─── */
-    .wc-section { padding: 80px 0 80px; border-top: 1px solid var(--rule); }
-    .wc-grid {
-      display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start;
-    }
-    .wc-left .section-headline { margin-bottom: 0; }
-    .wc-right {}
+    /* ─── WHAT IS F1 — three zones ─── */
+    .zones-section { padding: 80px 0; border-top: 1px solid var(--rule); }
+    .zones-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+    .zones-header { margin-bottom: 48px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: end; }
+    .zones-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--rule); }
+    .zone-card { padding: 40px 36px; border-right: 1px solid var(--rule); }
+    .zone-card:last-child { border-right: none; }
+    .zone-num { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .zone-title { font-size: clamp(22px, 2.2vw, 30px); font-weight: 800; letter-spacing: -0.8px; color: var(--ink); margin-bottom: 14px; line-height: 1.1; }
+    .zone-body { font-size: 13px; font-weight: 300; line-height: 1.75; color: var(--mid); margin-bottom: 20px; }
+    .zone-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .zone-list li { font-size: 11px; font-weight: 500; color: var(--ink); display: flex; align-items: center; gap: 10px; }
+    .zone-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
 
-    /* ─── MORE THAN A GYM ─── */
-    .more-section { background: var(--cream); border-top: 1px solid var(--rule); padding: 80px 0 0; }
-    .more-header {
-      padding: 0 60px 56px; max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end;
-    }
+    /* ─── CAMPUS BONUS ─── */
+    .campus-section { background: var(--forest); border-top: 1px solid rgba(255,255,255,0.08); padding: 72px 0 0; }
+    .campus-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px 56px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+    .campus-section .section-tag { color: rgba(201,165,74,0.8); }
+    .campus-section .section-headline { color: var(--white); margin-bottom: 20px; }
+    .campus-section .section-body { color: rgba(255,255,255,0.55); }
+    .campus-section .section-body strong { color: var(--white); }
+    .campus-right-note { font-size: 13px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.45); border-left: 2px solid var(--gold); padding-left: 20px; font-style: italic; margin-top: 28px; }
 
     /* ─── CAMPUS TILES ─── */
-    .tiles-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule); }
-    .campus-tile { position: relative; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .tiles-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,0.08); }
+    .campus-tile { position: relative; border-right: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); }
     .campus-tile:nth-child(3n) { border-right: none; }
     .campus-tile:nth-child(4), .campus-tile:nth-child(5), .campus-tile:nth-child(6) { border-bottom: none; }
-
-    .tile-images { position: relative; height: 260px; overflow: hidden; background: var(--forest); }
-    .tile-images img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; opacity: 0; transition: opacity 1.4s ease;
-    }
+    .tile-images { position: relative; height: 220px; overflow: hidden; background: rgba(255,255,255,0.04); }
+    .tile-images img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.4s ease; }
     .tile-images img.active { opacity: 1; }
-    .tile-placeholder {
-      position: absolute; inset: 0; display: flex; align-items: center;
-      justify-content: center; flex-direction: column; gap: 8px;
-      background: var(--forest); opacity: 0; transition: opacity 1.4s ease;
-    }
+    .tile-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; opacity: 0; transition: opacity 1.4s ease; }
     .tile-placeholder.active { opacity: 1; }
     .tile-placeholder span { font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.28); }
-    .tile-images::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 70px;
-      background: linear-gradient(transparent, rgba(10,26,17,0.5)); z-index: 1; pointer-events: none;
-    }
-    .tile-footer {
-      padding: 14px 18px; background: var(--white); border-top: 1px solid var(--rule);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .tile-name { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: var(--ink); }
-    .tile-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); opacity: 0.5; }
+    .tile-footer { padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.08); }
+    .tile-name { font-size: 10px; font-weight: 600; letter-spacing: 0.5px; color: rgba(255,255,255,0.6); }
+    .tile-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); opacity: 0.4; }
     .cycling .tile-dot { animation: pulse 3.5s ease infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 0.25; transform: scale(1); } 50% { opacity: 1; transform: scale(1.4); } }
+    @keyframes pulse { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.4); } }
 
-    /* ─── F1 vs CAMPUS SPLIT ─── */
-    .campus-split { border-top: 1px solid var(--rule); display: grid; grid-template-columns: 1fr 1fr; }
-    .split-col { padding: 28px 60px; }
-    .split-col:first-child { border-right: 1px solid var(--rule); }
-    .split-label {
-      font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
-      margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
-    }
-    .split-label.f1-label { color: var(--forest); }
-    .split-label.campus-label { color: var(--mid); }
+    /* ─── CAMPUS SPLIT ─── */
+    .campus-split { border-top: 1px solid rgba(255,255,255,0.08); display: grid; grid-template-columns: 1fr 1fr; }
+    .split-col { padding: 24px 60px; }
+    .split-col:first-child { border-right: 1px solid rgba(255,255,255,0.08); }
+    .split-label { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
     .split-label::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    .split-label.f1-label::before { background: var(--forest); }
-    .split-label.campus-label::before { background: transparent; border: 1.5px solid var(--mid); }
+    .f1-label { color: var(--gold); }
+    .f1-label::before { background: var(--gold); }
+    .campus-label { color: rgba(255,255,255,0.35); }
+    .campus-label::before { background: transparent; border: 1.5px solid rgba(255,255,255,0.25); }
     .split-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-    .split-chip { font-size: 10px; font-weight: 500; padding: 5px 12px; border-radius: 100px; }
-    .chip-f1 { color: var(--forest); background: rgba(28,58,46,0.07); border: 1px solid rgba(28,58,46,0.18); }
-    .chip-campus { color: var(--mid); background: var(--white); border: 1px solid var(--rule); }
-
-    /* ─── FAMILY SECTION ─── */
-    .family-section { border-top: 1px solid var(--rule); padding: 80px 0; }
-    .family-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 0; border: 1px solid var(--rule); margin-top: 48px;
-    }
-    .family-card { padding: 36px 32px; border-right: 1px solid var(--rule); }
-    .family-card:last-child { border-right: none; }
-    .family-card-tag { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
-    .family-card-title { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.3px; }
-    .family-card-body { font-size: 13px; font-weight: 300; line-height: 1.75; color: var(--mid); }
-
-    /* ─── GENERATION GRID ─── */
-    .gen-section { background: var(--forest); border-top: 1px solid rgba(255,255,255,0.08); padding: 80px 0; }
-    .gen-section .section-tag { color: rgba(201,165,74,0.8); }
-    .gen-section .section-headline { color: var(--white); margin-bottom: 48px; }
-    .gen-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid rgba(255,255,255,0.1); }
-    .gen-block { padding: 40px 40px; border-right: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .gen-block:nth-child(2n) { border-right: none; }
-    .gen-block:nth-child(3), .gen-block:nth-child(4) { border-bottom: none; }
-    .gen-block-tag { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
-    .gen-block-title { font-size: clamp(22px, 2.5vw, 30px); font-weight: 800; letter-spacing: -1px; color: var(--white); margin-bottom: 14px; line-height: 1.1; }
-    .gen-block-body { font-size: 13px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.5); }
-    .gen-block-focus { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; }
-    .gen-focus-tag {
-      font-size: 10px; font-weight: 500; padding: 4px 10px; border-radius: 100px;
-      color: rgba(201,165,74,0.8); border: 1px solid rgba(201,165,74,0.25);
-    }
+    .split-chip { font-size: 10px; font-weight: 500; padding: 4px 11px; border-radius: 100px; }
+    .chip-f1 { color: var(--gold); background: rgba(201,165,74,0.08); border: 1px solid rgba(201,165,74,0.2); }
+    .chip-campus { color: rgba(255,255,255,0.4); background: transparent; border: 1px solid rgba(255,255,255,0.1); }
 
     /* ─── MEMBERSHIP PILLARS ─── */
-    .pillar { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; border-top: 1px solid var(--rule); }
+    .pillars-header { padding: 80px 60px 48px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: end; }
+    .pillar { display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; border-top: 1px solid var(--rule); }
     .pillar:last-child { border-bottom: 1px solid var(--rule); }
     .pillar-img { position: relative; overflow: hidden; background: var(--cream); }
     .pillar-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .pillar-body { padding: 72px 68px; display: flex; flex-direction: column; justify-content: center; background: var(--white); }
+    .pillar-body { padding: 64px 60px; display: flex; flex-direction: column; justify-content: center; background: var(--white); }
     .pillar.alt .pillar-body { background: var(--cream); order: -1; }
     .pillar.dark .pillar-body { background: var(--forest); }
     .pillar-num { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-    .pillar-price { font-size: 11px; font-weight: 500; color: var(--mid); letter-spacing: 1px; margin-bottom: 18px; }
+    .pillar-price { font-size: 11px; font-weight: 500; letter-spacing: 1px; margin-bottom: 18px; }
     .pillar.dark .pillar-price { color: rgba(255,255,255,0.4); }
-    .pillar-title { font-size: clamp(30px, 3.2vw, 48px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.0; margin-bottom: 18px; }
+    .pillar:not(.dark) .pillar-price { color: var(--mid); }
+    .pillar-title { font-size: clamp(28px, 3vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.0; margin-bottom: 16px; }
     .pillar.dark .pillar-title { color: var(--white); }
     .pillar:not(.dark) .pillar-title { color: var(--ink); }
-    .pillar-text { font-size: 15px; font-weight: 300; line-height: 1.85; margin-bottom: 30px; }
+    .pillar-text { font-size: 14px; font-weight: 300; line-height: 1.85; margin-bottom: 28px; }
     .pillar.dark .pillar-text { color: rgba(255,255,255,0.55); }
     .pillar:not(.dark) .pillar-text { color: var(--mid); }
-    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .feature-list li { font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 12px; }
     .pillar.dark .feature-list li { color: rgba(255,255,255,0.75); }
     .pillar:not(.dark) .feature-list li { color: var(--ink); }
     .feature-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
 
+    /* ─── GENERATION GRID ─── */
+    .gen-section { background: var(--cream); border-top: 1px solid var(--rule); padding: 80px 0; }
+    .gen-header { max-width: 1200px; margin: 0 auto; padding: 0 60px 44px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: end; }
+    .gen-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); max-width: 1200px; margin: 0 auto; }
+    .gen-block { padding: 36px 40px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--white); }
+    .gen-block:nth-child(2n) { border-right: none; }
+    .gen-block:nth-child(3), .gen-block:nth-child(4) { border-bottom: none; }
+    .gen-block-tag { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .gen-block-title { font-size: clamp(20px, 2.2vw, 28px); font-weight: 800; letter-spacing: -0.8px; color: var(--ink); margin-bottom: 12px; line-height: 1.1; }
+    .gen-block-body { font-size: 13px; font-weight: 300; line-height: 1.75; color: var(--mid); }
+    .gen-block-focus { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .gen-focus-tag { font-size: 10px; font-weight: 500; padding: 4px 10px; border-radius: 100px; color: var(--forest); border: 1px solid rgba(28,58,46,0.2); background: rgba(28,58,46,0.05); }
+
     /* ─── CLASSES ─── */
-    .classes-wrap { background: var(--cream); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-    .classes-inner {
-      max-width: 1200px; margin: 0 auto; padding: 100px 60px;
-      display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: center;
-    }
+    .classes-wrap { background: var(--white); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .classes-inner { max-width: 1200px; margin: 0 auto; padding: 100px 60px; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: center; }
     .classes-number { font-size: clamp(80px, 12vw, 130px); font-weight: 800; letter-spacing: -6px; line-height: 0.9; color: var(--ink); }
     .classes-number span { color: var(--gold); }
     .classes-label { font-size: 14px; font-weight: 300; color: var(--mid); margin-top: 12px; line-height: 1.6; }
     .classes-sub { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
     .classes-statement { font-size: clamp(18px, 2.2vw, 26px); font-weight: 700; letter-spacing: -0.5px; line-height: 1.3; color: var(--ink); margin-bottom: 26px; }
     .tag-cloud { display: flex; flex-wrap: wrap; gap: 7px; }
-    .tag { font-size: 11px; font-weight: 500; color: var(--mid); background: var(--white); border: 1px solid var(--rule); padding: 7px 14px; border-radius: 100px; }
+    .tag { font-size: 11px; font-weight: 500; color: var(--mid); background: var(--cream); border: 1px solid var(--rule); padding: 7px 14px; border-radius: 100px; }
     .tag.featured { color: var(--forest); border-color: rgba(28,58,46,0.25); font-weight: 600; }
 
     /* ─── JOIN / FORM ─── */
@@ -296,18 +237,15 @@
     .join-tag { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
     .join-headline { font-size: clamp(30px, 4vw, 52px); font-weight: 800; letter-spacing: -2px; line-height: 1.0; color: var(--white); margin-bottom: 18px; }
     .join-sub { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); }
-
     .access-reasons { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid rgba(255,255,255,0.1); }
-    .access-reason { padding: 28px; border-right: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .access-reason { padding: 26px; border-right: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
     .access-reason:nth-child(2n) { border-right: none; }
     .access-reason:nth-child(3), .access-reason:nth-child(4) { border-bottom: none; }
     .access-reason-num { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--gold); margin-bottom: 8px; }
-    .access-reason-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 7px; }
-    .access-reason-body { font-size: 12px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.5); }
-
+    .access-reason-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .access-reason-body { font-size: 12px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.45); }
     .join-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin-bottom: 36px; }
     .join-form-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 20px; }
-
     .community-form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .community-form input, .community-form select {
       width: 100%; padding: 14px 18px;
@@ -324,7 +262,6 @@
       padding-right: 40px; cursor: pointer;
     }
     .community-form select option { color: var(--ink); }
-    .form-full { grid-column: 1 / -1; }
     .community-form-btn { grid-column: 1 / -1; display: flex; align-items: center; gap: 20px; margin-top: 6px; }
     .community-form-btn button {
       flex: 0 0 auto; padding: 14px 44px;
@@ -361,23 +298,23 @@
   </div>
 </nav>
 
-<!-- HERO — White City first -->
+<!-- HERO — F1 is the product. White City is the location credential. -->
 <div class="hero">
   <div class="hero-inner">
-    <p class="hero-label">Hakoah White City · Opening April 2027</p>
+    <p class="hero-label">Community Priority Access · Hakoah White City</p>
     <h1 class="hero-headline">
-      <span class="word">A place our</span>
-      <span class="word">community</span>
-      <span class="word word-gold">will call home.</span>
+      <span class="word">The fitness club</span>
+      <span class="word">White City has</span>
+      <span class="word word-gold">been waiting for.</span>
     </h1>
     <div class="hero-divider"></div>
     <div class="hero-bottom">
       <p class="hero-statement">
-        <strong>Hakoah White City is being reimagined</strong> as one of Australia's most extraordinary community destinations. Pools, courts, gardens, dining and open green spaces — all opening April 2027. Fahrenheit One brings world-class fitness and wellness to complete the picture.
+        <strong>Fahrenheit One</strong> is a premium fitness, wellness and recovery club opening at Hakoah White City in April 2027. Community members register first — before we open to the public.
       </p>
       <div class="hero-actions">
         <a href="#join" class="btn-gold">Register for Community Priority Access</a>
-        <span class="hero-meta">Fitness · Wellness · Community &amp; Connection</span>
+        <span class="hero-meta">Fitness · Wellness · Recovery · Community</span>
       </div>
     </div>
   </div>
@@ -390,20 +327,20 @@
     <span class="img-caption">Fitness &amp; Training</span>
   </div>
   <div>
-    <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308168bc11d12c0be2a1ca.jpg" alt="Pools">
-    <span class="img-caption">Pools &amp; Aquatics</span>
+    <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308153e5b9322bddf93abf.jpg" alt="Wellness">
+    <span class="img-caption">Wellness &amp; Recovery</span>
   </div>
   <div>
-    <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30812e80d813e2ecaa8bb9.jpg" alt="Dining">
-    <span class="img-caption">Dining &amp; Community</span>
+    <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30810ee7e4db6afbac928e.jpg" alt="Recovery">
+    <span class="img-caption">Recovery Centre</span>
   </div>
 </div>
 
 <!-- STATS -->
 <div class="stats">
   <div class="stat">
-    <div class="stat-n">3 <span style="font-size:18px;letter-spacing:-0.5px;font-weight:700;">Options</span></div>
-    <div class="stat-l" style="letter-spacing:0.5px;">Fitness · Wellness · Lifestyle</div>
+    <div class="stat-n">3 <span style="font-size:18px;letter-spacing:-0.5px;font-weight:700;">Zones</span></div>
+    <div class="stat-l" style="letter-spacing:0.5px;">Fitness · Wellness · Recovery</div>
   </div>
   <div class="stat">
     <div class="stat-n">100<span>+</span></div>
@@ -419,66 +356,88 @@
   </div>
 </div>
 
-<!-- WHITE CITY STORY -->
-<section class="wc-section">
-  <div class="section-inner">
-    <div class="wc-grid">
-      <div class="wc-left">
-        <p class="section-tag">The White City Vision</p>
-        <h2 class="section-headline">Something extraordinary is being built.</h2>
+<!-- WHAT IS F1 — three zones (the product, front and centre) -->
+<section class="zones-section">
+  <div class="zones-inner">
+    <div class="zones-header">
+      <div>
+        <p class="section-tag">What is Fahrenheit One</p>
+        <h2 class="section-headline">Three zones.<br>One membership.</h2>
       </div>
-      <div class="wc-right">
-        <p class="section-body">
-          After decades as one of Sydney's most beloved community institutions, Hakoah Club is undertaking a generational transformation of its White City campus. A complete rebuild — not a renovation. One of the most significant Jewish community investments in Australia's history.
-        </p>
-        <p class="section-body">
-          <strong>Pools. Tennis courts. Pickleball. Dining. Community spaces. Family facilities. Open gardens.</strong> All connected in one destination. Designed for multiple generations to spend time together — to train, to connect, to celebrate, and to belong.
-        </p>
-        <p class="section-body">
-          Fahrenheit One sits at the heart of this campus. Not a separate offering — an integral part of the White City experience, bringing world-class fitness and wellness to a destination that goes far beyond the gym floor.
-        </p>
+      <p class="section-body">
+        Fahrenheit One is not a standard gym. It is a complete fitness and wellness ecosystem — three distinct zones designed to work together. Train, recover, and move better, all under one roof. The best-equipped, most purposefully designed fitness destination the Eastern Suburbs has ever seen.
+      </p>
+    </div>
+    <div class="zones-grid">
+      <div class="zone-card">
+        <p class="zone-num">Zone 01</p>
+        <h3 class="zone-title">Fitness &amp; Training</h3>
+        <p class="zone-body">A premium gym floor built for every training style. Free weights, functional zones, group fitness studios and the latest equipment — guided by eGym technology that tracks your progress automatically.</p>
+        <ul class="zone-list">
+          <li>Premium Strength &amp; Cardio Floor</li>
+          <li>Pilates Reformer Studio</li>
+          <li>Functional Training Zone</li>
+          <li>100+ Group Fitness Classes</li>
+          <li>eGym Smart Training Technology</li>
+          <li>Personal Training</li>
+        </ul>
+      </div>
+      <div class="zone-card">
+        <p class="zone-num">Zone 02</p>
+        <h3 class="zone-title">Recovery Centre</h3>
+        <p class="zone-body">Recovery is not a bonus — it is half the result. The F1 Recovery Centre gives you access to tools that were once available only to professional athletes, built into your everyday membership.</p>
+        <ul class="zone-list">
+          <li>Sauna &amp; Steam Room</li>
+          <li>Cryo Bed &amp; Ice Shower</li>
+          <li>Compression Therapy</li>
+          <li>Stretch &amp; Mobility Zone</li>
+          <li>Infrared Therapy</li>
+        </ul>
+      </div>
+      <div class="zone-card">
+        <p class="zone-num">Zone 03</p>
+        <h3 class="zone-title">Wellness Circuit</h3>
+        <p class="zone-body">Guided wellness programming for longevity, mindfulness and active recovery. Yoga, mindful movement, and a supervised circuit designed for all ages and fitness levels.</p>
+        <ul class="zone-list">
+          <li>Yoga &amp; Hot Yoga</li>
+          <li>Barre &amp; Pilates Mat</li>
+          <li>Mindful Movement</li>
+          <li>eGym Wellness Circuit</li>
+          <li>Stretch Classes</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MORE THAN A GYM — Campus tiles -->
-<section class="more-section">
+<!-- CAMPUS BONUS — the amplifier, not the hero -->
+<section class="campus-section">
 
-  <div class="more-header">
+  <div class="campus-inner">
     <div>
-      <p class="section-tag">The Campus</p>
-      <h2 class="section-headline" style="color:var(--ink)">More than a gym.<br>Part of something bigger.</h2>
+      <p class="section-tag">The Location</p>
+      <h2 class="section-headline" style="font-size:clamp(26px,3.2vw,42px);color:var(--white);margin-bottom:20px;">You're not just joining a gym.</h2>
+      <p class="section-body" style="color:rgba(255,255,255,0.55);">
+        Fahrenheit One sits within the new Hakoah White City campus — <strong>one of the most significant community developments in the Eastern Suburbs</strong>. Pools, tennis courts, pickleball, dining, gardens and family facilities, all connected in one destination.
+      </p>
+      <p class="section-body" style="color:rgba(255,255,255,0.55); margin-top:14px;">
+        No other gym in Sydney can offer this. When you join Fahrenheit One, the entire White City campus becomes part of your daily routine.
+      </p>
     </div>
-    <p class="section-body">
-      Most fitness facilities exist in isolation. Fahrenheit One sits within one of Sydney's most unique community destinations — where fitness, wellness, sport, dining and family life all share the same campus. Competitors can replicate equipment and classes. They cannot replicate this.
-    </p>
+    <div>
+      <p class="campus-right-note">
+        "Train in the morning. Kids in the swim school. Lunch with friends. Pickleball before dinner. One campus. One visit."
+      </p>
+    </div>
   </div>
 
   <div class="tiles-grid">
-
-    <div class="campus-tile cycling">
-      <div class="tile-images">
-        <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308176e5b9322bddf93d44.png" alt="Fitness" class="active">
-      </div>
-      <div class="tile-footer"><span class="tile-name">Fitness &amp; Training</span><span class="tile-dot"></span></div>
-    </div>
-
-    <div class="campus-tile cycling">
-      <div class="tile-images">
-        <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308153e5b9322bddf93abf.jpg" alt="Wellness" class="active">
-        <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30810ee7e4db6afbac928e.jpg" alt="Recovery">
-      </div>
-      <div class="tile-footer"><span class="tile-name">Wellness &amp; Recovery</span><span class="tile-dot"></span></div>
-    </div>
-
     <div class="campus-tile cycling">
       <div class="tile-images">
         <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308168bc11d12c0be2a1ca.jpg" alt="Pools" class="active">
       </div>
       <div class="tile-footer"><span class="tile-name">Pools &amp; Aquatics</span><span class="tile-dot"></span></div>
     </div>
-
     <div class="campus-tile cycling">
       <div class="tile-images">
         <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30810eb9af5312bc665b6b.jpg" alt="Tennis" class="active">
@@ -486,7 +445,6 @@
       </div>
       <div class="tile-footer"><span class="tile-name">Sport &amp; Recreation</span><span class="tile-dot"></span></div>
     </div>
-
     <div class="campus-tile cycling">
       <div class="tile-images">
         <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30812e80d813e2ecaa8bb9.jpg" alt="Restaurant" class="active">
@@ -494,17 +452,28 @@
       </div>
       <div class="tile-footer"><span class="tile-name">Dining &amp; Social</span><span class="tile-dot"></span></div>
     </div>
-
+    <div class="campus-tile cycling">
+      <div class="tile-images">
+        <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308176e5b9322bddf93d44.png" alt="Fitness" class="active">
+      </div>
+      <div class="tile-footer"><span class="tile-name">F1 — Fitness &amp; Training</span><span class="tile-dot"></span></div>
+    </div>
+    <div class="campus-tile cycling">
+      <div class="tile-images">
+        <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308153e5b9322bddf93abf.jpg" alt="Wellness" class="active">
+        <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30810ee7e4db6afbac928e.jpg" alt="Recovery">
+      </div>
+      <div class="tile-footer"><span class="tile-name">F1 — Wellness &amp; Recovery</span><span class="tile-dot"></span></div>
+    </div>
     <div class="campus-tile">
       <div class="tile-images">
         <div class="tile-placeholder active">
           <span>Kids · Gardens · Community</span>
-          <span>Images coming soon</span>
+          <span>Opening April 2027</span>
         </div>
       </div>
       <div class="tile-footer"><span class="tile-name">Kids &amp; Family</span><span class="tile-dot"></span></div>
     </div>
-
   </div>
 
   <div class="campus-split">
@@ -521,14 +490,13 @@
         <span class="split-chip chip-f1">Sauna &amp; Steam Room</span>
         <span class="split-chip chip-f1">Cryo Bed &amp; Ice Shower</span>
         <span class="split-chip chip-f1">Compression Therapy</span>
-        <span class="split-chip chip-f1">Personal Training</span>
         <span class="split-chip chip-f1">Heated Outdoor Lap Pool</span>
         <span class="split-chip chip-f1">Pickleball</span>
         <span class="split-chip chip-f1">Run Club</span>
       </div>
     </div>
     <div class="split-col">
-      <p class="split-label campus-label">Also at Hakoah White City — part of the destination</p>
+      <p class="split-label campus-label">Also on campus at Hakoah White City</p>
       <div class="split-chips">
         <span class="split-chip chip-campus">Swim School</span>
         <span class="split-chip chip-campus">Tennis Courts</span>
@@ -550,95 +518,15 @@
 
 </section>
 
-<!-- FAMILY / MULTI-GEN -->
-<section class="family-section">
-  <div class="section-inner">
-    <p class="section-tag">Every Generation</p>
-    <h2 class="section-headline">A place for the whole family.</h2>
-    <p class="section-body" style="max-width:680px;">
-      White City is designed to bring multiple generations together. Parents training while children swim. Grandparents on the pickleball courts. Teenagers in the gym. Families sharing meals and open green spaces. Very few fitness destinations can make this claim — here, it is built into the campus itself.
-    </p>
-    <div class="family-grid">
-      <div class="family-card">
-        <p class="family-card-tag">Children</p>
-        <p class="family-card-title">Swim school, playgrounds and open space.</p>
-        <p class="family-card-body">Kids have a campus built for them — not an afterthought. Bring them along and let them thrive while you train.</p>
-      </div>
-      <div class="family-card">
-        <p class="family-card-tag">Parents</p>
-        <p class="family-card-title">Train, recover, connect — all in one visit.</p>
-        <p class="family-card-body">The most efficient fitness and wellness experience available. No driving across town. Everything in one place.</p>
-      </div>
-      <div class="family-card">
-        <p class="family-card-tag">Grandparents</p>
-        <p class="family-card-title">Purpose-built for healthspan and connection.</p>
-        <p class="family-card-body">Guided wellness programming, community activities and a campus that rewards showing up — for the long term.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GENERATION MESSAGING — 2×2 grid -->
-<section class="gen-section">
-  <div class="section-inner">
-    <p class="section-tag">Same Campus. A Different Reason For Everyone.</p>
-    <h2 class="section-headline">What does White City mean to you?</h2>
-    <div class="gen-grid">
-
-      <div class="gen-block">
-        <p class="gen-block-tag">Gen Z</p>
-        <h3 class="gen-block-title">Find Your People.</h3>
-        <p class="gen-block-body">Community. Experiences. Connection. Belonging. A place where you'll recognise faces before you know their names — and where showing up becomes something you actually look forward to.</p>
-        <div class="gen-block-focus">
-          <span class="gen-focus-tag">Community</span>
-          <span class="gen-focus-tag">Experiences</span>
-          <span class="gen-focus-tag">Connection</span>
-          <span class="gen-focus-tag">Belonging</span>
-        </div>
-      </div>
-
-      <div class="gen-block">
-        <p class="gen-block-tag">Millennials</p>
-        <h3 class="gen-block-title">A Better Way To Live.</h3>
-        <p class="gen-block-body">Wellness. Lifestyle. Balance. Self-investment. Everything you need to perform at your best — without the tradeoffs. Training, recovery, community and dining, all without leaving the precinct.</p>
-        <div class="gen-block-focus">
-          <span class="gen-focus-tag">Wellness</span>
-          <span class="gen-focus-tag">Lifestyle</span>
-          <span class="gen-focus-tag">Balance</span>
-          <span class="gen-focus-tag">Self-investment</span>
-        </div>
-      </div>
-
-      <div class="gen-block">
-        <p class="gen-block-tag">Gen X</p>
-        <h3 class="gen-block-title">Everything In One Place.</h3>
-        <p class="gen-block-body">Convenience. Family. Efficiency. Value. Fitness and wellness for you, activities for the kids, dining for the family. One destination. One membership. Everything covered — without compromise.</p>
-        <div class="gen-block-focus">
-          <span class="gen-focus-tag">Convenience</span>
-          <span class="gen-focus-tag">Family</span>
-          <span class="gen-focus-tag">Efficiency</span>
-          <span class="gen-focus-tag">Value</span>
-        </div>
-      </div>
-
-      <div class="gen-block">
-        <p class="gen-block-tag">Boomers</p>
-        <h3 class="gen-block-title">A Place To Belong.</h3>
-        <p class="gen-block-body">Healthspan. Community. Routine. Connection. White City is built for the long term — guided programming, social connection and a campus that gives you a reason to show up, every single day.</p>
-        <div class="gen-block-focus">
-          <span class="gen-focus-tag">Healthspan</span>
-          <span class="gen-focus-tag">Community</span>
-          <span class="gen-focus-tag">Routine</span>
-          <span class="gen-focus-tag">Connection</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- THREE MEMBERSHIP OPTIONS -->
-<div class="pillars">
+<div>
+  <div class="pillars-header">
+    <div>
+      <p class="section-tag">Choose Your Membership</p>
+      <h2 class="section-headline">Three options.<br>One campus.</h2>
+    </div>
+    <p class="section-body">Community members who register before 28 September secure a priority access rate that will not be offered once memberships open to the public.</p>
+  </div>
 
   <div class="pillar dark">
     <div class="pillar-img">
@@ -648,16 +536,14 @@
       <p class="pillar-num">Lifestyle</p>
       <p class="pillar-price">From $149 / month · 7 Days · Full Access</p>
       <h2 class="pillar-title">Everything<br>Included.</h2>
-      <p class="pillar-text">The complete Fahrenheit One experience — training, recovery, wellness and community. One membership, the full campus.</p>
+      <p class="pillar-text">The complete Fahrenheit One experience. Training, recovery, wellness and community — one membership, the full campus.</p>
       <ul class="feature-list">
         <li>Premium Gym Floor &amp; Strength Training</li>
         <li>100+ Group Fitness Classes Per Week</li>
         <li>Pilates Reformer Studio</li>
         <li>Recovery Centre — Sauna, Steam, Cryo Bed</li>
         <li>Wellness Circuit &amp; Yoga</li>
-        <li>Heated Outdoor Lap Pool</li>
-        <li>Pickleball</li>
-        <li>Run Club</li>
+        <li>Heated Outdoor Lap Pool · Pickleball · Run Club</li>
       </ul>
     </div>
   </div>
@@ -670,7 +556,7 @@
       <p class="pillar-num">Fitness</p>
       <p class="pillar-price">From $99 / month · 7 Days</p>
       <h2 class="pillar-title">Train<br>Differently.</h2>
-      <p class="pillar-text">A world class gym floor and full group fitness timetable, seven days a week. The latest training technology, guided every step.</p>
+      <p class="pillar-text">A world-class gym floor and full group fitness timetable, seven days a week. The latest training technology, guided every step.</p>
       <ul class="feature-list">
         <li>Premium Gym Floor &amp; Strength Training</li>
         <li>Pilates Reformer Studio</li>
@@ -690,7 +576,7 @@
       <p class="pillar-num">Wellness</p>
       <p class="pillar-price">From $79 / month · Mon–Fri 9am–5pm</p>
       <h2 class="pillar-title">Move<br>Better.</h2>
-      <p class="pillar-text">Guided wellness programming, yoga and mindful movement. Built for longevity — not just workouts. Available weekdays during business hours.</p>
+      <p class="pillar-text">Guided wellness programming, yoga and mindful movement. Built for longevity. Available weekdays during business hours.</p>
       <ul class="feature-list">
         <li>Wellness Circuit</li>
         <li>Yoga &amp; Mindful Movement</li>
@@ -700,8 +586,60 @@
       </ul>
     </div>
   </div>
-
 </div>
+
+<!-- GENERATION GRID -->
+<section class="gen-section">
+  <div class="gen-header">
+    <div>
+      <p class="section-tag">Something For Everyone</p>
+      <h2 class="section-headline" style="color:var(--ink)">Same campus.<br>Different reasons.</h2>
+    </div>
+    <p class="section-body">White City is being built for multiple generations. Here's what it means for yours.</p>
+  </div>
+  <div class="gen-grid">
+    <div class="gen-block">
+      <p class="gen-block-tag">Gen Z</p>
+      <h3 class="gen-block-title">Find Your People.</h3>
+      <p class="gen-block-body">Community. Energy. Connection. A place where you'll recognise faces before you know their names — and where showing up becomes something you actually look forward to.</p>
+      <div class="gen-block-focus">
+        <span class="gen-focus-tag">Community</span>
+        <span class="gen-focus-tag">Energy</span>
+        <span class="gen-focus-tag">Connection</span>
+      </div>
+    </div>
+    <div class="gen-block">
+      <p class="gen-block-tag">Millennials</p>
+      <h3 class="gen-block-title">A Better Way To Live.</h3>
+      <p class="gen-block-body">Wellness. Lifestyle. Balance. Everything you need to perform at your best — training, recovery, community and dining — without driving across town to find it.</p>
+      <div class="gen-block-focus">
+        <span class="gen-focus-tag">Wellness</span>
+        <span class="gen-focus-tag">Balance</span>
+        <span class="gen-focus-tag">Lifestyle</span>
+      </div>
+    </div>
+    <div class="gen-block">
+      <p class="gen-block-tag">Gen X</p>
+      <h3 class="gen-block-title">Everything In One Place.</h3>
+      <p class="gen-block-body">Fitness for you, activities for the kids, dining for the family. Efficient. Convenient. No compromise. One membership, one visit, everything handled.</p>
+      <div class="gen-block-focus">
+        <span class="gen-focus-tag">Convenience</span>
+        <span class="gen-focus-tag">Family</span>
+        <span class="gen-focus-tag">Efficiency</span>
+      </div>
+    </div>
+    <div class="gen-block">
+      <p class="gen-block-tag">Boomers</p>
+      <h3 class="gen-block-title">A Place To Belong.</h3>
+      <p class="gen-block-body">Healthspan. Community. Routine. A campus built for the long term — guided programming, familiar faces and something to look forward to every single day.</p>
+      <div class="gen-block-focus">
+        <span class="gen-focus-tag">Healthspan</span>
+        <span class="gen-focus-tag">Routine</span>
+        <span class="gen-focus-tag">Belonging</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- 100+ CLASSES -->
 <div class="classes-wrap">
@@ -731,19 +669,17 @@
 <!-- COMMUNITY PRIORITY ACCESS FORM -->
 <div class="join-wrap" id="join">
   <div class="join-inner">
-
     <div class="join-top">
       <div>
         <p class="join-tag">Community Priority Access</p>
         <h2 class="join-headline">Register before the public.</h2>
-        <p class="join-sub">Community members hear about membership opportunities first. No payment today — register your interest and we'll keep you at the front of the queue.</p>
+        <p class="join-sub">Community members hear about membership first. No payment today — register your interest and we'll keep you at the front of the queue for 28 September.</p>
       </div>
-
       <div class="access-reasons">
         <div class="access-reason">
           <p class="access-reason-num">01</p>
           <p class="access-reason-title">Priority Access Rate</p>
-          <p class="access-reason-body">Community members who register secure a rate that will not be available once memberships open to the public. This is a genuine first-mover advantage.</p>
+          <p class="access-reason-body">Community members who register before 28 Sep secure a rate that will not be available once memberships open to the public.</p>
         </div>
         <div class="access-reason">
           <p class="access-reason-num">02</p>
@@ -753,7 +689,7 @@
         <div class="access-reason">
           <p class="access-reason-num">03</p>
           <p class="access-reason-title">Exclusive Pre-Opening Events</p>
-          <p class="access-reason-body">Tour the facility, meet the team and see the build in progress — before anyone else gets a look in.</p>
+          <p class="access-reason-body">Tour the facility and see the build in progress — before anyone else gets a look in.</p>
         </div>
         <div class="access-reason">
           <p class="access-reason-num">04</p>
@@ -764,7 +700,6 @@
     </div>
 
     <div class="join-divider"></div>
-
     <p class="join-form-label">Secure your priority access — takes 60 seconds</p>
 
     <div id="form-success" style="display:none; padding:24px 0 8px; font-size:15px; font-weight:600; color:var(--gold);">
@@ -801,7 +736,6 @@
         <span id="community-feedback" class="form-note"></span>
       </div>
     </form>
-
   </div>
 </div>
 
@@ -822,9 +756,8 @@
 </footer>
 
 <script>
-  // Tile crossfade animation
-  const INTERVAL   = 3800;
-  const STAGGER_MS = 700;
+  // Tile crossfade
+  const INTERVAL = 3800, STAGGER_MS = 700;
   document.querySelectorAll('.campus-tile.cycling').forEach((tile, i) => {
     const imgs = Array.from(tile.querySelectorAll('.tile-images img, .tile-images .tile-placeholder'));
     if (imgs.length <= 1) return;
@@ -838,17 +771,15 @@
     }, i * STAGGER_MS);
   });
 
-  // Community form → /api/community-optin → GHL
+  // Community form → /api/community-optin
   document.getElementById('community-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn      = document.getElementById('community-submit-btn');
     const feedback = document.getElementById('community-feedback');
-
     btn.textContent = 'Submitting…';
     btn.disabled    = true;
     feedback.style.color = 'rgba(255,255,255,0.3)';
     feedback.textContent = '';
-
     try {
       const res    = await fetch('/api/community-optin', {
         method:  'POST',
@@ -865,12 +796,11 @@
         }),
       });
       const result = await res.json();
-
       if (result.ok) {
         if (window.fbq) fbq('track', 'Lead');
         if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-18238493597/1klWCM-U474cEJ2n5fhD' });
-        document.getElementById('community-form').style.display    = 'none';
-        document.getElementById('form-success').style.display = 'block';
+        document.getElementById('community-form').style.display = 'none';
+        document.getElementById('form-success').style.display   = 'block';
       } else {
         feedback.style.color = '#e05c5c';
         feedback.textContent = result.error || 'Something went wrong. Please try again.';
