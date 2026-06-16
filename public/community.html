@@ -141,12 +141,13 @@
 
     /* ─── CAMPUS BONUS ─── */
     .campus-section { background: var(--forest); border-top: 1px solid rgba(255,255,255,0.08); padding: 72px 0 0; }
-    .campus-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px 56px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+    .campus-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px 56px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: stretch; }
     .campus-section .section-tag { color: rgba(201,165,74,0.8); }
     .campus-section .section-headline { color: var(--white); margin-bottom: 20px; }
     .campus-section .section-body { color: rgba(255,255,255,0.55); }
     .campus-section .section-body strong { color: var(--white); }
-    .campus-right-note { font-size: 13px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.45); border-left: 2px solid var(--gold); padding-left: 20px; font-style: italic; margin-top: 28px; }
+    .campus-construction-img { position: relative; overflow: hidden; min-height: 320px; }
+    .campus-construction-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ─── CAMPUS TILES ─── */
     .tiles-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,0.08); }
@@ -205,18 +206,6 @@
     .pillar:not(.dark) .feature-list li { color: var(--ink); }
     .feature-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
 
-    /* ─── GENERATION GRID ─── */
-    .gen-section { background: var(--cream); border-top: 1px solid var(--rule); padding: 80px 0; }
-    .gen-header { max-width: 1200px; margin: 0 auto; padding: 0 60px 44px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: end; }
-    .gen-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); max-width: 1200px; margin: 0 auto; }
-    .gen-block { padding: 36px 40px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--white); }
-    .gen-block:nth-child(2n) { border-right: none; }
-    .gen-block:nth-child(3), .gen-block:nth-child(4) { border-bottom: none; }
-    .gen-block-tag { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
-    .gen-block-title { font-size: clamp(20px, 2.2vw, 28px); font-weight: 800; letter-spacing: -0.8px; color: var(--ink); margin-bottom: 12px; line-height: 1.1; }
-    .gen-block-body { font-size: 13px; font-weight: 300; line-height: 1.75; color: var(--mid); }
-    .gen-block-focus { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
-    .gen-focus-tag { font-size: 10px; font-weight: 500; padding: 4px 10px; border-radius: 100px; color: var(--forest); border: 1px solid rgba(28,58,46,0.2); background: rgba(28,58,46,0.05); }
 
     /* ─── CLASSES ─── */
     .classes-wrap { background: var(--white); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
@@ -347,10 +336,6 @@
     <div class="stat-l">Classes Per Week</div>
   </div>
   <div class="stat">
-    <div class="stat-n">28 <span style="font-size:18px;font-weight:700;letter-spacing:-0.5px;">Sep</span></div>
-    <div class="stat-l" style="letter-spacing:0.5px;">Community Priority Launch</div>
-  </div>
-  <div class="stat">
     <div class="stat-n">Apr '27</div>
     <div class="stat-l">Opening Date</div>
   </div>
@@ -439,10 +424,8 @@
         No other gym in Sydney can offer this. When you join Fahrenheit One, the entire White City campus becomes part of your daily routine.
       </p>
     </div>
-    <div>
-      <p class="campus-right-note">
-        "Train in the morning. Kids in the swim school. Lunch with friends. Pickleball before dinner. One campus. One visit."
-      </p>
+    <div class="campus-construction-img">
+      <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30d603dcbd3710feb728a5.jpg" alt="Fahrenheit One — under construction at Hakoah White City">
     </div>
   </div>
 
@@ -540,7 +523,7 @@
       <p class="section-tag">Choose Your Membership</p>
       <h2 class="section-headline">Three options.<br>One campus.</h2>
     </div>
-    <p class="section-body">Community members who register before 28 September secure a priority access rate that will not be offered once memberships open to the public.</p>
+    <p class="section-body">Allocations are limited. Community members who register first lock in a priority access rate that will not be offered once memberships open to the public.</p>
   </div>
 
   <div class="pillar dark">
@@ -603,58 +586,6 @@
   </div>
 </div>
 
-<!-- GENERATION GRID -->
-<section class="gen-section">
-  <div class="gen-header">
-    <div>
-      <p class="section-tag">Something For Everyone</p>
-      <h2 class="section-headline" style="color:var(--ink)">Same campus.<br>Different reasons.</h2>
-    </div>
-    <p class="section-body">White City is being built for multiple generations. Here's what it means for yours.</p>
-  </div>
-  <div class="gen-grid">
-    <div class="gen-block">
-      <p class="gen-block-tag">Gen Z</p>
-      <h3 class="gen-block-title">Find Your People.</h3>
-      <p class="gen-block-body">Community. Energy. Connection. A place where you'll recognise faces before you know their names — and where showing up becomes something you actually look forward to.</p>
-      <div class="gen-block-focus">
-        <span class="gen-focus-tag">Community</span>
-        <span class="gen-focus-tag">Energy</span>
-        <span class="gen-focus-tag">Connection</span>
-      </div>
-    </div>
-    <div class="gen-block">
-      <p class="gen-block-tag">Millennials</p>
-      <h3 class="gen-block-title">A Better Way To Live.</h3>
-      <p class="gen-block-body">Wellness. Lifestyle. Balance. Everything you need to perform at your best — training, recovery, community and dining — without driving across town to find it.</p>
-      <div class="gen-block-focus">
-        <span class="gen-focus-tag">Wellness</span>
-        <span class="gen-focus-tag">Balance</span>
-        <span class="gen-focus-tag">Lifestyle</span>
-      </div>
-    </div>
-    <div class="gen-block">
-      <p class="gen-block-tag">Gen X</p>
-      <h3 class="gen-block-title">Everything In One Place.</h3>
-      <p class="gen-block-body">Fitness for you, activities for the kids, dining for the family. Efficient. Convenient. No compromise. One membership, one visit, everything handled.</p>
-      <div class="gen-block-focus">
-        <span class="gen-focus-tag">Convenience</span>
-        <span class="gen-focus-tag">Family</span>
-        <span class="gen-focus-tag">Efficiency</span>
-      </div>
-    </div>
-    <div class="gen-block">
-      <p class="gen-block-tag">Boomers</p>
-      <h3 class="gen-block-title">A Place To Belong.</h3>
-      <p class="gen-block-body">Healthspan. Community. Routine. A campus built for the long term — guided programming, familiar faces and something to look forward to every single day.</p>
-      <div class="gen-block-focus">
-        <span class="gen-focus-tag">Healthspan</span>
-        <span class="gen-focus-tag">Routine</span>
-        <span class="gen-focus-tag">Belonging</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- 100+ CLASSES -->
 <div class="classes-wrap">
@@ -688,13 +619,13 @@
       <div>
         <p class="join-tag">Community Priority Access</p>
         <h2 class="join-headline">Register before the public.</h2>
-        <p class="join-sub">Community members hear about membership first. No payment today — register your interest and we'll keep you at the front of the queue for 28 September.</p>
+        <p class="join-sub">Allocations are limited and community members go first. No payment today — register your interest now to secure your place in the queue.</p>
       </div>
       <div class="access-reasons">
         <div class="access-reason">
           <p class="access-reason-num">01</p>
           <p class="access-reason-title">Priority Access Rate</p>
-          <p class="access-reason-body">Community members who register before 28 Sep secure a rate that will not be available once memberships open to the public.</p>
+          <p class="access-reason-body">Allocations are limited. Community members who register first secure a rate that will not be available once memberships open to the public.</p>
         </div>
         <div class="access-reason">
           <p class="access-reason-num">02</p>
