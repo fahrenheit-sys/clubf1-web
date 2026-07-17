@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fahrenheit One — Launching Soon</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1736346084028502');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1736346084028502&ev=PageView&noscript=1"></noscript>
+<!-- Google tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18238493597"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','AW-18238493597');
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--plum:#2A1830;--plum-black:#150A19;--plum-line:#3A2240;--plum-glow-c:#523058;
+--clay:#C65A2E;--clay-hover:#AE4B23;--clay-text:#D98A5E;
+--tangerine:#EC5F3B;--sage:#778C66;--burgundy:#9E4A44;
+--tint:#F2EAF1;--white:#fff;--ink:#241626;--mid:#6B5F6B;--light:#B4A8B3;--rule:#E6DEE6;
+--on-plum:#E8DCE6;--on-plum-muted:#C9B6C6;
+--vignette:radial-gradient(120% 160% at 50% 30%,#3A2240 0%,#2A1830 45%,#150A19 100%);
+--glow:radial-gradient(90% 150% at 50% 26%,#523058 0%,#3A2240 34%,#2A1830 58%,#150A19 100%);
+--serif:'Newsreader',Georgia,serif;--sans:'Hanken Grotesk',-apple-system,sans-serif;
+--grade:saturate(1.3) contrast(1.08) sepia(.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--clay)}a:hover{color:var(--clay-hover)}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0 60px;height:72px;background:radial-gradient(80% 200% at 50% 50%,rgba(74,42,82,.92) 0%,rgba(42,24,48,.94) 55%,rgba(21,10,25,.96) 100%);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--plum-line)}
+.nav-logo{height:44px;display:block}
+.nav-right{display:flex;align-items:center;gap:32px}
+.nav-location{font-size:12px;font-weight:500;color:var(--on-plum-muted);letter-spacing:.04em}
+.nav-cta{font-size:12px;font-weight:600;letter-spacing:.06em;color:#fff;background:var(--clay);padding:11px 24px;border-radius:4px;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--clay-hover);color:#fff}
+/* HERO */
+.hero{position:relative;height:88vh;min-height:620px;max-height:820px;margin-top:72px}
+.hero img{width:100%;height:100%;object-fit:cover;display:block;filter:var(--grade)}
+.hero-ol{position:absolute;inset:0;background:linear-gradient(100deg,rgba(42,24,48,.9) 0%,rgba(42,24,48,.52) 45%,rgba(42,24,48,.12) 78%)}
+.hero-ol::after{content:"";position:absolute;inset:0;background:#4A2040;opacity:.14;mix-blend-mode:multiply}
+.hero-tx{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);max-width:1200px;margin:0 auto;padding:0 60px;color:#fff}
+.hero-label{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--clay-text);margin-bottom:26px}
+.hero-label::before{content:'';display:inline-block;width:28px;height:1px;background:var(--clay-text)}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,6.4vw,84px);line-height:1.04;letter-spacing:-.015em;max-width:640px;margin-bottom:20px}
+.hero-sub{font-size:clamp(16px,1.6vw,20px);font-weight:500;letter-spacing:.02em;color:#EBDDE8;max-width:520px;line-height:1.6;margin-bottom:36px}
+.hero-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.btn-solid{display:inline-block;background:var(--clay);color:#fff;font-size:13px;font-weight:600;letter-spacing:.12em;padding:16px 38px;text-decoration:none;border-radius:4px;transition:background .2s}
+.btn-solid:hover{background:var(--clay-hover);color:#fff}
+.btn-ghost{display:inline-block;border:1.5px solid rgba(255,255,255,.75);color:#fff;font-size:13px;font-weight:600;letter-spacing:.12em;padding:15px 32px;text-decoration:none;border-radius:4px;transition:border-color .2s}
+.btn-ghost:hover{border-color:#fff;color:#fff}
+.hero-meta{position:absolute;left:60px;bottom:32px;font-size:12px;color:rgba(255,255,255,.75);letter-spacing:.12em;text-transform:uppercase}
+/* STATS */
+.stats{display:flex;background:var(--white);border-bottom:1px solid var(--rule)}
+.stat{flex:1;padding:38px 0;text-align:center;border-right:1px solid var(--rule)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--serif);font-size:42px;font-weight:400;color:var(--ink);line-height:1;margin-bottom:8px}
+.stat-n span{color:var(--clay)}
+.stat-l{font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mid)}
+/* PILLARS — plum band, colour coded */
+.pillars{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--plum-line);padding:1px}
+.pillar{background:var(--plum);padding:40px 34px 36px;color:#fff;text-align:center;border-top:4px solid var(--pc)}
+.pillar h3{font-family:var(--serif);font-weight:500;font-size:28px;margin:0 0 16px;position:relative;padding-bottom:15px}
+.pillar h3::after{content:"";position:absolute;left:50%;bottom:0;width:36px;height:2px;transform:translateX(-50%);background:var(--pc)}
+.pillar img{width:100%;height:200px;object-fit:cover;display:block;margin-bottom:20px;filter:var(--grade)}
+.pillar ul{list-style:none;text-align:left;display:flex;flex-direction:column;gap:10px;max-width:300px;margin:0 auto}
+.pillar li{font-size:13.5px;color:var(--on-plum-muted);display:flex;align-items:center;gap:11px;line-height:1.4}
+.pillar li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--pc);flex-shrink:0}
+.pillars .pop{position:absolute;inset:0;pointer-events:none;background:radial-gradient(55% 90% at 50% 40%,rgba(150,95,160,.28) 0%,rgba(150,95,160,.08) 45%,transparent 65%),linear-gradient(90deg,rgba(10,5,13,.6) 0%,transparent 20%,transparent 80%,rgba(10,5,13,.6) 100%);mix-blend-mode:screen}
+.pillars .edge{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(10,5,13,.55) 0%,transparent 18%,transparent 82%,rgba(10,5,13,.55) 100%)}
+/* LIFE GRID */
+.life{background:var(--tint);padding:88px 0 0}
+.life-head{max-width:1200px;margin:0 auto;padding:0 60px 48px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--clay);margin-bottom:16px}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.4vw,46px);letter-spacing:-.01em;line-height:1.08;color:var(--ink)}
+.life-body{font-size:15px;font-weight:400;line-height:1.85;color:var(--mid);align-self:end}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border-top:1px solid var(--rule)}
+.tile{position:relative;background:var(--white)}
+.tile-img{position:relative;height:250px;overflow:hidden;background:var(--plum)}
+.tile-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease;filter:var(--grade)}
+.tile-img img.active{opacity:1}
+.tile-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:70px;background:linear-gradient(transparent,rgba(21,10,25,.5));z-index:1;pointer-events:none}
+.tile-footer{padding:15px 20px;display:flex;align-items:center;justify-content:space-between}
+.tile-name{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--ink)}
+.tile-dot{width:5px;height:5px;border-radius:50%;background:var(--clay);opacity:.5}
+.cycling .tile-dot{animation:pulse 3.5s ease infinite}
+@keyframes pulse{0%,100%{opacity:.25;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
+/* SPLIT CHIPS */
+.split{display:grid;grid-template-columns:1fr 1fr;background:var(--tint);border-top:1px solid #E2D4E0}
+.split-col{padding:32px 60px 48px}
+.split-col:first-child{border-right:1px solid #E2D4E0}
+.split-label{font-size:10px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:9px}
+.split-label.f1{color:var(--plum)}.split-label.campus{color:var(--mid)}
+.split-label::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.split-label.f1::before{background:var(--clay)}
+.split-label.campus::before{background:transparent;border:1.5px solid var(--mid)}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:500;padding:6px 14px;border-radius:100px}
+.chip.f1{color:var(--plum);background:rgba(42,24,48,.06);border:1px solid rgba(42,24,48,.18)}
+.chip.campus{color:var(--mid);background:var(--white);border:1px solid #E2D4E0}
+/* PRECINCT */
+.precinct{position:relative;height:560px}
+.precinct img{width:100%;height:100%;object-fit:cover;display:block;filter:var(--grade)}
+.precinct-ol{position:absolute;inset:0;background:linear-gradient(315deg,rgba(20,10,24,.82) 0%,rgba(20,10,24,.3) 32%,transparent 55%)}
+.precinct-ol::after{content:"";position:absolute;inset:0;background:#4A2040;opacity:.14;mix-blend-mode:multiply}
+.precinct-tx{position:absolute;right:60px;bottom:52px;max-width:440px;color:#fff;text-align:right}
+.precinct-tx h2{color:#fff;margin-bottom:14px}
+.precinct-tx p{font-size:15px;color:#E5D8E2;margin-bottom:26px;line-height:1.7}
+/* CLASSES */
+.classes{background:var(--white);border-bottom:1px solid var(--rule)}
+.classes-inner{max-width:1200px;margin:0 auto;padding:96px 60px;display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:center}
+.classes-number{font-family:var(--serif);font-size:clamp(90px,11vw,140px);font-weight:400;line-height:.9;color:var(--ink)}
+.classes-number span{color:var(--clay)}
+.classes-label{font-size:14px;color:var(--mid);margin-top:14px;line-height:1.6}
+.classes-statement{font-family:var(--serif);font-size:clamp(20px,2.2vw,28px);font-weight:400;line-height:1.35;color:var(--ink);margin-bottom:26px}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:7px}
+.tag{font-size:11.5px;font-weight:500;color:var(--mid);background:var(--white);border:1px solid var(--rule);padding:7px 15px;border-radius:100px}
+.tag.featured{color:var(--plum);border-color:rgba(42,24,48,.3);font-weight:600}
+/* VIP */
+.vip{background:var(--vignette)}
+.vip-inner{max-width:1200px;margin:0 auto;padding:96px 60px}
+.vip-top{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;margin-bottom:52px}
+.vip .eyebrow{color:var(--clay-text)}
+.vip h2{color:#fff}
+.vip-sub{font-size:15px;line-height:1.8;color:var(--on-plum-muted);margin-top:16px}
+.vip-reasons{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12)}
+.reason{padding:28px;background:var(--plum)}
+.reason-num{font-family:var(--serif);font-size:15px;color:var(--clay-text);margin-bottom:8px}
+.reason-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:7px}
+.reason-body{font-size:12.5px;line-height:1.75;color:var(--on-plum-muted)}
+.vip-form-label{font-size:10px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--on-plum-muted);margin-bottom:18px}
+.vip-form{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.vip-form input{width:100%;padding:15px 18px;font-family:var(--sans);font-size:13.5px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#fff;outline:none;border-radius:4px;transition:border-color .2s}
+.vip-form input:focus{border-color:var(--clay-text)}
+.vip-form input::placeholder{color:rgba(255,255,255,.35)}
+.vip-form-btn{grid-column:1/-1;display:flex;align-items:center;gap:20px}
+.vip-form-btn button{flex:0 0 auto;padding:15px 46px;background:var(--clay);border:none;font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.1em;color:#fff;cursor:pointer;border-radius:4px;transition:background .2s}
+.vip-form-btn button:hover{background:var(--clay-hover)}
+.vip-note{font-size:11.5px;color:var(--on-plum-muted)}
+/* FOOTER */
+.site-footer{background:var(--glow);padding:60px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:40px}
+.footer-logo{height:52px;display:block;opacity:.92}
+.footer-brand-loc{font-size:11.5px;color:var(--on-plum-muted);letter-spacing:.08em;margin-top:10px}
+.footer-socials{display:flex;flex-direction:column;align-items:center;gap:10px}
+.footer-socials-label{font-size:9px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.footer-social-links{display:flex;gap:24px}
+.footer-social-links a{font-size:12px;font-weight:600;color:var(--clay-text);text-decoration:none;letter-spacing:.04em}
+.footer-legal{font-size:11px;color:rgba(255,255,255,.45);text-align:right}
+/* POPUP */
+#profile-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(14,10,16,.78);align-items:center;justify-content:center;padding:20px}
+#profile-card{background:var(--vignette);max-width:500px;width:100%;padding:44px 48px 40px;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.5);border-radius:4px}
+#popup-close{position:absolute;top:14px;right:18px;background:none;border:none;color:rgba(255,255,255,.35);font-size:26px;line-height:1;cursor:pointer;padding:4px 8px;transition:color .2s}
+#popup-close:hover{color:rgba(255,255,255,.7)}
+.popup-eyebrow{font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--clay-text);margin-bottom:14px}
+.popup-heading{font-family:var(--serif);font-size:28px;font-weight:400;line-height:1.15;color:#fff;margin-bottom:10px}
+.popup-sub{font-size:13px;line-height:1.7;color:var(--on-plum-muted);margin-bottom:30px}
+.popup-field{margin-bottom:14px}
+.popup-label{display:block;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:7px}
+.popup-select,.popup-input{width:100%;padding:13px 16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);color:#fff;font-family:var(--sans);font-size:13px;outline:none;border-radius:4px;appearance:none;-webkit-appearance:none;transition:border-color .2s}
+.popup-select:focus,.popup-input:focus{border-color:var(--clay-text)}
+.popup-select option{background:var(--plum)}
+.popup-input::placeholder{color:rgba(255,255,255,.25)}
+.popup-btn-primary{width:100%;padding:15px;background:var(--clay);border:none;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;cursor:pointer;border-radius:4px;margin-bottom:10px;transition:opacity .2s}
+.popup-btn-primary:disabled{opacity:.55;cursor:not-allowed}
+.popup-btn-skip{width:100%;padding:12px;background:transparent;border:1px solid rgba(255,255,255,.12);font-family:var(--sans);font-size:11px;font-weight:500;color:rgba(255,255,255,.38);cursor:pointer;border-radius:4px;transition:border-color .2s,color .2s}
+.popup-btn-skip:hover{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.6)}
+#popup-error{font-size:12px;color:#e57373;text-align:center;margin-top:8px;display:none}
+#popup-done{display:none;text-align:center;padding:20px 0}
+#popup-done .popup-eyebrow{margin-bottom:16px}
+#popup-done .popup-heading{margin-bottom:10px}
+@media (max-width:540px){#profile-card{padding:32px 24px 28px}.popup-heading{font-size:22px}}
+/* MOBILE */
+@media (max-width:900px){
+.pillars{grid-template-columns:1fr}
+.tiles{grid-template-columns:repeat(2,1fr)}
+.life-head{grid-template-columns:1fr;gap:20px}
+.precinct{height:440px}
+.precinct-tx{right:24px;left:24px;max-width:none}
+}
+@media (max-width:768px){
+nav{padding:0 20px}.nav-location{display:none}
+.hero-tx{padding:0 24px}.hero-meta{left:24px}
+.stats{flex-wrap:wrap}.stat{flex:0 0 50%;border-bottom:1px solid var(--rule)}.stat:nth-child(odd){border-right:1px solid var(--rule)}.stat:nth-child(even){border-right:none}.stat:nth-last-child(-n+2){border-bottom:none}
+.split{grid-template-columns:1fr}.split-col{padding:24px 20px;border-right:none!important}.split-col:first-child{border-bottom:1px solid #E2D4E0}
+.classes-inner{grid-template-columns:1fr;gap:40px;padding:60px 20px}
+.vip-inner{padding:60px 20px}.vip-top{grid-template-columns:1fr;gap:40px}.vip-reasons{grid-template-columns:1fr}
+.vip-form{grid-template-columns:1fr}
+.site-footer{grid-template-columns:1fr;text-align:center;padding:40px 20px;gap:28px}.footer-legal{text-align:center}.footer-logo{margin:0 auto}
+.tiles{grid-template-columns:1fr}
+.life-head{padding:0 20px 32px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<img src="images/f1-wordmark-cream.png" alt="Fahrenheit One" class="nav-logo">
+<div class="nav-right">
+<span class="nav-location">@ Hakoah White City · Opening April 2027</span>
+<a href="#vip" class="nav-cta">Join the VIP List</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+<img src="images/hero-family.png" alt="Fahrenheit One — a place for the whole family">
+<div class="hero-ol"></div>
+<div class="hero-tx">
+<p class="hero-label">Opening April 2027 · Eastern Suburbs Sydney</p>
+<h1>One Location.<br>A World of Options.</h1>
+<p class="hero-sub">Fitness. Wellness. Recovery. A world-class club built for the way people actually live — and a place for the whole family.</p>
+<div class="hero-actions">
+<a href="#vip" class="btn-solid">JOIN THE VIP LIST</a>
+<a href="#pillars" class="btn-ghost">EXPLORE THE CLUB</a>
+</div>
+</div>
+<span class="hero-meta">Hakoah White City · Paddington, Sydney</span>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+<div class="stat"><div class="stat-n">100<span>+</span></div><div class="stat-l">Classes Per Week</div></div>
+<div class="stat"><div class="stat-n">3</div><div class="stat-l">Fitness · Wellness · Recovery</div></div>
+<div class="stat"><div class="stat-n">7</div><div class="stat-l">Days a Week</div></div>
+<div class="stat"><div class="stat-n">Apr <span>'27</span></div><div class="stat-l">Opening Date</div></div>
+</div>
+
+<!-- PILLARS -->
+<div class="pillars" id="pillars">
+<div class="pillar" style="--pc:var(--tangerine)">
+<h3>Fitness</h3>
+<img src="images/pillar-fitness.png" alt="Fitness at Fahrenheit One">
+<ul>
+<li>Premium gym floor &amp; strength training</li>
+<li>Pilates reformer studio</li>
+<li>Functional training zone</li>
+<li>100+ group classes per week</li>
+<li>eGym smart technology</li>
+<li>Personal training</li>
+</ul>
+</div>
+<div class="pillar" style="--pc:var(--sage)">
+<h3>Wellness</h3>
+<img src="images/pillar-wellness.png" alt="Wellness at Fahrenheit One">
+<ul>
+<li>Dedicated wellness circuit</li>
+<li>Yoga &amp; mindful movement</li>
+<li>eGym guided programming</li>
+<li>Stretch &amp; mobility sessions</li>
+<li>Weekday wellness access</li>
+</ul>
+</div>
+<div class="pillar" style="--pc:var(--burgundy)">
+<h3>Recovery</h3>
+<img src="images/pillar-recovery.png" alt="Recovery at Fahrenheit One">
+<ul>
+<li>Sauna &amp; steam room</li>
+<li>Starpool cryo bed</li>
+<li>Ice shower</li>
+<li>Compression therapy</li>
+<li>Stretch &amp; recovery classes</li>
+</ul>
+</div>
+<div class="edge"></div>
+<div class="pop"></div>
+</div>
+
+<!-- LIFE AT THE CLUB -->
+<section class="life">
+<div class="life-head">
+<div>
+<p class="eyebrow">Life at the Club</p>
+<h2>More Than a Gym.<br>A Complete Wellness Destination.</h2>
+</div>
+<p class="life-body">Fahrenheit One sits within Hakoah White City — one of Sydney's most extraordinary new lifestyle destinations. Your days here extend well beyond the gym floor.</p>
+</div>
+<div class="tiles">
+<div class="tile cycling"><div class="tile-img"><img src="images/tile-training.png" alt="" class="active"><img src="images/tile-egym.png" alt=""></div><div class="tile-footer"><span class="tile-name">Fitness &amp; Training</span><span class="tile-dot"></span></div></div>
+<div class="tile cycling"><div class="tile-img"><img src="images/tile-pilates.png" alt="" class="active"><img src="images/tile-studio.jpg" alt=""></div><div class="tile-footer"><span class="tile-name">Studios &amp; Classes</span><span class="tile-dot"></span></div></div>
+<div class="tile"><div class="tile-img"><img src="images/tile-sauna.png" alt="" class="active"></div><div class="tile-footer"><span class="tile-name">Wellness &amp; Recovery</span><span class="tile-dot"></span></div></div>
+<div class="tile"><div class="tile-img"><img src="images/tile-pool.png" alt="" class="active"></div><div class="tile-footer"><span class="tile-name">Pools &amp; Aquatics</span><span class="tile-dot"></span></div></div>
+<div class="tile"><div class="tile-img"><img src="images/tile-family.png" alt="" class="active"></div><div class="tile-footer"><span class="tile-name">Kids &amp; Family</span><span class="tile-dot"></span></div></div>
+<div class="tile"><div class="tile-img"><img src="images/precinct-aerial.png" alt="" class="active"></div><div class="tile-footer"><span class="tile-name">The Precinct</span><span class="tile-dot"></span></div></div>
+</div>
+<div class="split">
+<div class="split-col">
+<p class="split-label f1">Inside Fahrenheit One</p>
+<div class="chips">
+<span class="chip f1">Premium Gym Floor</span><span class="chip f1">100+ Group Fitness Classes</span><span class="chip f1">Pilates Reformer Studio</span><span class="chip f1">eGym Technology</span><span class="chip f1">Wellness Circuit</span><span class="chip f1">Yoga &amp; Mindful Movement</span><span class="chip f1">Recovery Centre</span><span class="chip f1">Sauna &amp; Steam Room</span><span class="chip f1">Cryo Bed &amp; Ice Shower</span><span class="chip f1">Compression Therapy</span><span class="chip f1">Personal Training</span><span class="chip f1">Heated Outdoor Lap Pool</span><span class="chip f1">Pickleball</span><span class="chip f1">Run Club</span>
+</div>
+</div>
+<div class="split-col">
+<p class="split-label campus">Also at Hakoah White City — part of the destination</p>
+<div class="chips">
+<span class="chip campus">Swim School</span><span class="chip campus">Tennis Courts</span><span class="chip campus">Basketball Courts</span><span class="chip campus">Sports Fields</span><span class="chip campus">Café</span><span class="chip campus">Restaurant</span><span class="chip campus">Bar</span><span class="chip campus">Kids Playgrounds</span><span class="chip campus">Gardens &amp; Walkways</span><span class="chip campus">Community Events</span><span class="chip campus">Bridge Club</span><span class="chip campus">Functional Rooms</span><span class="chip campus">Child Minding</span><span class="chip campus">Parking</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PRECINCT -->
+<div class="precinct">
+<img src="images/precinct-aerial.png" alt="Hakoah White City precinct aerial">
+<div class="precinct-ol"></div>
+<div class="precinct-tx">
+<h2>Located at Hakoah White City, Paddington</h2>
+<p>Pools, tennis, dining, kids and community — set on one of the Eastern Suburbs' most storied sporting grounds.</p>
+<a href="#vip" class="btn-ghost">BE FIRST THROUGH THE DOORS</a>
+</div>
+</div>
+
+<!-- CLASSES -->
+<div class="classes">
+<div class="classes-inner">
+<div>
+<div class="classes-number">100<span>+</span></div>
+<p class="classes-label">Group fitness classes<br>every single week.</p>
+</div>
+<div>
+<p class="eyebrow">Group Fitness</p>
+<p class="classes-statement">Something for every body, every goal, every time of day.</p>
+<div class="tag-cloud">
+<span class="tag featured">Les Mills</span><span class="tag">Zumba</span><span class="tag">Spin</span><span class="tag featured">Functional Fitness</span><span class="tag featured">Pilates Reformer</span><span class="tag">Pilates Mat</span><span class="tag">Yoga</span><span class="tag">Barre</span><span class="tag featured">Hot Yoga</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- VIP -->
+<div class="vip" id="vip">
+<div class="vip-inner">
+<div class="vip-top">
+<div>
+<p class="eyebrow">VIP Founding List</p>
+<h2>Join Before Memberships Open.</h2>
+<p class="vip-sub">VIP members are first to access founding membership rates — prices that won't be available again once we open to the public.</p>
+</div>
+<div class="vip-reasons">
+<div class="reason"><p class="reason-num">01</p><p class="reason-title">Founding Rates — Never Repeated</p><p class="reason-body">Founding members secure an extraordinary rate — one that simply will not be offered again once we open to the public. A genuine first-mover advantage.</p></div>
+<div class="reason"><p class="reason-num">02</p><p class="reason-title">First Through the Door</p><p class="reason-body">VIP members get priority access before general memberships open, including first pick of personal trainers and class timetables.</p></div>
+<div class="reason"><p class="reason-num">03</p><p class="reason-title">Exclusive Pre-Opening Events</p><p class="reason-body">Tour the facility, meet the coaches and see the build in progress — before anyone else gets a look in.</p></div>
+<div class="reason"><p class="reason-num">04</p><p class="reason-title">Shape What Gets Built</p><p class="reason-body">Your preferences drive programming decisions — class types, timetabling and the experiences we build around you.</p></div>
+</div>
+</div>
+<p class="vip-form-label">Register your interest — takes 30 seconds</p>
+<div id="form-success" style="display:none;padding:24px 0 8px;font-size:15px;font-weight:600;color:#fff;">You're on the list. We'll be in touch soon.</div>
+<form class="vip-form" id="vip-form">
+<input type="text" name="firstName" placeholder="First name">
+<input type="email" name="email" placeholder="Email address" required>
+<input type="tel" name="phone" placeholder="Mobile number">
+<div class="vip-form-btn">
+<button type="submit" id="vip-submit-btn">Submit</button>
+<span id="form-feedback" class="vip-note"></span>
+</div>
+</form>
+</div>
+</div>
+
+<!-- PROFILE POPUP -->
+<div id="profile-overlay">
+<div id="profile-card">
+<button id="popup-close" aria-label="Close">×</button>
+<div id="popup-form-state">
+<p class="popup-eyebrow">One more thing</p>
+<h3 class="popup-heading">Help us personalise<br>your experience.</h3>
+<p class="popup-sub">Three quick questions — so your updates are relevant to you, not just generic.</p>
+<div class="popup-field">
+<label class="popup-label" for="popup-interest">What interests you most?</label>
+<select class="popup-select" id="popup-interest">
+<option value="">Select an option</option>
+<option value="Lifestyle">Lifestyle — fitness, wellness &amp; recovery</option>
+<option value="Fitness">Fitness — gym &amp; group classes</option>
+<option value="Wellness">Wellness — recovery &amp; wellness circuit</option>
+<option value="not-sure">Not sure yet</option>
+</select>
+</div>
+<div class="popup-field">
+<label class="popup-label" for="popup-time">When do you usually train?</label>
+<select class="popup-select" id="popup-time">
+<option value="">Select an option</option>
+<option value="Early Morning (5–8am)">Early Morning (5–8am)</option>
+<option value="Mid Morning (8–11am)">Mid Morning (8–11am)</option>
+<option value="Lunchtime (11am–2pm)">Lunchtime (11am–2pm)</option>
+<option value="Afternoon (2–5pm)">Afternoon (2–5pm)</option>
+<option value="Evening (5–8pm)">Evening (5–8pm)</option>
+<option value="Weekends">Weekends</option>
+</select>
+</div>
+<div class="popup-field">
+<label class="popup-label" for="popup-yob">Year of birth</label>
+<input class="popup-input" id="popup-yob" type="text" inputmode="numeric" maxlength="4" placeholder="e.g. 1985">
+</div>
+<button class="popup-btn-primary" id="popup-submit">Personalise My Experience</button>
+<button class="popup-btn-skip" id="popup-skip">Skip for now</button>
+<p id="popup-error"></p>
+</div>
+<div id="popup-done">
+<p class="popup-eyebrow">All set</p>
+<h3 class="popup-heading">You're on the list.</h3>
+<p class="popup-sub">We'll keep you updated as we count down to opening day — with content that's actually relevant to you.</p>
+</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+<div>
+<img src="images/f1-wordmark-cream.png" alt="Fahrenheit One" class="footer-logo">
+<div class="footer-brand-loc">@ Hakoah White City · Eastern Suburbs Sydney</div>
+</div>
+<div class="footer-socials">
+<span class="footer-socials-label">Follow the journey</span>
+<div class="footer-social-links">
+<a href="https://instagram.com/fahrenheit_one" target="_blank">Instagram</a>
+<a href="https://facebook.com/FahrenheitOne" target="_blank">Facebook</a>
+</div>
+</div>
+<div class="footer-legal">© 2026 Fahrenheit One. All rights reserved.</div>
+</footer>
+
+<script>
+// Crossfade tile animation
+const INTERVAL=3800, STAGGER_MS=700;
+document.querySelectorAll('.tile.cycling').forEach((tile,i)=>{
+  const imgs=Array.from(tile.querySelectorAll('.tile-img img'));
+  if(imgs.length<=1)return;
+  let current=0;
+  setTimeout(()=>{setInterval(()=>{imgs[current].classList.remove('active');current=(current+1)%imgs.length;imgs[current].classList.add('active');},INTERVAL);},i*STAGGER_MS);
+});
+// VIP form
+let submittedEmail='';
+document.getElementById('vip-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn=document.getElementById('vip-submit-btn');
+  const feedback=document.getElementById('form-feedback');
+  btn.textContent='Submitting…';btn.disabled=true;
+  feedback.style.color='var(--on-plum-muted)';feedback.textContent='';
+  const email=this.email.value.trim();
+  try{
+    const res=await fetch('/api/waitlist',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({firstName:this.firstName.value.trim(),email,phone:this.phone.value.trim()})});
+    const result=await res.json();
+    if(result.ok){
+      submittedEmail=email;
+      if(window.fbq)fbq('track','Lead');
+      if(window.gtag)gtag('event','conversion',{send_to:'AW-18238493597/1klWCM-U474cEJ2n5fhD'});
+      document.getElementById('vip-form').style.display='none';
+      document.getElementById('form-success').style.display='block';
+      setTimeout(showPopup,1500);
+    }else{
+      feedback.style.color='#e57373';
+      feedback.textContent=result.error||'Something went wrong. Please try again.';
+      btn.textContent='Submit';btn.disabled=false;
+    }
+  }catch{
+    feedback.style.color='#e57373';
+    feedback.textContent='Network error. Please try again.';
+    btn.textContent='Submit';btn.disabled=false;
+  }
+});
+// Profile popup
+function showPopup(){document.getElementById('profile-overlay').style.display='flex';document.body.style.overflow='hidden';}
+function closePopup(){document.getElementById('profile-overlay').style.display='none';document.body.style.overflow='';}
+document.getElementById('popup-close').addEventListener('click',closePopup);
+document.getElementById('popup-skip').addEventListener('click',closePopup);
+document.getElementById('profile-overlay').addEventListener('click',function(e){if(e.target===this)closePopup();});
+document.getElementById('popup-submit').addEventListener('click',async function(){
+  const interest=document.getElementById('popup-interest').value;
+  const preferredTime=document.getElementById('popup-time').value;
+  const yearOfBirth=document.getElementById('popup-yob').value.trim();
+  const errorEl=document.getElementById('popup-error');
+  errorEl.style.display='none';
+  function showPopupError(msg){errorEl.textContent=msg;errorEl.style.display='block';}
+  if(!interest){showPopupError('Please select what interests you.');return;}
+  if(!preferredTime){showPopupError('Please tell us when you train.');return;}
+  if(!yearOfBirth||!/^(19|20)\d{2}$/.test(yearOfBirth)){showPopupError('Please enter a valid year of birth.');return;}
+  const btn=this;
+  btn.textContent='Saving…';btn.disabled=true;
+  try{
+    await fetch('/api/root-profile',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:submittedEmail,interest,preferredTime,yearOfBirth})});
+  }catch{}
+  document.getElementById('popup-form-state').style.display='none';
+  document.getElementById('popup-done').style.display='block';
+  setTimeout(closePopup,3200);
+});
+</script>
+</body>
+</html>

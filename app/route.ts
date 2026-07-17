@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server'
 export const dynamic = 'force-static'
 
 export async function GET() {
-  const html = readFileSync(join(process.cwd(), 'public/root-concept.html'), 'utf-8')
+  const html = readFileSync(join(process.cwd(), 'public/root-concept-v2.html'), 'utf-8')
   return new NextResponse(html, {
     headers: { 'Content-Type': 'text/html; charset=utf-8' },
   })
