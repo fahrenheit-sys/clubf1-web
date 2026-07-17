@@ -22,11 +22,11 @@ const mono = DM_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.clubf1.com.au"),
-  title: "Fahrenheit One @ Hakoah White City — Launching Soon",
+  title: "Fahrenheit One @ Hakoah Paddington — Launching Soon",
   description:
-    "A premium fitness and wellness club coming to Hakoah White City, April 2027. Follow the journey and be first through the doors.",
+    "A premium fitness and wellness club coming to Hakoah Paddington, April 2027. Follow the journey and be first through the doors.",
   openGraph: {
-    title: "Fahrenheit One @ Hakoah White City — Launching Soon",
+    title: "Fahrenheit One @ Hakoah Paddington — Launching Soon",
     description: "Something extraordinary is coming. Opening April 2027.",
     type: "website",
     url: "https://www.clubf1.com.au",
