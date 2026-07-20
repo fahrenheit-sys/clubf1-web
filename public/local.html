@@ -1,795 +1,621 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fahrenheit One — VIP List · Paddington &amp; Eastern Suburbs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <!-- Meta Pixel -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','1736346084028502');
-    fbq('track','PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none" alt=""
-    src="https://www.facebook.com/tr?id=1736346084028502&ev=PageView&noscript=1"/></noscript>
-
-  <!-- Google tag -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18238493597"></script>
-  <script>
-    window.dataLayer=window.dataLayer||[];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js',new Date());
-    gtag('config','AW-18238493597');
-  </script>
-
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --forest:  #1c3a2e;
-      --gold:    #c9a54a;
-      --cream:   #f7f5f1;
-      --white:   #ffffff;
-      --ink:     #111111;
-      --mid:     #6b6b6b;
-      --rule:    #e8e4de;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--white);
-      color: var(--ink);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ─── NAV ─── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0 60px; height: 64px;
-      background: rgba(255,255,255,0.94);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--rule);
-    }
-    .nav-logo { height: 60px; display: block; }
-    .nav-right { display: flex; align-items: center; gap: 32px; }
-    .nav-location { font-size: 11px; font-weight: 400; color: var(--mid); }
-    .nav-cta {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
-      color: var(--white); background: var(--forest);
-      padding: 10px 22px; border-radius: 2px; text-decoration: none;
-    }
-
-    /* ─── HERO ─── */
-    .hero { background: var(--forest); padding: 112px 60px 60px; }
-    .hero-inner { max-width: 1200px; margin: 0 auto; }
-    .hero-label {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 11px; font-weight: 600; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 28px;
-    }
-    .hero-label::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--gold); }
-    .hero-headline {
-      font-size: clamp(48px, 7.5vw, 100px);
-      font-weight: 800; line-height: 0.92; letter-spacing: -3px; color: var(--white);
-    }
-    .hero-headline .word { display: block; }
-    .hero-headline .word-gold { color: var(--gold); }
-    .hero-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.12); margin: 36px 0; }
-    .hero-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; }
-    .hero-statement { font-size: 17px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.6); }
-    .hero-statement strong { color: var(--white); font-weight: 500; }
-    .hero-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
-    .btn-gold {
-      display: inline-block; background: var(--gold); color: var(--forest);
-      font-size: 12px; font-weight: 700; letter-spacing: 1px;
-      padding: 15px 40px; text-decoration: none; border-radius: 2px;
-    }
-    .hero-meta { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 1px; }
-
-    /* ─── HERO IMAGES ─── */
-    .hero-images {
-      display: grid; grid-template-columns: 2fr 1fr 1fr;
-      gap: 8px; padding: 0 60px; max-width: 1200px; margin: 0 auto; height: 360px;
-    }
-    .hero-images > div { position: relative; overflow: hidden; background: var(--cream); }
-    .hero-images > div img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
-    .hero-images > div:hover img { transform: scale(1.03); }
-    .img-caption {
-      position: absolute; bottom: 14px; left: 16px;
-      font-size: 9px; font-weight: 700; letter-spacing: 3px;
-      text-transform: uppercase; color: rgba(255,255,255,0.85);
-    }
-
-    /* ─── STATS ─── */
-    .stats { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 56px 60px; display: flex; }
-    .stat { flex: 1; padding: 36px 0; text-align: center; border-right: 1px solid var(--rule); }
-    .stat:last-child { border-right: none; }
-    .stat-n { font-size: 38px; font-weight: 800; letter-spacing: -2px; color: var(--ink); line-height: 1; margin-bottom: 8px; }
-    .stat-n span { color: var(--gold); }
-    .stat-l { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--mid); }
-
-    /* ─── SHARED ─── */
-    .section-tag { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-    .section-headline { font-size: clamp(28px, 3.5vw, 46px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; color: var(--ink); }
-    .section-body { font-size: 16px; font-weight: 300; line-height: 1.85; color: var(--mid); }
-    .section-body strong { color: var(--ink); font-weight: 500; }
-
-    /* ─── FOUR FLOORS ─── */
-    .zones-section { padding: 80px 0; border-top: 1px solid var(--rule); }
-    .zones-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
-    .zones-header { margin-bottom: 48px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: end; }
-    .zones-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--rule); }
-    .zone-card { padding: 36px 26px; border-right: 1px solid var(--rule); }
-    .zone-card:last-child { border-right: none; }
-    .zone-num { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
-    .zone-title { font-size: clamp(19px, 1.7vw, 25px); font-weight: 800; letter-spacing: -0.6px; color: var(--ink); margin-bottom: 14px; line-height: 1.1; }
-    .zone-body { font-size: 13px; font-weight: 300; line-height: 1.75; color: var(--mid); margin-bottom: 20px; }
-    .zone-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .zone-list li { font-size: 11px; font-weight: 500; color: var(--ink); display: flex; align-items: center; gap: 10px; }
-    .zone-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-
-    /* ─── LOCATION / OUTDOOR SPACE ─── */
-    .location-section { background: var(--forest); border-top: 1px solid rgba(255,255,255,0.08); padding: 72px 0 0; }
-    .location-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px 56px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: stretch; }
-    .location-section .section-tag { color: rgba(201,165,74,0.8); }
-    .location-section .section-headline { color: var(--white); margin-bottom: 20px; }
-    .location-section .section-body { color: rgba(255,255,255,0.55); }
-    .location-section .section-body strong { color: var(--white); }
-    .location-section .section-body + .section-body { margin-top: 14px; }
-    .location-construction-img { position: relative; overflow: hidden; min-height: 320px; }
-    .location-construction-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-    /* ─── CAMPUS TILES ─── */
-    .tiles-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,0.08); }
-    .campus-tile { position: relative; border-right: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .campus-tile:nth-child(3n) { border-right: none; }
-    .campus-tile:nth-child(4), .campus-tile:nth-child(5), .campus-tile:nth-child(6) { border-bottom: none; }
-    .tile-images { position: relative; height: 220px; overflow: hidden; background: rgba(255,255,255,0.04); }
-    .tile-images img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.4s ease; }
-    .tile-images img.active { opacity: 1; }
-    .tile-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; opacity: 0; transition: opacity 1.4s ease; }
-    .tile-placeholder.active { opacity: 1; }
-    .tile-placeholder span { font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.28); }
-    .tile-footer { padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.08); }
-    .tile-name { font-size: 10px; font-weight: 600; letter-spacing: 0.5px; color: rgba(255,255,255,0.6); }
-    .tile-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); opacity: 0.4; }
-    .cycling .tile-dot { animation: pulse 3.5s ease infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.4); } }
-
-    /* ─── F1 INSIDE CHIPS ─── */
-    .inside-strip { border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 60px; }
-    .inside-label { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-    .inside-label::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-    .inside-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-    .inside-chip { font-size: 10px; font-weight: 500; padding: 4px 11px; border-radius: 100px; color: var(--gold); background: rgba(201,165,74,0.08); border: 1px solid rgba(201,165,74,0.2); }
-
-    /* ─── MEMBERSHIP PILLARS ─── */
-    .pillars-header { padding: 80px 60px 48px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: end; }
-    .pillar { display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; border-top: 1px solid var(--rule); }
-    .pillar:last-child { border-bottom: 1px solid var(--rule); }
-    .pillar-img { position: relative; overflow: hidden; background: var(--cream); }
-    .pillar-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .pillar-body { padding: 64px 60px; display: flex; flex-direction: column; justify-content: center; background: var(--white); }
-    .pillar.alt .pillar-body { background: var(--cream); order: -1; }
-    .pillar.dark .pillar-body { background: var(--forest); }
-    .pillar-num { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
-    .pillar-title { font-size: clamp(28px, 3vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.0; margin-bottom: 16px; }
-    .pillar.dark .pillar-title { color: var(--white); }
-    .pillar:not(.dark) .pillar-title { color: var(--ink); }
-    .pillar-text { font-size: 14px; font-weight: 300; line-height: 1.85; margin-bottom: 28px; }
-    .pillar.dark .pillar-text { color: rgba(255,255,255,0.55); }
-    .pillar:not(.dark) .pillar-text { color: var(--mid); }
-    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .feature-list li { font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 12px; }
-    .pillar.dark .feature-list li { color: rgba(255,255,255,0.75); }
-    .pillar:not(.dark) .feature-list li { color: var(--ink); }
-    .feature-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-
-    /* ─── CLASSES ─── */
-    .classes-wrap { background: var(--cream); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-    .classes-inner { max-width: 1200px; margin: 0 auto; padding: 100px 60px; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: center; }
-    .classes-number { font-size: clamp(80px, 12vw, 130px); font-weight: 800; letter-spacing: -6px; line-height: 0.9; color: var(--ink); }
-    .classes-number span { color: var(--gold); }
-    .classes-label { font-size: 14px; font-weight: 300; color: var(--mid); margin-top: 12px; line-height: 1.6; }
-    .classes-sub { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-    .classes-statement { font-size: clamp(18px, 2.2vw, 26px); font-weight: 700; letter-spacing: -0.5px; line-height: 1.3; color: var(--ink); margin-bottom: 26px; }
-    .tag-cloud { display: flex; flex-wrap: wrap; gap: 7px; }
-    .tag { font-size: 11px; font-weight: 500; color: var(--mid); background: var(--white); border: 1px solid var(--rule); padding: 7px 14px; border-radius: 100px; }
-    .tag.featured { color: var(--forest); border-color: rgba(28,58,46,0.25); font-weight: 600; }
-
-    /* ─── VIP FORM ─── */
-    .join-wrap { background: var(--forest); border-top: 1px solid rgba(255,255,255,0.08); }
-    .join-inner { max-width: 1200px; margin: 0 auto; padding: 100px 60px; }
-    .join-top { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; margin-bottom: 56px; }
-    .join-tag { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
-    .join-headline { font-size: clamp(30px, 4vw, 52px); font-weight: 800; letter-spacing: -2px; line-height: 1.0; color: var(--white); margin-bottom: 18px; }
-    .join-sub { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); }
-    .vip-reasons { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid rgba(255,255,255,0.1); }
-    .vip-reason { padding: 26px; border-right: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .vip-reason:nth-child(2n) { border-right: none; }
-    .vip-reason:nth-child(3), .vip-reason:nth-child(4) { border-bottom: none; }
-    .vip-reason-num { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--gold); margin-bottom: 8px; }
-    .vip-reason-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
-    .vip-reason-body { font-size: 12px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.45); }
-    .join-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin-bottom: 36px; }
-    .join-form-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 20px; }
-    .local-form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .local-form input, .local-form select {
-      width: 100%; padding: 14px 18px;
-      font-family: 'Inter', sans-serif; font-size: 13px;
-      background: var(--cream); border: 1px solid var(--rule);
-      color: var(--ink); outline: none; border-radius: 2px;
-      transition: border-color 0.2s; appearance: none; -webkit-appearance: none;
-    }
-    .local-form input:focus, .local-form select:focus { border-color: var(--gold); background: var(--white); }
-    .local-form input::placeholder { color: #bbb; }
-    .local-form select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 16px center;
-      padding-right: 40px; cursor: pointer;
-    }
-    .local-form select option { color: var(--ink); }
-    .local-form-btn { grid-column: 1 / -1; display: flex; align-items: center; gap: 20px; margin-top: 6px; }
-    .local-form-btn button {
-      flex: 0 0 auto; padding: 14px 44px;
-      background: var(--gold); border: none;
-      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
-      letter-spacing: 1px; color: var(--forest); cursor: pointer; border-radius: 2px; transition: opacity 0.2s;
-    }
-    .local-form-btn button:disabled { opacity: 0.6; cursor: default; }
-    .form-note { font-size: 11px; color: rgba(255,255,255,0.3); }
-
-    /* ─── FOOTER ─── */
-    .site-footer {
-      background: var(--forest); padding: 56px 60px;
-      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 40px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    .footer-logo { height: 60px; display: block; filter: brightness(0) invert(1); opacity: 0.85; }
-    .footer-brand-loc { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 1px; margin-top: 8px; }
-    .footer-socials { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-    .footer-socials-label { font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.55); }
-    .footer-social-links { display: flex; gap: 24px; }
-    .footer-social-links a { font-size: 11px; font-weight: 600; color: var(--gold); text-decoration: none; letter-spacing: 0.5px; }
-    .footer-legal { font-size: 11px; color: rgba(255,255,255,0.5); text-align: right; }
-
-    /* ─── MOBILE ─── */
-    @media (max-width: 900px) {
-      .hero-images { grid-template-columns: 1fr; height: 240px; padding: 0 20px; }
-      .hero-images > div:not(:first-child) { display: none; }
-      .zones-grid { grid-template-columns: repeat(2, 1fr); }
-      .zone-card:nth-child(2) { border-right: none; }
-      .zone-card:nth-child(3) { border-right: 1px solid var(--rule); }
-      .tiles-grid { grid-template-columns: repeat(2, 1fr); }
-      .campus-tile:nth-child(3n) { border-right: 1px solid rgba(255,255,255,0.08); }
-      .campus-tile:nth-child(2n) { border-right: none; }
-      .campus-tile:nth-child(4), .campus-tile:nth-child(5) { border-bottom: 1px solid rgba(255,255,255,0.08); }
-      .campus-tile:nth-child(6) { border-bottom: none; }
-      .pillar { grid-template-columns: 1fr; min-height: unset; }
-      .pillar-img { height: 300px; }
-      .pillar.alt .pillar-body { order: unset; }
-    }
-
-    @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .nav-location { display: none; }
-      .hero { padding: 88px 20px 40px; }
-      .hero-bottom { grid-template-columns: 1fr; gap: 32px; }
-      .hero-actions { align-items: flex-start; }
-      .hero-headline { letter-spacing: -2px; }
-      .hero-images { padding: 0 20px; }
-      .stats { margin: 40px 20px; flex-wrap: wrap; }
-      .stat { flex: 0 0 50%; border-right: none; border-bottom: 1px solid var(--rule); padding: 24px 0; }
-      .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
-      .stat:nth-last-child(-n+2) { border-bottom: none; }
-      .zones-section { padding: 60px 0; }
-      .zones-inner { padding: 0 20px; }
-      .zones-header { grid-template-columns: 1fr; gap: 20px; margin-bottom: 32px; }
-      .location-inner { grid-template-columns: 1fr; padding: 0 20px 40px; }
-      .location-construction-img { min-height: 240px; }
-      .inside-strip { padding: 20px; }
-      .pillars-header { grid-template-columns: 1fr; gap: 20px; padding: 60px 20px 32px; }
-      .pillar-body { padding: 40px 20px; }
-      .classes-inner { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px; }
-      .join-inner { padding: 60px 20px; }
-      .join-top { grid-template-columns: 1fr; gap: 40px; margin-bottom: 40px; }
-      .vip-reasons { grid-template-columns: 1fr; }
-      .vip-reason { border-right: none; }
-      .vip-reason:nth-child(3) { border-bottom: 1px solid rgba(255,255,255,0.1); }
-      .local-form { grid-template-columns: 1fr; }
-      .site-footer { grid-template-columns: 1fr; text-align: center; padding: 40px 20px; gap: 28px; }
-      .footer-legal { text-align: center; }
-    }
-
-    @media (max-width: 480px) {
-      .stats { margin: 32px 20px; }
-      .stat { flex: 0 0 100%; border-right: none; }
-      .stat:nth-child(odd) { border-right: none; }
-      .stat:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
-      .stat:last-child { border-bottom: none; }
-      .zones-grid { grid-template-columns: 1fr; }
-      .zone-card { border-right: none; border-bottom: 1px solid var(--rule); }
-      .zone-card:last-child { border-bottom: none; }
-      .tiles-grid { grid-template-columns: 1fr; }
-      .campus-tile:nth-child(2n) { border-right: none; }
-      .campus-tile:nth-child(4), .campus-tile:nth-child(5) { border-bottom: 1px solid rgba(255,255,255,0.08); }
-      .campus-tile:last-child { border-bottom: none; }
-      .vip-reasons { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fahrenheit One — VIP List · Paddington &amp; Eastern Suburbs</title>
+<meta name="description" content="Fahrenheit One is a premium fitness, wellness and recovery club opening April 2027 at Hakoah Paddington. Join the VIP List before memberships open to the public.">
+<meta property="og:title" content="Fahrenheit One — VIP List · Paddington &amp; Eastern Suburbs">
+<meta property="og:description" content="A world-class fitness, wellness and recovery club opening April 2027 at Hakoah Paddington. Join the VIP List.">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1736346084028502');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1736346084028502&ev=PageView&noscript=1"></noscript>
+<!-- Google tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18238493597"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','AW-18238493597');
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--plum:#2A1830;--plum-black:#150A19;--plum-line:#3A2240;--plum-glow-c:#523058;
+--clay:#C65A2E;--clay-hover:#AE4B23;--clay-text:#D98A5E;
+--tangerine:#EC5F3B;--sage:#778C66;--burgundy:#9E4A44;
+--tint:#F2EAF1;--white:#fff;--ink:#241626;--mid:#6B5F6B;--light:#B4A8B3;--rule:#E6DEE6;
+--on-plum:#E8DCE6;--on-plum-muted:#C9B6C6;
+--vignette:radial-gradient(120% 160% at 50% 30%,#3A2240 0%,#2A1830 45%,#150A19 100%);
+--glow:radial-gradient(90% 150% at 50% 26%,#523058 0%,#3A2240 34%,#2A1830 58%,#150A19 100%);
+--serif:'Newsreader',Georgia,serif;--sans:'Hanken Grotesk',-apple-system,sans-serif;
+--grade:saturate(1.3) contrast(1.08) sepia(.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--clay)}a:hover{color:var(--clay-hover)}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0 60px;height:72px;background:radial-gradient(80% 200% at 50% 50%,rgba(74,42,82,.92) 0%,rgba(42,24,48,.94) 55%,rgba(21,10,25,.96) 100%);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--plum-line)}
+.nav-logo{height:44px;display:block}
+.nav-right{display:flex;align-items:center;gap:32px}
+.nav-location{font-size:12px;font-weight:500;color:var(--on-plum-muted);letter-spacing:.04em}
+.nav-cta{font-size:12px;font-weight:600;letter-spacing:.06em;color:#fff;background:var(--clay);padding:11px 24px;border-radius:4px;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--clay-hover);color:#fff}
+/* HERO */
+.hero{position:relative;height:88vh;min-height:620px;max-height:820px;margin-top:72px}
+.hero img{width:100%;height:100%;object-fit:cover;display:block;filter:var(--grade)}
+.hero-ol{position:absolute;inset:0;background:linear-gradient(100deg,rgba(42,24,48,.9) 0%,rgba(42,24,48,.52) 45%,rgba(42,24,48,.12) 78%)}
+.hero-ol::after{content:"";position:absolute;inset:0;background:#4A2040;opacity:.14;mix-blend-mode:multiply}
+.hero-tx{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);max-width:1200px;margin:0 auto;padding:0 60px;color:#fff}
+.hero-label{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--clay-text);margin-bottom:26px}
+.hero-label::before{content:'';display:inline-block;width:28px;height:1px;background:var(--clay-text)}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,6.4vw,84px);line-height:1.04;letter-spacing:-.015em;max-width:640px;margin-bottom:20px}
+.hero-sub{font-size:clamp(16px,1.6vw,20px);font-weight:500;letter-spacing:.02em;color:#EBDDE8;max-width:520px;line-height:1.6;margin-bottom:36px}
+.hero-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.btn-solid{display:inline-block;background:var(--clay);color:#fff;font-size:13px;font-weight:600;letter-spacing:.12em;padding:16px 38px;text-decoration:none;border-radius:4px;transition:background .2s}
+.btn-solid:hover{background:var(--clay-hover);color:#fff}
+.btn-ghost{display:inline-block;border:1.5px solid rgba(255,255,255,.75);color:#fff;font-size:13px;font-weight:600;letter-spacing:.12em;padding:15px 32px;text-decoration:none;border-radius:4px;transition:border-color .2s}
+.btn-ghost:hover{border-color:#fff;color:#fff}
+.hero-meta{position:absolute;left:60px;bottom:32px;font-size:12px;color:rgba(255,255,255,.75);letter-spacing:.12em;text-transform:uppercase}
+/* STATS */
+.stats{display:flex;background:var(--white);border-bottom:1px solid var(--rule)}
+.stat{flex:1;padding:38px 0;text-align:center;border-right:1px solid var(--rule)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--serif);font-size:42px;font-weight:400;color:var(--ink);line-height:1;margin-bottom:8px}
+.stat-n span{color:var(--clay)}
+.stat-l{font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mid)}
+/* PILLARS — plum band, colour coded */
+.pillars{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--plum-line);padding:1px}
+.pillar{background:var(--plum);padding:40px 34px 36px;color:#fff;text-align:center;border-top:4px solid var(--pc)}
+.pillar h3{font-family:var(--serif);font-weight:500;font-size:28px;margin:0 0 16px;position:relative;padding-bottom:15px}
+.pillar h3::after{content:"";position:absolute;left:50%;bottom:0;width:36px;height:2px;transform:translateX(-50%);background:var(--pc)}
+.pillar img{width:100%;height:200px;object-fit:cover;display:block;margin-bottom:20px;filter:var(--grade)}
+.pillar ul{list-style:none;text-align:left;display:flex;flex-direction:column;gap:10px;max-width:300px;margin:0 auto}
+.pillar li{font-size:13.5px;color:var(--on-plum-muted);display:flex;align-items:center;gap:11px;line-height:1.4}
+.pillar li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--pc);flex-shrink:0}
+.pillars .pop{position:absolute;inset:0;pointer-events:none;background:radial-gradient(55% 90% at 50% 40%,rgba(150,95,160,.28) 0%,rgba(150,95,160,.08) 45%,transparent 65%),linear-gradient(90deg,rgba(10,5,13,.6) 0%,transparent 20%,transparent 80%,rgba(10,5,13,.6) 100%);mix-blend-mode:screen}
+.pillars .edge{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(10,5,13,.55) 0%,transparent 18%,transparent 82%,rgba(10,5,13,.55) 100%)}
+/* LIFE GRID */
+.life{background:var(--tint);padding:88px 0 0}
+.life-head{max-width:1200px;margin:0 auto;padding:0 60px 48px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--clay);margin-bottom:16px}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.4vw,46px);letter-spacing:-.01em;line-height:1.08;color:var(--ink)}
+.life-body{font-size:15px;font-weight:400;line-height:1.85;color:var(--mid);align-self:end}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border-top:1px solid var(--rule)}
+.tile{position:relative;background:var(--white)}
+.tile-img{position:relative;height:250px;overflow:hidden;background:var(--plum)}
+.tile-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease;filter:var(--grade)}
+.tile-img img.active{opacity:1}
+.tile-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:70px;background:linear-gradient(transparent,rgba(21,10,25,.5));z-index:1;pointer-events:none}
+.tile-footer{padding:15px 20px;display:flex;align-items:center;justify-content:space-between}
+.tile-name{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--ink)}
+.tile-dot{width:5px;height:5px;border-radius:50%;background:var(--clay);opacity:.5}
+.cycling .tile-dot{animation:pulse 3.5s ease infinite}
+@keyframes pulse{0%,100%{opacity:.25;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
+/* SPLIT CHIPS */
+.split{display:grid;grid-template-columns:1fr 1fr;background:var(--tint);border-top:1px solid #E2D4E0}
+.split-col{padding:32px 60px 48px}
+.split-col:first-child{border-right:1px solid #E2D4E0}
+.split-label{font-size:10px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:9px}
+.split-label.f1{color:var(--plum)}.split-label.campus{color:var(--mid)}
+.split-label::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.split-label.f1::before{background:var(--clay)}
+.split-label.campus::before{background:transparent;border:1.5px solid var(--mid)}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:500;padding:6px 14px;border-radius:100px}
+.chip.f1{color:var(--plum);background:rgba(42,24,48,.06);border:1px solid rgba(42,24,48,.18)}
+.chip.campus{color:var(--mid);background:var(--white);border:1px solid #E2D4E0}
+/* PRECINCT */
+.precinct{position:relative;height:560px}
+.precinct img{width:100%;height:100%;object-fit:cover;display:block;filter:var(--grade)}
+.precinct-ol{position:absolute;inset:0;background:linear-gradient(315deg,rgba(20,10,24,.82) 0%,rgba(20,10,24,.3) 32%,transparent 55%)}
+.precinct-ol::after{content:"";position:absolute;inset:0;background:#4A2040;opacity:.14;mix-blend-mode:multiply}
+.precinct-tx{position:absolute;right:60px;bottom:52px;max-width:440px;color:#fff;text-align:right}
+.precinct-tx h2{color:#fff;margin-bottom:14px}
+.precinct-tx p{font-size:15px;color:#E5D8E2;margin-bottom:26px;line-height:1.7}
+/* CLASSES */
+.classes{background:var(--white);border-bottom:1px solid var(--rule)}
+.classes-inner{max-width:1200px;margin:0 auto;padding:96px 60px;display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:center}
+.classes-number{font-family:var(--serif);font-size:clamp(90px,11vw,140px);font-weight:400;line-height:.9;color:var(--ink)}
+.classes-number span{color:var(--clay)}
+.classes-label{font-size:14px;color:var(--mid);margin-top:14px;line-height:1.6}
+.classes-statement{font-family:var(--serif);font-size:clamp(20px,2.2vw,28px);font-weight:400;line-height:1.35;color:var(--ink);margin-bottom:26px}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:7px}
+.tag{font-size:11.5px;font-weight:500;color:var(--mid);background:var(--white);border:1px solid var(--rule);padding:7px 15px;border-radius:100px}
+.tag.featured{color:var(--plum);border-color:rgba(42,24,48,.3);font-weight:600}
+/* FOUR FLOORS */
+.zones-section{background:var(--white);border-top:1px solid var(--rule);padding:88px 0}
+.zones-inner{max-width:1200px;margin:0 auto;padding:0 60px}
+.zones-header{margin-bottom:48px;display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:end}
+.zones-header .eyebrow{margin-bottom:16px}
+.zones-body{font-size:16px;font-weight:400;line-height:1.85;color:var(--mid)}
+.zones-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule)}
+.zone-card{padding:36px 26px;border-right:1px solid var(--rule)}
+.zone-card:last-child{border-right:none}
+.zone-num{font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--clay);margin-bottom:14px}
+.zone-title{font-family:var(--serif);font-size:clamp(20px,1.8vw,26px);font-weight:500;letter-spacing:-.01em;color:var(--ink);margin-bottom:14px;line-height:1.1}
+.zone-body{font-size:13px;font-weight:400;line-height:1.75;color:var(--mid);margin-bottom:20px}
+.zone-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.zone-list li{font-size:11.5px;font-weight:500;color:var(--ink);display:flex;align-items:center;gap:10px}
+.zone-list li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--clay);flex-shrink:0}
+/* MEMBERSHIP TIERS */
+.member-head{padding:88px 60px 48px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:end}
+.member-head .eyebrow{margin-bottom:16px}
+.member-body{font-size:16px;font-weight:400;line-height:1.85;color:var(--mid)}
+.mtier{display:grid;grid-template-columns:1fr 1fr;min-height:500px;border-top:1px solid var(--rule)}
+.mtier:last-child{border-bottom:1px solid var(--rule)}
+.mtier-img{position:relative;overflow:hidden;background:var(--plum)}
+.mtier-img img{width:100%;height:100%;object-fit:cover;display:block;filter:var(--grade)}
+.mtier-body{padding:64px 60px;display:flex;flex-direction:column;justify-content:center;background:var(--white)}
+.mtier.alt .mtier-body{background:var(--tint);order:-1}
+.mtier.dark .mtier-body{background:var(--vignette)}
+.mtier-num{font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--clay);margin-bottom:14px}
+.mtier.dark .mtier-num{color:var(--clay-text)}
+.mtier-title{font-family:var(--serif);font-size:clamp(28px,3vw,44px);font-weight:400;letter-spacing:-.015em;line-height:1.04;margin-bottom:16px}
+.mtier.dark .mtier-title{color:var(--white)}
+.mtier:not(.dark) .mtier-title{color:var(--ink)}
+.mtier-text{font-size:14px;font-weight:400;line-height:1.85;margin-bottom:28px}
+.mtier.dark .mtier-text{color:var(--on-plum-muted)}
+.mtier:not(.dark) .mtier-text{color:var(--mid)}
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.feature-list li{font-size:12px;font-weight:500;display:flex;align-items:center;gap:12px}
+.mtier.dark .feature-list li{color:var(--on-plum)}
+.mtier:not(.dark) .feature-list li{color:var(--ink)}
+.feature-list li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--clay);flex-shrink:0}
+/* VIP */
+.vip{background:var(--vignette)}
+.vip-inner{max-width:1200px;margin:0 auto;padding:96px 60px}
+.vip-top{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;margin-bottom:52px}
+.vip .eyebrow{color:var(--clay-text)}
+.vip h2{color:#fff}
+.vip-sub{font-size:15px;line-height:1.8;color:var(--on-plum-muted);margin-top:16px}
+.vip-reasons{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12)}
+.reason{padding:28px;background:var(--plum)}
+.reason-num{font-family:var(--serif);font-size:15px;color:var(--clay-text);margin-bottom:8px}
+.reason-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:7px}
+.reason-body{font-size:12.5px;line-height:1.75;color:var(--on-plum-muted)}
+.vip-form-label{font-size:10px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--on-plum-muted);margin-bottom:18px}
+.vip-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vip-form input,.vip-form select{width:100%;padding:15px 18px;font-family:var(--sans);font-size:13.5px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#fff;outline:none;border-radius:4px;transition:border-color .2s;appearance:none;-webkit-appearance:none}
+.vip-form input:focus,.vip-form select:focus{border-color:var(--clay-text)}
+.vip-form input::placeholder{color:rgba(255,255,255,.35)}
+.vip-form select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23C9B6C6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px;cursor:pointer}
+.vip-form select:invalid{color:rgba(255,255,255,.35)}
+.vip-form select option{background:var(--plum);color:#fff}
+.vip-form .span-all{grid-column:1/-1}
+.vip-form-btn{grid-column:1/-1;display:flex;align-items:center;gap:20px}
+.vip-form-btn button{flex:0 0 auto;padding:15px 46px;background:var(--clay);border:none;font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.1em;color:#fff;cursor:pointer;border-radius:4px;transition:background .2s}
+.vip-form-btn button:hover{background:var(--clay-hover)}
+.vip-form-btn button:disabled{opacity:.6;cursor:default}
+.vip-note{font-size:11.5px;color:var(--on-plum-muted)}
+/* FOOTER */
+.site-footer{background:var(--glow);padding:60px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:40px}
+.footer-logo{height:52px;display:block;opacity:.92}
+.footer-brand-loc{font-size:11.5px;color:var(--on-plum-muted);letter-spacing:.08em;margin-top:10px}
+.footer-socials{display:flex;flex-direction:column;align-items:center;gap:10px}
+.footer-socials-label{font-size:9px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.footer-social-links{display:flex;gap:24px}
+.footer-social-links a{font-size:12px;font-weight:600;color:var(--clay-text);text-decoration:none;letter-spacing:.04em}
+.footer-legal{font-size:11px;color:rgba(255,255,255,.45);text-align:right}
+/* MOBILE */
+@media (max-width:900px){
+.pillars{grid-template-columns:1fr}
+.tiles{grid-template-columns:repeat(2,1fr)}
+.life-head{grid-template-columns:1fr;gap:20px}
+.precinct{height:440px}
+.precinct-tx{right:24px;left:24px;max-width:none}
+.zones-grid{grid-template-columns:repeat(2,1fr)}
+.zones-header{grid-template-columns:1fr;gap:20px}
+.member-head{grid-template-columns:1fr;gap:20px}
+.mtier{grid-template-columns:1fr;min-height:unset}
+.mtier-img{height:300px}
+.mtier.alt .mtier-body{order:unset}
+}
+@media (max-width:768px){
+nav{padding:0 20px}.nav-location{display:none}
+.hero-tx{padding:0 24px}.hero-meta{left:24px}
+.stats{flex-wrap:wrap}.stat{flex:0 0 50%;border-bottom:1px solid var(--rule)}.stat:nth-child(odd){border-right:1px solid var(--rule)}.stat:nth-child(even){border-right:none}.stat:nth-last-child(-n+2){border-bottom:none}
+.split{grid-template-columns:1fr}.split-col{padding:24px 20px;border-right:none!important}.split-col:first-child{border-bottom:1px solid #E2D4E0}
+.classes-inner{grid-template-columns:1fr;gap:40px;padding:60px 20px}
+.vip-inner{padding:60px 20px}.vip-top{grid-template-columns:1fr;gap:40px}.vip-reasons{grid-template-columns:1fr}
+.vip-form{grid-template-columns:1fr}
+.site-footer{grid-template-columns:1fr;text-align:center;padding:40px 20px;gap:28px}.footer-legal{text-align:center}.footer-logo{margin:0 auto}
+.tiles{grid-template-columns:1fr}
+.life-head{padding:0 20px 32px}
+.zones-inner{padding:0 20px}
+.zones-grid{grid-template-columns:1fr}
+.zone-card{border-right:none;border-bottom:1px solid var(--rule)}
+.zone-card:last-child{border-bottom:none}
+.member-head{padding:60px 20px 32px}
+.mtier-body{padding:40px 20px}
+}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30c43f1b95dbb2c2162edc.png" alt="Fahrenheit One" class="nav-logo">
-  <div class="nav-right">
-    <span class="nav-location">@ Hakoah Paddington · Opening April 2027</span>
-    <a href="#join" class="nav-cta">Join the VIP List</a>
-  </div>
+<img src="images/f1-wordmark-cream.png" alt="Fahrenheit One" class="nav-logo">
+<div class="nav-right">
+<span class="nav-location">@ Hakoah Paddington · Opening April 2027</span>
+<a href="#vip" class="nav-cta">Join the VIP List</a>
+</div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-inner">
-    <p class="hero-label">VIP List · Paddington · Opening April 2027</p>
-    <h1 class="hero-headline">
-      <span class="word">Fitness. Wellness.</span>
-      <span class="word">Recovery.</span>
-      <span class="word word-gold">In One Place.</span>
-    </h1>
-    <div class="hero-divider"></div>
-    <div class="hero-bottom">
-      <p class="hero-statement">
-        <strong>Fahrenheit One</strong> is a premium fitness, wellness and recovery club opening in the heart of Paddington in April 2027. Get on the VIP List before we open to the public — allocations are limited.
-      </p>
-      <div class="hero-actions">
-        <a href="#join" class="btn-gold">Join the VIP List</a>
-        <span class="hero-meta">Fitness · Wellness · Recovery · Eastern Suburbs</span>
-      </div>
-    </div>
-  </div>
+<img src="images/hero-family.png" alt="Fahrenheit One — a place for the whole family">
+<div class="hero-ol"></div>
+<div class="hero-tx">
+<p class="hero-label">Opening April 2027 · Eastern Suburbs Sydney</p>
+<h1>One Location.<br>A World of Options.</h1>
+<p class="hero-sub">Fitness. Wellness. Recovery. A world-class club built for the way people actually live — and a place for the whole family.</p>
+<div class="hero-actions">
+<a href="#vip" class="btn-solid">JOIN THE VIP LIST</a>
+<a href="#pillars" class="btn-ghost">EXPLORE THE CLUB</a>
 </div>
-
-<!-- HERO IMAGES -->
-<div class="hero-images">
-  <div>
-    <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308176e5b9322bddf93d44.png" alt="Fitness">
-    <span class="img-caption">Fitness &amp; Training</span>
-  </div>
-  <div>
-    <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308153e5b9322bddf93abf.jpg" alt="Wellness">
-    <span class="img-caption">Wellness &amp; Recovery</span>
-  </div>
-  <div>
-    <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30810ee7e4db6afbac928e.jpg" alt="Recovery">
-    <span class="img-caption">Recovery Centre</span>
-  </div>
+</div>
+<span class="hero-meta">Hakoah Paddington · Sydney</span>
 </div>
 
 <!-- STATS -->
 <div class="stats">
-  <div class="stat">
-    <div class="stat-n">4 <span style="font-size:18px;letter-spacing:-0.5px;font-weight:700;">Floors</span></div>
-    <div class="stat-l" style="letter-spacing:0.5px;">Fitness · Wellness · Recovery</div>
-  </div>
-  <div class="stat">
-    <div class="stat-n">100<span>+</span></div>
-    <div class="stat-l">Classes Per Week</div>
-  </div>
-  <div class="stat">
-    <div class="stat-n">Apr '27</div>
-    <div class="stat-l">Opening Date</div>
-  </div>
+<div class="stat"><div class="stat-n">100<span>+</span></div><div class="stat-l">Classes Per Week</div></div>
+<div class="stat"><div class="stat-n">3</div><div class="stat-l">Fitness · Wellness · Recovery</div></div>
+<div class="stat"><div class="stat-n">7</div><div class="stat-l">Days a Week</div></div>
+<div class="stat"><div class="stat-n">Apr <span>'27</span></div><div class="stat-l">Opening Date</div></div>
+</div>
+
+<!-- PILLARS -->
+<div class="pillars" id="pillars">
+<div class="pillar" style="--pc:var(--tangerine)">
+<h3>Fitness</h3>
+<img src="images/pillar-fitness.png" alt="Fitness at Fahrenheit One">
+<ul>
+<li>Premium gym floor &amp; strength training</li>
+<li>Pilates reformer studio</li>
+<li>Functional training zone</li>
+<li>100+ group classes per week</li>
+<li>eGym smart technology</li>
+<li>Personal training</li>
+</ul>
+</div>
+<div class="pillar" style="--pc:var(--sage)">
+<h3>Wellness</h3>
+<img src="images/pillar-wellness.png" alt="Wellness at Fahrenheit One">
+<ul>
+<li>Dedicated wellness circuit</li>
+<li>Yoga &amp; mindful movement</li>
+<li>eGym guided programming</li>
+<li>Stretch &amp; mobility sessions</li>
+<li>Weekday wellness access</li>
+</ul>
+</div>
+<div class="pillar" style="--pc:var(--burgundy)">
+<h3>Recovery</h3>
+<img src="images/pillar-recovery.png" alt="Recovery at Fahrenheit One">
+<ul>
+<li>Sauna &amp; steam room</li>
+<li>Starpool cryo bed</li>
+<li>Ice shower</li>
+<li>Compression therapy</li>
+<li>Stretch &amp; recovery classes</li>
+</ul>
+</div>
+<div class="edge"></div>
+<div class="pop"></div>
 </div>
 
 <!-- FOUR FLOORS -->
 <section class="zones-section">
-  <div class="zones-inner">
-    <div class="zones-header">
-      <div>
-        <p class="section-tag">What is Fahrenheit One</p>
-        <h2 class="section-headline">Four floors.<br>One membership.</h2>
-      </div>
-      <p class="section-body">
-        Fahrenheit One is not a standard gym. It is a complete fitness and wellness ecosystem spread across four purpose-built floors — each with its own focus, working together as one membership. The best-equipped, most purposefully designed fitness destination the Eastern Suburbs has ever seen.
-      </p>
-    </div>
-    <div class="zones-grid">
-      <div class="zone-card">
-        <p class="zone-num">Level 1</p>
-        <h3 class="zone-title">The Recovery Floor</h3>
-        <p class="zone-body">Full recovery suite — saunas, cold therapy and guided restoration, all on one floor.</p>
-        <ul class="zone-list">
-          <li>Change Rooms</li>
-          <li>Traditional Sauna</li>
-          <li>IR Sauna</li>
-          <li>Steam Room</li>
-          <li>Ice Shower</li>
-          <li>LED Therapy</li>
-          <li>Cryo Starbed</li>
-          <li>Compression Boots</li>
-          <li>Massage Chairs</li>
-        </ul>
-      </div>
-      <div class="zone-card">
-        <p class="zone-num">Level 2</p>
-        <h3 class="zone-title">The Training Floor</h3>
-        <p class="zone-body">Free weights, pin-loaded machines and cardio — the engine room of the club.</p>
-        <ul class="zone-list">
-          <li>Cardio Zone</li>
-          <li>Functional Fitness Zone</li>
-          <li>Free Weights</li>
-          <li>Pin Load Weights</li>
-          <li>Spin Studio</li>
-        </ul>
-      </div>
-      <div class="zone-card">
-        <p class="zone-num">Level 3</p>
-        <h3 class="zone-title">The Studio Floor</h3>
-        <p class="zone-body">Reformer, mat, barre and boxing studios — purpose-built for every class on the timetable.</p>
-        <ul class="zone-list">
-          <li>EGYM</li>
-          <li>Pilates Reformer Studio</li>
-          <li>Pilates/Yoga Mat Studio</li>
-          <li>Barre Studio</li>
-          <li>Stretch Area</li>
-          <li>Boxing Zone</li>
-          <li>Les Mills Studio</li>
-        </ul>
-      </div>
-      <div class="zone-card">
-        <p class="zone-num">Podium Level</p>
-        <h3 class="zone-title">The Podium</h3>
-        <p class="zone-body">Step outside without leaving the building. Pool, pickleball and the F1 Run Club.</p>
-        <ul class="zone-list">
-          <li>Heated Lap Pool</li>
-          <li>Pickleball Court</li>
-          <li>Run Club</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LOCATION — outdoor/space angle for local audience -->
-<section class="location-section">
-
-  <div class="location-inner">
-    <div>
-      <p class="section-tag">Space. Light. Outdoors.</p>
-      <h2 class="section-headline" style="font-size:clamp(26px,3.2vw,42px);color:var(--white);margin-bottom:20px;">The outdoor space Paddington has been missing.</h2>
-      <p class="section-body">
-        Terrace houses define the Eastern Suburbs. But private outdoor space is rare — a small courtyard if you're lucky. <strong>Fahrenheit One gives you what the suburb can't.</strong>
-      </p>
-      <p class="section-body">
-        A heated outdoor lap pool. Open-air pickleball courts. Walking paths and green space. All in the heart of Paddington, adjacent to Rushcutters Bay — minutes from your front door. No other gym in Sydney can offer this.
-      </p>
-      <p class="section-body">
-        Your membership extends well beyond the gym floor.
-      </p>
-    </div>
-    <div class="location-construction-img">
-      <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30d603dcbd3710feb728a5.jpg" alt="Fahrenheit One — under construction at Hakoah Paddington">
-    </div>
-  </div>
-
-  <!-- Campus tiles — outdoor/lifestyle focused first -->
-  <div class="tiles-grid">
-    <div class="campus-tile cycling">
-      <div class="tile-images">
-        <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308168bc11d12c0be2a1ca.jpg" alt="Pools" class="active">
-      </div>
-      <div class="tile-footer"><span class="tile-name">Heated Outdoor Pool</span><span class="tile-dot"></span></div>
-    </div>
-    <div class="campus-tile cycling">
-      <div class="tile-images">
-        <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30810eb9af5312bc665b6b.jpg" alt="Tennis" class="active">
-        <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308148bc11d12c0be29fef.jpg" alt="Pickleball">
-      </div>
-      <div class="tile-footer"><span class="tile-name">Open-Air Sport Courts</span><span class="tile-dot"></span></div>
-    </div>
-    <div class="campus-tile cycling">
-      <div class="tile-images">
-        <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30812e80d813e2ecaa8bb9.jpg" alt="Dining" class="active">
-        <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30813ea7336264a59c8737.jpg" alt="Alfresco">
-      </div>
-      <div class="tile-footer"><span class="tile-name">Alfresco Dining</span><span class="tile-dot"></span></div>
-    </div>
-    <div class="campus-tile cycling">
-      <div class="tile-images">
-        <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308176e5b9322bddf93d44.png" alt="Fitness" class="active">
-      </div>
-      <div class="tile-footer"><span class="tile-name">Fitness &amp; Training</span><span class="tile-dot"></span></div>
-    </div>
-    <div class="campus-tile cycling">
-      <div class="tile-images">
-        <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308153e5b9322bddf93abf.jpg" alt="Wellness" class="active">
-        <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30810ee7e4db6afbac928e.jpg" alt="Recovery">
-      </div>
-      <div class="tile-footer"><span class="tile-name">Wellness &amp; Recovery</span><span class="tile-dot"></span></div>
-    </div>
-    <div class="campus-tile">
-      <div class="tile-images">
-        <div class="tile-placeholder active">
-          <span>Gardens · Green Space</span>
-          <span>Opening April 2027</span>
-        </div>
-      </div>
-      <div class="tile-footer"><span class="tile-name">Open Green Space</span><span class="tile-dot"></span></div>
-    </div>
-  </div>
-
-  <!-- What's inside F1 — single chip strip -->
-  <div class="inside-strip">
-    <p class="inside-label">Inside Fahrenheit One</p>
-    <div class="inside-chips">
-      <span class="inside-chip">Premium Gym Floor</span>
-      <span class="inside-chip">100+ Group Fitness Classes</span>
-      <span class="inside-chip">Pilates Reformer Studio</span>
-      <span class="inside-chip">EGYM Technology</span>
-      <span class="inside-chip">Barre &amp; Boxing Studios</span>
-      <span class="inside-chip">Yoga &amp; Hot Yoga</span>
-      <span class="inside-chip">Recovery Centre</span>
-      <span class="inside-chip">Traditional &amp; IR Sauna</span>
-      <span class="inside-chip">Cryo Starbed</span>
-      <span class="inside-chip">Compression Boots</span>
-      <span class="inside-chip">LED Therapy</span>
-      <span class="inside-chip">Heated Outdoor Lap Pool</span>
-      <span class="inside-chip">Pickleball</span>
-      <span class="inside-chip">Run Club</span>
-    </div>
-  </div>
-
-</section>
-
-<!-- THREE MEMBERSHIP OPTIONS -->
+<div class="zones-inner">
+<div class="zones-header">
 <div>
-  <div class="pillars-header">
-    <div>
-      <p class="section-tag">Choose Your Membership</p>
-      <h2 class="section-headline">Three options.<br>One campus.</h2>
-    </div>
-    <p class="section-body">VIP members who register first lock in a priority rate that will not be offered once memberships open to the public.</p>
-  </div>
+<p class="eyebrow">What is Fahrenheit One</p>
+<h2>Four Floors.<br>One Membership.</h2>
+</div>
+<p class="zones-body">Fahrenheit One is not a standard gym. It is a complete fitness and wellness ecosystem spread across four purpose-built floors — each with its own focus, working together as one membership. The best-equipped, most purposefully designed fitness destination the Eastern Suburbs has ever seen.</p>
+</div>
+<div class="zones-grid">
+<div class="zone-card">
+<p class="zone-num">Level 1</p>
+<h3 class="zone-title">The Recovery Floor</h3>
+<p class="zone-body">Full recovery suite — saunas, cold therapy and guided restoration, all on one floor.</p>
+<ul class="zone-list">
+<li>Change Rooms</li>
+<li>Traditional Sauna</li>
+<li>IR Sauna</li>
+<li>Steam Room</li>
+<li>Ice Shower</li>
+<li>LED Therapy</li>
+<li>Cryo Starbed</li>
+<li>Compression Boots</li>
+<li>Massage Chairs</li>
+</ul>
+</div>
+<div class="zone-card">
+<p class="zone-num">Level 2</p>
+<h3 class="zone-title">The Training Floor</h3>
+<p class="zone-body">Free weights, pin-loaded machines and cardio — the engine room of the club.</p>
+<ul class="zone-list">
+<li>Cardio Zone</li>
+<li>Functional Fitness Zone</li>
+<li>Free Weights</li>
+<li>Pin Load Weights</li>
+<li>Spin Studio</li>
+</ul>
+</div>
+<div class="zone-card">
+<p class="zone-num">Level 3</p>
+<h3 class="zone-title">The Studio Floor</h3>
+<p class="zone-body">Reformer, mat, barre and boxing studios — purpose-built for every class on the timetable.</p>
+<ul class="zone-list">
+<li>eGym</li>
+<li>Pilates Reformer Studio</li>
+<li>Pilates/Yoga Mat Studio</li>
+<li>Barre Studio</li>
+<li>Stretch Area</li>
+<li>Boxing Zone</li>
+<li>Les Mills Studio</li>
+</ul>
+</div>
+<div class="zone-card">
+<p class="zone-num">Podium Level</p>
+<h3 class="zone-title">The Podium</h3>
+<p class="zone-body">Step outside without leaving the building. Pool, pickleball and the F1 Run Club.</p>
+<ul class="zone-list">
+<li>Heated Lap Pool</li>
+<li>Pickleball Court</li>
+<li>Run Club</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
 
-  <div class="pillar dark">
-    <div class="pillar-img">
-      <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308176e5b9322bddf93d44.png" alt="Lifestyle">
-    </div>
-    <div class="pillar-body">
-      <p class="pillar-num">Lifestyle</p>
-      <h2 class="pillar-title">Everything<br>Included.</h2>
-      <p class="pillar-text">The complete Fahrenheit One experience. Training, recovery, wellness and community — one membership, the full campus. 7 days.</p>
-      <ul class="feature-list">
-        <li>Premium Gym Floor &amp; Strength Training</li>
-        <li>100+ Group Fitness Classes Per Week</li>
-        <li>Pilates Reformer Studio</li>
-        <li>Recovery Centre — Sauna, Steam, Cryo Bed</li>
-        <li>Wellness Circuit &amp; Yoga</li>
-        <li>Heated Outdoor Lap Pool · Pickleball · Run Club</li>
-      </ul>
-    </div>
-  </div>
+<!-- LIFE AT THE CLUB -->
+<section class="life">
+<div class="life-head">
+<div>
+<p class="eyebrow">Life at the Club</p>
+<h2>More Than a Gym.<br>A Complete Wellness Destination.</h2>
+</div>
+<p class="life-body">Fahrenheit One sits within Hakoah Paddington — one of Sydney's most extraordinary new lifestyle destinations. Your days here extend well beyond the gym floor.</p>
+</div>
+<div class="tiles">
+<div class="tile cycling"><div class="tile-img"><img src="images/tile-training.png" alt="" class="active"><img src="images/tile-egym.png" alt=""></div><div class="tile-footer"><span class="tile-name">Fitness &amp; Training</span><span class="tile-dot"></span></div></div>
+<div class="tile cycling"><div class="tile-img"><img src="images/tile-pilates.png" alt="" class="active"><img src="images/tile-studio.jpg" alt=""></div><div class="tile-footer"><span class="tile-name">Studios &amp; Classes</span><span class="tile-dot"></span></div></div>
+<div class="tile"><div class="tile-img"><img src="images/tile-sauna.png" alt="" class="active"></div><div class="tile-footer"><span class="tile-name">Wellness &amp; Recovery</span><span class="tile-dot"></span></div></div>
+<div class="tile"><div class="tile-img"><img src="images/tile-pool.png" alt="" class="active"></div><div class="tile-footer"><span class="tile-name">Pools &amp; Aquatics</span><span class="tile-dot"></span></div></div>
+<div class="tile"><div class="tile-img"><img src="images/tile-family.png" alt="" class="active"></div><div class="tile-footer"><span class="tile-name">Kids &amp; Family</span><span class="tile-dot"></span></div></div>
+<div class="tile"><div class="tile-img"><img src="images/precinct-aerial.png" alt="" class="active"></div><div class="tile-footer"><span class="tile-name">The Precinct</span><span class="tile-dot"></span></div></div>
+</div>
+<div class="split">
+<div class="split-col">
+<p class="split-label f1">Inside Fahrenheit One</p>
+<div class="chips">
+<span class="chip f1">Premium Gym Floor</span><span class="chip f1">100+ Group Fitness Classes</span><span class="chip f1">Pilates Reformer Studio</span><span class="chip f1">eGym Technology</span><span class="chip f1">Wellness Circuit</span><span class="chip f1">Yoga &amp; Mindful Movement</span><span class="chip f1">Recovery Centre</span><span class="chip f1">Sauna &amp; Steam Room</span><span class="chip f1">Cryo Bed &amp; Ice Shower</span><span class="chip f1">Compression Therapy</span><span class="chip f1">Personal Training</span><span class="chip f1">Heated Outdoor Lap Pool</span><span class="chip f1">Pickleball</span><span class="chip f1">Run Club</span>
+</div>
+</div>
+<div class="split-col">
+<p class="split-label campus">Also at Hakoah Paddington — part of the destination</p>
+<div class="chips">
+<span class="chip campus">Swim School</span><span class="chip campus">Tennis Courts</span><span class="chip campus">Basketball Courts</span><span class="chip campus">Sports Fields</span><span class="chip campus">Café</span><span class="chip campus">Restaurant</span><span class="chip campus">Bar</span><span class="chip campus">Kids Playgrounds</span><span class="chip campus">Gardens &amp; Walkways</span><span class="chip campus">Community Events</span><span class="chip campus">Bridge Club</span><span class="chip campus">Functional Rooms</span><span class="chip campus">Child Minding</span><span class="chip campus">Parking</span>
+</div>
+</div>
+</div>
+</section>
 
-  <div class="pillar alt">
-    <div class="pillar-img">
-      <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30810ee7e4db6afbac928e.jpg" alt="Fitness">
-    </div>
-    <div class="pillar-body">
-      <p class="pillar-num">Fitness</p>
-      <h2 class="pillar-title">Train<br>Differently.</h2>
-      <p class="pillar-text">A world-class gym floor and full group fitness timetable, seven days a week. The latest training technology, guided every step.</p>
-      <ul class="feature-list">
-        <li>Premium Gym Floor &amp; Strength Training</li>
-        <li>Pilates Reformer Studio</li>
-        <li>Functional Training Zone</li>
-        <li>100+ Group Fitness Classes Per Week</li>
-        <li>EGYM Smart Technology</li>
-        <li>Personal Training</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="pillar">
-    <div class="pillar-img">
-      <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a308153e5b9322bddf93abf.jpg" alt="Wellness">
-    </div>
-    <div class="pillar-body">
-      <p class="pillar-num">Wellness</p>
-      <h2 class="pillar-title">Move<br>Better.</h2>
-      <p class="pillar-text">Guided wellness programming, yoga and mindful movement. Built for longevity. Available weekdays during business hours.</p>
-      <ul class="feature-list">
-        <li>Wellness Circuit</li>
-        <li>Yoga &amp; Mindful Movement</li>
-        <li>EGYM Guided Programming</li>
-        <li>Stretch &amp; Mobility Sessions</li>
-        <li>Recovery Area Access</li>
-      </ul>
-    </div>
-  </div>
+<!-- PRECINCT -->
+<div class="precinct">
+<img src="images/precinct-aerial.png" alt="Hakoah Paddington precinct aerial">
+<div class="precinct-ol"></div>
+<div class="precinct-tx">
+<h2>Located at Hakoah Paddington</h2>
+<p>Pools, tennis, dining, kids and community — set on one of the Eastern Suburbs' most storied sporting grounds.</p>
+<a href="#vip" class="btn-ghost">BE FIRST THROUGH THE DOORS</a>
+</div>
 </div>
 
-<!-- 100+ CLASSES -->
-<div class="classes-wrap">
-  <div class="classes-inner">
-    <div>
-      <div class="classes-number">100<span>+</span></div>
-      <p class="classes-label">Group fitness classes<br>every single week.</p>
-    </div>
-    <div>
-      <p class="classes-sub">Group Fitness</p>
-      <p class="classes-statement">Something for every body, every goal, every time of day.</p>
-      <div class="tag-cloud">
-        <span class="tag featured">Les Mills</span>
-        <span class="tag">Zumba</span>
-        <span class="tag">Spin</span>
-        <span class="tag featured">Functional Fitness</span>
-        <span class="tag featured">Pilates Reformer</span>
-        <span class="tag">Pilates Mat</span>
-        <span class="tag">Yoga</span>
-        <span class="tag">Barre</span>
-        <span class="tag featured">Hot Yoga</span>
-      </div>
-    </div>
-  </div>
+<!-- CLASSES -->
+<div class="classes">
+<div class="classes-inner">
+<div>
+<div class="classes-number">100<span>+</span></div>
+<p class="classes-label">Group fitness classes<br>every single week.</p>
+</div>
+<div>
+<p class="eyebrow">Group Fitness</p>
+<p class="classes-statement">Something for every body, every goal, every time of day.</p>
+<div class="tag-cloud">
+<span class="tag featured">Les Mills</span><span class="tag">Zumba</span><span class="tag">Spin</span><span class="tag featured">Functional Fitness</span><span class="tag featured">Pilates Reformer</span><span class="tag">Pilates Mat</span><span class="tag">Yoga</span><span class="tag">Barre</span><span class="tag featured">Hot Yoga</span>
+</div>
+</div>
+</div>
 </div>
 
-<!-- VIP LIST FORM -->
-<div class="join-wrap" id="join">
-  <div class="join-inner">
-    <div class="join-top">
-      <div>
-        <p class="join-tag">VIP List</p>
-        <h2 class="join-headline">Get on the list first.</h2>
-        <p class="join-sub">Allocations are limited and VIP members go first. No payment today — register your interest now to secure your place.</p>
-      </div>
-      <div class="vip-reasons">
-        <div class="vip-reason">
-          <p class="vip-reason-num">01</p>
-          <p class="vip-reason-title">VIP Rate</p>
-          <p class="vip-reason-body">VIP members lock in a rate that will not be available once we open to the public. Allocations are limited.</p>
-        </div>
-        <div class="vip-reason">
-          <p class="vip-reason-num">02</p>
-          <p class="vip-reason-title">First Access</p>
-          <p class="vip-reason-body">First pick of memberships, personal trainers and class timetables — before general registrations open.</p>
-        </div>
-        <div class="vip-reason">
-          <p class="vip-reason-num">03</p>
-          <p class="vip-reason-title">Exclusive Pre-Opening Events</p>
-          <p class="vip-reason-body">Tour the facility and see the build in progress before anyone else gets a look in.</p>
-        </div>
-        <div class="vip-reason">
-          <p class="vip-reason-num">04</p>
-          <p class="vip-reason-title">Shape What Gets Built</p>
-          <p class="vip-reason-body">Your preferences drive programming decisions — class types, timetabling and the experiences we build.</p>
-        </div>
-      </div>
-    </div>
+<!-- MEMBERSHIP -->
+<div>
+<div class="member-head">
+<div>
+<p class="eyebrow">Choose Your Membership</p>
+<h2>Three Options.<br>One Campus.</h2>
+</div>
+<p class="member-body">VIP members who register first lock in a founding rate that will not be offered once memberships open to the public.</p>
+</div>
 
-    <div class="join-divider"></div>
-    <p class="join-form-label">Join the VIP List — takes 60 seconds</p>
+<div class="mtier dark">
+<div class="mtier-img">
+<img src="images/hero-family.png" alt="Lifestyle membership">
+</div>
+<div class="mtier-body">
+<p class="mtier-num">Lifestyle</p>
+<h3 class="mtier-title">Everything<br>Included.</h3>
+<p class="mtier-text">The complete Fahrenheit One experience. Training, recovery, wellness and community — one membership, the full campus. 7 days.</p>
+<ul class="feature-list">
+<li>Premium Gym Floor &amp; Strength Training</li>
+<li>100+ Group Fitness Classes Per Week</li>
+<li>Pilates Reformer Studio</li>
+<li>Recovery Centre — Sauna, Steam, Cryo Bed</li>
+<li>Wellness Circuit &amp; Yoga</li>
+<li>Heated Outdoor Lap Pool · Pickleball · Run Club</li>
+</ul>
+</div>
+</div>
 
-    <div id="form-success" style="display:none; padding:24px 0 8px; font-size:15px; font-weight:600; color:var(--gold);">
-      You're on the list. We'll be in touch with VIP access details soon.
-    </div>
+<div class="mtier alt">
+<div class="mtier-img">
+<img src="images/pillar-fitness.png" alt="Fitness membership">
+</div>
+<div class="mtier-body">
+<p class="mtier-num">Fitness</p>
+<h3 class="mtier-title">Train<br>Differently.</h3>
+<p class="mtier-text">A world-class gym floor and full group fitness timetable, seven days a week. The latest training technology, guided every step.</p>
+<ul class="feature-list">
+<li>Premium Gym Floor &amp; Strength Training</li>
+<li>Pilates Reformer Studio</li>
+<li>Functional Training Zone</li>
+<li>100+ Group Fitness Classes Per Week</li>
+<li>eGym Smart Technology</li>
+<li>Personal Training</li>
+</ul>
+</div>
+</div>
 
-    <form class="local-form" id="local-form">
-      <input type="text"   name="firstName"          placeholder="First name" required>
-      <input type="text"   name="lastName"            placeholder="Last name">
-      <input type="email"  name="email"               placeholder="Email address" required>
-      <input type="tel"    name="phone"               placeholder="Mobile number" required>
-      <input type="number" name="yearOfBirth"         placeholder="Year of birth (e.g. 1985)" min="1925" max="2012" required>
-      <select name="preferredTime" required>
-        <option value="">When do you train?</option>
-        <option>Early Morning (5–8am)</option>
-        <option>Mid Morning (8–11am)</option>
-        <option>Lunchtime (11am–2pm)</option>
-        <option>Afternoon (2–5pm)</option>
-        <option>Evening (5–8pm)</option>
-        <option>Weekends</option>
-      </select>
-      <select name="membershipInterest" required>
-        <option value="">Membership interest</option>
-        <option>Fitness</option>
-        <option>Wellness</option>
-        <option>Lifestyle</option>
-      </select>
-      <div style="display:none"><input name="dummy" tabindex="-1"></div>
-      <div class="local-form-btn">
-        <button type="submit" id="local-submit-btn">Join the VIP List</button>
-        <span id="local-feedback" class="form-note"></span>
-      </div>
-    </form>
-  </div>
+<div class="mtier">
+<div class="mtier-img">
+<img src="images/pillar-wellness.png" alt="Wellness membership">
+</div>
+<div class="mtier-body">
+<p class="mtier-num">Wellness</p>
+<h3 class="mtier-title">Move<br>Better.</h3>
+<p class="mtier-text">Guided wellness programming, yoga and mindful movement. Built for longevity. Available weekdays during business hours.</p>
+<ul class="feature-list">
+<li>Wellness Circuit</li>
+<li>Yoga &amp; Mindful Movement</li>
+<li>eGym Guided Programming</li>
+<li>Stretch &amp; Mobility Sessions</li>
+<li>Recovery Area Access</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- VIP -->
+<div class="vip" id="vip">
+<div class="vip-inner">
+<div class="vip-top">
+<div>
+<p class="eyebrow">VIP Founding List</p>
+<h2>Join Before Memberships Open.</h2>
+<p class="vip-sub">VIP members are first to access founding membership rates — prices that won't be available again once we open to the public.</p>
+</div>
+<div class="vip-reasons">
+<div class="reason"><p class="reason-num">01</p><p class="reason-title">Founding Rates — Never Repeated</p><p class="reason-body">Founding members secure an extraordinary rate — one that simply will not be offered again once we open to the public. A genuine first-mover advantage.</p></div>
+<div class="reason"><p class="reason-num">02</p><p class="reason-title">First Through the Door</p><p class="reason-body">VIP members get priority access before general memberships open, including first pick of personal trainers and class timetables.</p></div>
+<div class="reason"><p class="reason-num">03</p><p class="reason-title">Exclusive Pre-Opening Events</p><p class="reason-body">Tour the facility, meet the coaches and see the build in progress — before anyone else gets a look in.</p></div>
+<div class="reason"><p class="reason-num">04</p><p class="reason-title">Shape What Gets Built</p><p class="reason-body">Your preferences drive programming decisions — class types, timetabling and the experiences we build around you.</p></div>
+</div>
+</div>
+<p class="vip-form-label">Join the VIP List — takes 60 seconds</p>
+<div id="form-success" style="display:none;padding:24px 0 8px;font-size:15px;font-weight:600;color:#fff;">You're on the list. We'll be in touch with VIP access details soon.</div>
+<form class="vip-form" id="local-form">
+<input type="text" name="firstName" placeholder="First name" required>
+<input type="text" name="lastName" placeholder="Last name">
+<input type="email" name="email" placeholder="Email address" required>
+<input type="tel" name="phone" placeholder="Mobile number" required>
+<input type="number" name="yearOfBirth" placeholder="Year of birth (e.g. 1985)" min="1925" max="2012" required>
+<select name="preferredTime" required>
+<option value="" disabled selected hidden>When do you train?</option>
+<option>Early Morning (5–8am)</option>
+<option>Mid Morning (8–11am)</option>
+<option>Lunchtime (11am–2pm)</option>
+<option>Afternoon (2–5pm)</option>
+<option>Evening (5–8pm)</option>
+<option>Weekends</option>
+</select>
+<select name="membershipInterest" class="span-all" required>
+<option value="" disabled selected hidden>Membership interest</option>
+<option>Fitness</option>
+<option>Wellness</option>
+<option>Lifestyle</option>
+</select>
+<div class="vip-form-btn">
+<button type="submit" id="local-submit-btn">Join the VIP List</button>
+<span id="local-feedback" class="vip-note"></span>
+</div>
+</form>
+</div>
 </div>
 
 <!-- FOOTER -->
 <footer class="site-footer">
-  <div>
-    <img src="https://assets.cdn.filesafe.space/XxhhG0kjS8Vp9IvyT6mK/media/6a30c43f1b95dbb2c2162edc.png" alt="Fahrenheit One" class="footer-logo">
-    <div class="footer-brand-loc">@ Hakoah Paddington · Eastern Suburbs Sydney</div>
-  </div>
-  <div class="footer-socials">
-    <span class="footer-socials-label">Follow the journey</span>
-    <div class="footer-social-links">
-      <a href="https://instagram.com/fahrenheit_one" target="_blank">Instagram</a>
-      <a href="https://facebook.com/FahrenheitOne" target="_blank">Facebook</a>
-    </div>
-  </div>
-  <div class="footer-legal">© 2026 Fahrenheit One. All rights reserved.</div>
+<div>
+<img src="images/f1-wordmark-cream.png" alt="Fahrenheit One" class="footer-logo">
+<div class="footer-brand-loc">@ Hakoah Paddington · Eastern Suburbs Sydney</div>
+</div>
+<div class="footer-socials">
+<span class="footer-socials-label">Follow the journey</span>
+<div class="footer-social-links">
+<a href="https://instagram.com/fahrenheit_one" target="_blank">Instagram</a>
+<a href="https://facebook.com/FahrenheitOne" target="_blank">Facebook</a>
+</div>
+</div>
+<div class="footer-legal">© 2026 Fahrenheit One. All rights reserved.</div>
 </footer>
 
 <script>
-  // Tile crossfade
-  const INTERVAL = 3800, STAGGER_MS = 700;
-  document.querySelectorAll('.campus-tile.cycling').forEach((tile, i) => {
-    const imgs = Array.from(tile.querySelectorAll('.tile-images img, .tile-images .tile-placeholder'));
-    if (imgs.length <= 1) return;
-    let current = 0;
-    setTimeout(() => {
-      setInterval(() => {
-        imgs[current].classList.remove('active');
-        current = (current + 1) % imgs.length;
-        imgs[current].classList.add('active');
-      }, INTERVAL);
-    }, i * STAGGER_MS);
-  });
-
-  // Local form → /api/local-optin
-  document.getElementById('local-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const btn      = document.getElementById('local-submit-btn');
-    const feedback = document.getElementById('local-feedback');
-    btn.textContent = 'Submitting…';
-    btn.disabled    = true;
-    feedback.style.color = 'rgba(255,255,255,0.3)';
-    feedback.textContent = '';
-    try {
-      const res    = await fetch('/api/local-optin', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({
-          firstName:          this.firstName.value.trim(),
-          lastName:           this.lastName.value.trim(),
-          email:              this.email.value.trim(),
-          phone:              this.phone.value.trim(),
-          yearOfBirth:        this.yearOfBirth.value,
-          preferredTime:      this.preferredTime.value,
-          membershipInterest: this.membershipInterest.value,
-        }),
-      });
-      const result = await res.json();
-      if (result.ok) {
-        if (window.fbq) fbq('track', 'Lead');
-        if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-18238493597/1klWCM-U474cEJ2n5fhD' });
-        document.getElementById('local-form').style.display   = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      } else {
-        feedback.style.color = '#e05c5c';
-        feedback.textContent = result.error || 'Something went wrong. Please try again.';
-        btn.textContent = 'Join the VIP List';
-        btn.disabled    = false;
-      }
-    } catch {
-      feedback.style.color = '#e05c5c';
-      feedback.textContent = 'Network error. Please try again.';
-      btn.textContent = 'Join the VIP List';
-      btn.disabled    = false;
+// Crossfade tile animation
+const INTERVAL=3800, STAGGER_MS=700;
+document.querySelectorAll('.tile.cycling').forEach((tile,i)=>{
+  const imgs=Array.from(tile.querySelectorAll('.tile-img img'));
+  if(imgs.length<=1)return;
+  let current=0;
+  setTimeout(()=>{setInterval(()=>{imgs[current].classList.remove('active');current=(current+1)%imgs.length;imgs[current].classList.add('active');},INTERVAL);},i*STAGGER_MS);
+});
+// VIP form → /api/local-optin (single-step opt-in, full profile)
+document.getElementById('local-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn=document.getElementById('local-submit-btn');
+  const feedback=document.getElementById('local-feedback');
+  btn.textContent='Submitting…';btn.disabled=true;
+  feedback.style.color='var(--on-plum-muted)';feedback.textContent='';
+  try{
+    const res=await fetch('/api/local-optin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      firstName:this.firstName.value.trim(),
+      lastName:this.lastName.value.trim(),
+      email:this.email.value.trim(),
+      phone:this.phone.value.trim(),
+      yearOfBirth:this.yearOfBirth.value,
+      preferredTime:this.preferredTime.value,
+      membershipInterest:this.membershipInterest.value,
+    })});
+    const result=await res.json();
+    if(result.ok){
+      if(window.fbq)fbq('track','Lead');
+      if(window.gtag)gtag('event','conversion',{send_to:'AW-18238493597/1klWCM-U474cEJ2n5fhD'});
+      document.getElementById('local-form').style.display='none';
+      document.getElementById('form-success').style.display='block';
+    }else{
+      feedback.style.color='#e57373';
+      feedback.textContent=result.error||'Something went wrong. Please try again.';
+      btn.textContent='Join the VIP List';btn.disabled=false;
     }
-  });
+  }catch{
+    feedback.style.color='#e57373';
+    feedback.textContent='Network error. Please try again.';
+    btn.textContent='Join the VIP List';btn.disabled=false;
+  }
+});
 </script>
-
 </body>
 </html>
