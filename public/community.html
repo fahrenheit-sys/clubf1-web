@@ -87,48 +87,24 @@
     }
     .nav-cta:hover { background: var(--clay-hover); color: #fff; }
 
-    /* ─── HERO ─── */
-    .hero { background: var(--vignette); padding: 128px 60px 68px; }
-    .hero-inner { max-width: 1200px; margin: 0 auto; }
+    /* ─── HERO (image) ─── */
+    .hero { position: relative; height: 88vh; min-height: 620px; max-height: 820px; margin-top: 72px; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; display: block; filter: var(--grade); }
+    .hero-ol { position: absolute; inset: 0; background: linear-gradient(100deg,rgba(42,24,48,.9) 0%,rgba(42,24,48,.52) 45%,rgba(42,24,48,.12) 78%); }
+    .hero-ol::after { content: ""; position: absolute; inset: 0; background: #4A2040; opacity: .14; mix-blend-mode: multiply; }
+    .hero-tx { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); max-width: 1200px; margin: 0 auto; padding: 0 60px; color: #fff; }
     .hero-label {
       display: inline-flex; align-items: center; gap: 10px;
       font-size: 12px; font-weight: 600; letter-spacing: .24em;
-      text-transform: uppercase; color: var(--clay-text); margin-bottom: 28px;
+      text-transform: uppercase; color: var(--clay-text); margin-bottom: 26px;
     }
     .hero-label::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--clay-text); }
-    .hero-headline {
-      font-family: var(--serif);
-      font-size: clamp(46px, 7vw, 88px);
-      font-weight: 400; line-height: 1.02; letter-spacing: -.015em; color: var(--white);
-    }
-    .hero-headline .word { display: block; }
-    .hero-headline .word-gold { color: var(--clay-text); font-style: italic; }
-    .hero-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.12); margin: 36px 0; }
-    .hero-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; }
-    .hero-statement { font-size: 17px; font-weight: 400; line-height: 1.8; color: var(--on-plum-muted); }
-    .hero-statement strong { color: var(--white); font-weight: 600; }
-    .hero-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
-    .btn-gold {
-      display: inline-block; background: var(--clay); color: #fff;
-      font-size: 12px; font-weight: 600; letter-spacing: .1em;
-      padding: 16px 40px; text-decoration: none; border-radius: 4px; transition: background .2s;
-    }
-    .btn-gold:hover { background: var(--clay-hover); color: #fff; }
-    .hero-meta { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: .1em; text-transform: uppercase; }
-
-    /* ─── HERO IMAGES ─── */
-    .hero-images {
-      display: grid; grid-template-columns: 2fr 1fr 1fr;
-      gap: 8px; padding: 0 60px; max-width: 1200px; margin: 0 auto; height: 360px;
-    }
-    .hero-images > div { position: relative; overflow: hidden; background: var(--plum); }
-    .hero-images > div img { width: 100%; height: 100%; object-fit: cover; display: block; filter: var(--grade); transition: transform 0.7s ease; }
-    .hero-images > div:hover img { transform: scale(1.03); }
-    .img-caption {
-      position: absolute; bottom: 14px; left: 16px;
-      font-size: 9px; font-weight: 700; letter-spacing: .24em;
-      text-transform: uppercase; color: rgba(255,255,255,0.9);
-    }
+    .hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 6.4vw, 84px); line-height: 1.04; letter-spacing: -.015em; max-width: 640px; margin-bottom: 20px; color: #fff; }
+    .hero-sub { font-size: clamp(16px, 1.6vw, 20px); font-weight: 500; letter-spacing: .02em; color: #EBDDE8; max-width: 520px; line-height: 1.6; margin-bottom: 36px; }
+    .hero-actions { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+    .btn-solid { display: inline-block; background: var(--clay); color: #fff; font-size: 13px; font-weight: 600; letter-spacing: .12em; padding: 16px 38px; text-decoration: none; border-radius: 4px; transition: background .2s; }
+    .btn-solid:hover { background: var(--clay-hover); color: #fff; }
+    .hero-meta { position: absolute; left: 60px; bottom: 32px; font-size: 12px; color: rgba(255,255,255,.75); letter-spacing: .12em; text-transform: uppercase; }
 
     /* ─── STATS ─── */
     .stats { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 56px 60px; display: flex; }
@@ -308,8 +284,6 @@
 
     /* ─── MOBILE ─── */
     @media (max-width: 900px) {
-      .hero-images { grid-template-columns: 1fr; height: 240px; padding: 0 20px; }
-      .hero-images > div:not(:first-child) { display: none; }
       .zones-grid { grid-template-columns: repeat(2, 1fr); }
       .zone-card:nth-child(2) { border-right: none; }
       .zone-card:nth-child(3) { border-right: 1px solid var(--rule); }
@@ -326,10 +300,8 @@
     @media (max-width: 768px) {
       nav { padding: 0 20px; }
       .nav-location { display: none; }
-      .hero { padding: 104px 20px 48px; }
-      .hero-bottom { grid-template-columns: 1fr; gap: 32px; }
-      .hero-actions { align-items: flex-start; }
-      .hero-images { padding: 0 20px; }
+      .hero-tx { padding: 0 24px; }
+      .hero-meta { left: 24px; }
       .stats { margin: 40px 20px; flex-wrap: wrap; }
       .stat { flex: 0 0 50%; border-right: none; border-bottom: 1px solid var(--rule); padding: 24px 0; }
       .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
@@ -382,42 +354,19 @@
   </div>
 </nav>
 
-<!-- HERO — F1 is the product. Paddington is the location credential. -->
+<!-- HERO — family-together image -->
 <div class="hero">
-  <div class="hero-inner">
+  <img src="images/hero-family.png" alt="Fahrenheit One — a place for the whole family">
+  <div class="hero-ol"></div>
+  <div class="hero-tx">
     <p class="hero-label">Community Priority Access · Hakoah Paddington</p>
-    <h1 class="hero-headline">
-      <span class="word">The fitness club</span>
-      <span class="word">Paddington has</span>
-      <span class="word word-gold">been waiting for.</span>
-    </h1>
-    <div class="hero-divider"></div>
-    <div class="hero-bottom">
-      <p class="hero-statement">
-        <strong>Fahrenheit One</strong> is a premium fitness, wellness and recovery club opening at Hakoah Paddington in April 2027. Community members register first — before we open to the public.
-      </p>
-      <div class="hero-actions">
-        <a href="#join" class="btn-gold">Register for Community Priority Access</a>
-        <span class="hero-meta">Fitness · Wellness · Recovery · Community</span>
-      </div>
+    <h1>One Location.<br>A World of Options.</h1>
+    <p class="hero-sub">Fitness. Wellness. Recovery. A world-class club built for the way people actually live — and a place for the whole family.</p>
+    <div class="hero-actions">
+      <a href="#join" class="btn-solid">Register for Priority Access</a>
     </div>
   </div>
-</div>
-
-<!-- HERO IMAGES -->
-<div class="hero-images">
-  <div>
-    <img src="images/pillar-fitness.png" alt="Fitness">
-    <span class="img-caption">Fitness &amp; Training</span>
-  </div>
-  <div>
-    <img src="images/pillar-wellness.png" alt="Wellness">
-    <span class="img-caption">Wellness &amp; Recovery</span>
-  </div>
-  <div>
-    <img src="images/pillar-recovery.png" alt="Recovery">
-    <span class="img-caption">Recovery Centre</span>
-  </div>
+  <span class="hero-meta">Hakoah Paddington · Sydney</span>
 </div>
 
 <!-- STATS -->
