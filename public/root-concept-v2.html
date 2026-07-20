@@ -183,6 +183,15 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.4vw,46px);let
 #popup-done .popup-eyebrow{margin-bottom:16px}
 #popup-done .popup-heading{margin-bottom:10px}
 @media (max-width:540px){#profile-card{padding:32px 24px 28px}.popup-heading{font-size:22px}}
+/* eGYM / MYCOACH MINI */
+.egym{background:var(--vignette);padding:64px 60px 68px}
+.egym-inner{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:36px;align-items:center;text-align:center}
+.egym-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;width:100%;text-align:left}
+.egym-card{background:rgba(255,255,255,.04);border:1px solid var(--plum-line);border-top:4px solid var(--ec);border-radius:4px;padding:28px 30px}
+.egym-kicker{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ec);margin-bottom:12px}
+.egym-lede{font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.5;color:#fff;margin-bottom:12px}
+.egym-body{font-size:14px;line-height:1.6;color:var(--on-plum-muted)}
+.egym-tag{display:inline-block;margin-top:14px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--on-plum);border:1px solid var(--plum-line);border-radius:999px;padding:5px 12px}
 /* MOBILE */
 @media (max-width:900px){
 .pillars{grid-template-columns:1fr}
@@ -197,6 +206,7 @@ nav{padding:0 20px}.nav-location{display:none}
 .stats{flex-wrap:wrap}.stat{flex:0 0 50%;border-bottom:1px solid var(--rule)}.stat:nth-child(odd){border-right:1px solid var(--rule)}.stat:nth-child(even){border-right:none}.stat:nth-last-child(-n+2){border-bottom:none}
 .split{grid-template-columns:1fr}.split-col{padding:24px 20px;border-right:none!important}.split-col:first-child{border-bottom:1px solid #E2D4E0}
 .classes-inner{grid-template-columns:1fr;gap:40px;padding:60px 20px}
+.egym{padding:56px 20px 60px}.egym-cols{grid-template-columns:1fr}
 .vip-inner{padding:60px 20px}.vip-top{grid-template-columns:1fr;gap:40px}.vip-reasons{grid-template-columns:1fr}
 .vip-form{grid-template-columns:1fr}
 .site-footer{grid-template-columns:1fr;text-align:center;padding:40px 20px;gap:28px}.footer-legal{text-align:center}.footer-logo{margin:0 auto}
@@ -340,6 +350,30 @@ nav{padding:0 20px}.nav-location{display:none}
 </div>
 </div>
 
+<!-- eGYM / MYCOACH (compact) -->
+<section class="egym">
+<div class="egym-inner">
+<div>
+<p class="eyebrow" style="color:var(--clay-text)">Only at Fahrenheit One</p>
+<h2 style="color:#fff;font-size:clamp(26px,3vw,36px)">Smart technology. Real coaches.<br>Working together.</h2>
+</div>
+<div class="egym-cols">
+<div class="egym-card" style="--ec:var(--tangerine)">
+<p class="egym-kicker">eGym Smart Training</p>
+<p class="egym-lede">Smart machines that recognise you.</p>
+<p class="egym-body">They set up, load and adjust automatically as you train — with a single BioAge score that shows your real progress.</p>
+<span class="egym-tag">Included with every membership</span>
+</div>
+<div class="egym-card" style="--ec:var(--clay)">
+<p class="egym-kicker" style="color:var(--clay-text)">MyCoach</p>
+<p class="egym-lede">A real coach who knows you by name.</p>
+<p class="egym-body">On-floor guidance whenever you train — no booked sessions, working hand-in-hand with your eGym plan.</p>
+<span class="egym-tag">Included for Lifestyle members</span>
+</div>
+</div>
+</div>
+</section>
+
 <!-- VIP -->
 <div class="vip" id="vip">
 <div class="vip-inner">
@@ -353,7 +387,7 @@ nav{padding:0 20px}.nav-location{display:none}
 <div class="reason"><p class="reason-num">01</p><p class="reason-title">Founding Rates — Never Repeated</p><p class="reason-body">Founding members secure an extraordinary rate — one that simply will not be offered again once we open to the public. A genuine first-mover advantage.</p></div>
 <div class="reason"><p class="reason-num">02</p><p class="reason-title">First Through the Door</p><p class="reason-body">VIP members get priority access before general memberships open, including first pick of personal trainers and class timetables.</p></div>
 <div class="reason"><p class="reason-num">03</p><p class="reason-title">Exclusive Pre-Opening Events</p><p class="reason-body">Tour the facility, meet the coaches and see the build in progress — before anyone else gets a look in.</p></div>
-<div class="reason"><p class="reason-num">04</p><p class="reason-title">Shape What Gets Built</p><p class="reason-body">Your preferences drive programming decisions — class types, timetabling and the experiences we build around you.</p></div>
+<div class="reason"><p class="reason-num">04</p><p class="reason-title">The Finishing Touches</p><p class="reason-body">The club is already taking shape — your preferences guide the final details we add on top: the classes, timetabling and touches that make it feel like yours.</p></div>
 </div>
 </div>
 <p class="vip-form-label">Register your interest — takes 30 seconds</p>
