@@ -200,25 +200,26 @@
 
     /* ─── MEMBERSHIP PILLARS ─── */
     .pillars-header { padding: 88px 60px 48px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: end; }
-    .pillar { display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; border-top: 1px solid var(--rule); }
+    .pillar { display: grid; grid-template-columns: 1fr 1.05fr; min-height: 380px; border-top: 1px solid var(--rule); }
     .pillar:last-child { border-bottom: 1px solid var(--rule); }
     .pillar-img { position: relative; overflow: hidden; background: var(--plum); }
-    .pillar-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: var(--grade); }
-    .pillar-body { padding: 64px 60px; display: flex; flex-direction: column; justify-content: center; background: var(--white); }
+    .pillar-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; filter: var(--grade); }
+    .pillar-body { padding: 44px 56px; display: flex; flex-direction: column; justify-content: center; background: var(--white); }
     .pillar.alt .pillar-body { background: var(--tint); order: -1; }
     .pillar.dark .pillar-body { background: var(--vignette); }
-    .pillar-num { font-size: 10px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--clay); margin-bottom: 6px; }
-    .pillar.dark .pillar-num { color: var(--clay-text); }
-    .pillar-price { display: none; font-size: 11px; font-weight: 500; letter-spacing: .06em; margin-bottom: 18px; }
-    .pillar.dark .pillar-price { color: var(--on-plum-muted); }
-    .pillar:not(.dark) .pillar-price { color: var(--mid); }
-    .pillar-title { font-family: var(--serif); font-size: clamp(28px, 3vw, 44px); font-weight: 400; letter-spacing: -.015em; line-height: 1.04; margin-bottom: 16px; }
+    .pillar-num { font-size: 10px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; margin-bottom: 12px; }
+    .pillar.dark .pillar-num { color: var(--on-plum-muted); }
+    .pillar:not(.dark) .pillar-num { color: var(--mid); }
+    .pillar-title { font-family: var(--serif); font-size: clamp(30px, 3vw, 40px); font-weight: 400; letter-spacing: -.015em; line-height: 1; margin-bottom: 6px; }
     .pillar.dark .pillar-title { color: var(--white); }
     .pillar:not(.dark) .pillar-title { color: var(--ink); }
-    .pillar-text { font-size: 14px; font-weight: 400; line-height: 1.85; margin-bottom: 28px; }
+    .pillar-tag { font-family: var(--serif); font-style: italic; font-size: clamp(17px, 1.7vw, 21px); font-weight: 400; line-height: 1.2; margin-bottom: 18px; }
+    .pillar.dark .pillar-tag { color: var(--clay-text); }
+    .pillar:not(.dark) .pillar-tag { color: var(--clay); }
+    .pillar-text { font-size: 13.5px; font-weight: 400; line-height: 1.65; margin-bottom: 20px; }
     .pillar.dark .pillar-text { color: var(--on-plum-muted); }
     .pillar:not(.dark) .pillar-text { color: var(--mid); }
-    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
     .feature-list li { font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 12px; }
     .pillar.dark .feature-list li { color: var(--on-plum); }
     .pillar:not(.dark) .feature-list li { color: var(--ink); }
@@ -601,19 +602,19 @@
   <div class="pillars-header">
     <div>
       <p class="section-tag">Choose Your Membership</p>
-      <h2 class="section-headline">Three options.<br>One campus.</h2>
+      <h2 class="section-headline">Three memberships.<br>One campus.</h2>
     </div>
-    <p class="section-body">Allocations are limited. Community members who register first lock in a priority access rate that will not be offered once memberships open to the public.</p>
+    <p class="section-body">Three distinct memberships — pick the one that fits how you train. Allocations are limited, and community members who register first lock in a priority rate that won't be offered once we open to the public.</p>
   </div>
 
   <div class="pillar dark">
     <div class="pillar-img">
-      <img src="images/hero-family.png" alt="Lifestyle">
+      <img src="images/hero-family.png" alt="Lifestyle membership">
     </div>
     <div class="pillar-body">
-      <p class="pillar-num">Lifestyle</p>
-      <p class="pillar-price">From $149 / month · 7 Days · Full Access</p>
-      <h2 class="pillar-title">Everything<br>Included.</h2>
+      <p class="pillar-num">Membership 01 · 7 Days</p>
+      <h2 class="pillar-title">Lifestyle</h2>
+      <p class="pillar-tag">Everything included.</p>
       <p class="pillar-text">The complete Fahrenheit One experience. Training, recovery, wellness and community — one membership, the full campus.</p>
       <ul class="feature-list">
         <li>Premium Gym Floor &amp; Strength Training</li>
@@ -628,12 +629,12 @@
 
   <div class="pillar alt">
     <div class="pillar-img">
-      <img src="images/pillar-fitness.png" alt="Fitness">
+      <img src="images/pillar-fitness.png" alt="Fitness membership">
     </div>
     <div class="pillar-body">
-      <p class="pillar-num">Fitness</p>
-      <p class="pillar-price">From $99 / month · 7 Days</p>
-      <h2 class="pillar-title">Train At A<br>Higher Standard.</h2>
+      <p class="pillar-num">Membership 02 · 7 Days</p>
+      <h2 class="pillar-title">Fitness</h2>
+      <p class="pillar-tag">Train at a higher standard.</p>
       <p class="pillar-text">Purpose-built training spaces, world-class technology and expert coaching — all designed to help you achieve more from every visit.</p>
       <ul class="feature-list">
         <li>Premium Gym Floor &amp; Strength Training</li>
@@ -648,12 +649,12 @@
 
   <div class="pillar">
     <div class="pillar-img">
-      <img src="images/pillar-wellness.png" alt="Wellness">
+      <img src="images/pillar-wellness.png" alt="Wellness membership">
     </div>
     <div class="pillar-body">
-      <p class="pillar-num">Wellness</p>
-      <p class="pillar-price">From $79 / month · Mon–Fri 9am–5pm</p>
-      <h2 class="pillar-title">Wellness For Every<br>Stage Of Life.</h2>
+      <p class="pillar-num">Membership 03 · Mon–Fri</p>
+      <h2 class="pillar-title">Wellness</h2>
+      <p class="pillar-tag">Wellness for every stage of life.</p>
       <p class="pillar-text">From guided wellness programming to mobility, yoga and recovery, Fahrenheit One supports long-term health and wellbeing — not just workouts. Available weekdays during business hours.</p>
       <ul class="feature-list">
         <li>Wellness Circuit</li>

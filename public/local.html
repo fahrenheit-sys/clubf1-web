@@ -152,22 +152,26 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.4vw,46px);let
 .member-head{padding:88px 60px 48px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:end}
 .member-head .eyebrow{margin-bottom:16px}
 .member-body{font-size:16px;font-weight:400;line-height:1.85;color:var(--mid)}
-.mtier{display:grid;grid-template-columns:1fr 1fr;min-height:500px;border-top:1px solid var(--rule)}
+.mtier{display:grid;grid-template-columns:1fr 1.05fr;min-height:380px;border-top:1px solid var(--rule)}
 .mtier:last-child{border-bottom:1px solid var(--rule)}
 .mtier-img{position:relative;overflow:hidden;background:var(--plum)}
-.mtier-img img{width:100%;height:100%;object-fit:cover;display:block;filter:var(--grade)}
-.mtier-body{padding:64px 60px;display:flex;flex-direction:column;justify-content:center;background:var(--white)}
+.mtier-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:var(--grade)}
+.mtier-body{padding:44px 56px;display:flex;flex-direction:column;justify-content:center;background:var(--white)}
 .mtier.alt .mtier-body{background:var(--tint);order:-1}
 .mtier.dark .mtier-body{background:var(--vignette)}
-.mtier-num{font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--clay);margin-bottom:14px}
-.mtier.dark .mtier-num{color:var(--clay-text)}
-.mtier-title{font-family:var(--serif);font-size:clamp(28px,3vw,44px);font-weight:400;letter-spacing:-.015em;line-height:1.04;margin-bottom:16px}
+.mtier-num{font-size:10px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;margin-bottom:12px}
+.mtier.dark .mtier-num{color:var(--on-plum-muted)}
+.mtier:not(.dark) .mtier-num{color:var(--mid)}
+.mtier-title{font-family:var(--serif);font-size:clamp(30px,3vw,40px);font-weight:400;letter-spacing:-.015em;line-height:1;margin-bottom:6px}
 .mtier.dark .mtier-title{color:var(--white)}
 .mtier:not(.dark) .mtier-title{color:var(--ink)}
-.mtier-text{font-size:14px;font-weight:400;line-height:1.85;margin-bottom:28px}
+.mtier-tag{font-family:var(--serif);font-style:italic;font-size:clamp(17px,1.7vw,21px);font-weight:400;line-height:1.2;margin-bottom:18px}
+.mtier.dark .mtier-tag{color:var(--clay-text)}
+.mtier:not(.dark) .mtier-tag{color:var(--clay)}
+.mtier-text{font-size:13.5px;font-weight:400;line-height:1.65;margin-bottom:20px}
 .mtier.dark .mtier-text{color:var(--on-plum-muted)}
 .mtier:not(.dark) .mtier-text{color:var(--mid)}
-.feature-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:8px}
 .feature-list li{font-size:12px;font-weight:500;display:flex;align-items:center;gap:12px}
 .mtier.dark .feature-list li{color:var(--on-plum)}
 .mtier:not(.dark) .feature-list li{color:var(--ink)}
@@ -448,9 +452,9 @@ nav{padding:0 20px}.nav-location{display:none}
 <div class="member-head">
 <div>
 <p class="eyebrow">Choose Your Membership</p>
-<h2>Three Options.<br>One Campus.</h2>
+<h2>Three Memberships.<br>One Campus.</h2>
 </div>
-<p class="member-body">VIP members who register first lock in a founding rate that will not be offered once memberships open to the public.</p>
+<p class="member-body">Three distinct memberships — pick the one that fits how you train. VIP members who register first lock in a founding rate that won't be offered once we open to the public.</p>
 </div>
 
 <div class="mtier dark">
@@ -458,9 +462,10 @@ nav{padding:0 20px}.nav-location{display:none}
 <img src="images/hero-family.png" alt="Lifestyle membership">
 </div>
 <div class="mtier-body">
-<p class="mtier-num">Lifestyle</p>
-<h3 class="mtier-title">Everything<br>Included.</h3>
-<p class="mtier-text">The complete Fahrenheit One experience. Training, recovery, wellness and community — one membership, the full campus. 7 days.</p>
+<p class="mtier-num">Membership 01 · 7 Days</p>
+<h3 class="mtier-title">Lifestyle</h3>
+<p class="mtier-tag">Everything included.</p>
+<p class="mtier-text">The complete Fahrenheit One experience. Training, recovery, wellness and community — one membership, the full campus.</p>
 <ul class="feature-list">
 <li>Premium Gym Floor &amp; Strength Training</li>
 <li>100+ Group Fitness Classes Per Week</li>
@@ -477,9 +482,10 @@ nav{padding:0 20px}.nav-location{display:none}
 <img src="images/pillar-fitness.png" alt="Fitness membership">
 </div>
 <div class="mtier-body">
-<p class="mtier-num">Fitness</p>
-<h3 class="mtier-title">Train<br>Differently.</h3>
-<p class="mtier-text">A world-class gym floor and full group fitness timetable, seven days a week. The latest training technology, guided every step.</p>
+<p class="mtier-num">Membership 02 · 7 Days</p>
+<h3 class="mtier-title">Fitness</h3>
+<p class="mtier-tag">Train differently.</p>
+<p class="mtier-text">A world-class gym floor and full group fitness timetable, seven days a week — the latest training technology, guided every step.</p>
 <ul class="feature-list">
 <li>Premium Gym Floor &amp; Strength Training</li>
 <li>Pilates Reformer Studio</li>
@@ -496,9 +502,10 @@ nav{padding:0 20px}.nav-location{display:none}
 <img src="images/pillar-wellness.png" alt="Wellness membership">
 </div>
 <div class="mtier-body">
-<p class="mtier-num">Wellness</p>
-<h3 class="mtier-title">Move<br>Better.</h3>
-<p class="mtier-text">Guided wellness programming, yoga and mindful movement. Built for longevity. Available weekdays during business hours.</p>
+<p class="mtier-num">Membership 03 · Mon–Fri</p>
+<h3 class="mtier-title">Wellness</h3>
+<p class="mtier-tag">Move better.</p>
+<p class="mtier-text">Guided wellness programming, yoga and mindful movement — built for longevity. Available weekdays during business hours.</p>
 <ul class="feature-list">
 <li>Wellness Circuit</li>
 <li>Yoga &amp; Mindful Movement</li>
