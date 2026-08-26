@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { channelTag, type Tracking } from '@/app/lib/attribution'
 
 const GHL_BASE = 'https://services.leadconnectorhq.com'
 
@@ -50,7 +51,9 @@ function genCode(yob: number): string {
 // fields, then creates the pipeline opportunity directly (bypassing the GHL
 // opt-in workflow to avoid duplicate opportunity creation).
 export async function POST(req: NextRequest) {
-  const { email, interest, preferredTime, yearOfBirth } = await req.json()
+  const payload = await req.json()
+  const { email, interest, preferredTime, yearOfBirth } = payload
+  const tracking = payload.tracking as Tracking | undefined
 
   if (!email) {
     return NextResponse.json({ ok: false, error: 'Missing email.' }, { status: 400 })
@@ -70,6 +73,9 @@ export async function POST(req: NextRequest) {
 
   // Always re-send the base tags so they survive a GHL tag-replace on upsert
   const tags: string[] = ['source::organic', 'track::local']
+  // Re-send the channel tag stage 1 applied — this upsert would otherwise drop it.
+  const channel = channelTag(tracking)
+  if (channel) tags.push(channel)
   if (interest === 'not-sure') {
     tags.push('type::not-sure')
   } else if (interest) {

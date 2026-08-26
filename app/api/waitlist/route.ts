@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { channelTag, sourceLabel, type Tracking } from '@/app/lib/attribution'
 
 const GHL_BASE = 'https://services.leadconnectorhq.com'
 
 export async function POST(req: NextRequest) {
-  const { firstName, email, phone } = await req.json()
+  const { firstName, email, phone, tracking } = (await req.json()) as {
+    firstName?: string; email?: string; phone?: string; tracking?: Tracking
+  }
 
   if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())) {
     return NextResponse.json({ ok: false, error: 'Please enter a valid email address.' }, { status: 400 })
@@ -16,13 +19,18 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: 'Configuration error.' }, { status: 500 })
   }
 
+  // GHL upsert replaces tags, so every tag this contact should carry is sent here.
+  const tags = ['source::organic', 'track::local']
+  const channel = channelTag(tracking)
+  if (channel) tags.push(channel)
+
   const body = {
     locationId,
     firstName: firstName?.trim() || undefined,
     email: email.trim().toLowerCase(),
     phone: phone?.trim() || undefined,
-    source: 'clubf1.com.au root waitlist',
-    tags: ['source::organic', 'track::local'],
+    source: sourceLabel(tracking, 'clubf1.com.au root waitlist'),
+    tags,
   }
 
   try {
