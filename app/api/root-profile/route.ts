@@ -125,6 +125,8 @@ export async function POST(req: NextRequest) {
     const upsertData = await upsertRes.json()
     const contactId  = upsertData?.contact?.id
     const firstName  = upsertData?.contact?.firstName
+    const lastName   = upsertData?.contact?.lastName
+    const fullName   = [firstName, lastName].filter(Boolean).join(' ')
 
     // 2. Create opportunity in Local — Eastern Suburbs @ VIP Waitlist
     if (contactId) {
@@ -141,7 +143,7 @@ export async function POST(req: NextRequest) {
           pipelineStageId: '4508b4f3-737f-444c-893b-d9467db67200',
           locationId,
           contactId,
-          name:   `${firstName || email} — Local`,
+          name:   fullName || email,
           status: 'open',
         }),
       })
