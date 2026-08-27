@@ -699,6 +699,16 @@ const F1T=(()=>{const K='f1_attr';
 <option>Wellness</option>
 <option>Lifestyle</option>
 </select>
+<select name="heardAbout" class="span-all">
+<option value="" disabled selected hidden>How did you hear about us? (optional)</option>
+<option>Saw a sign or billboard</option>
+<option>Walked or drove past</option>
+<option>Instagram or Facebook</option>
+<option>Google or web search</option>
+<option>A friend or family member</option>
+<option>Press or local media</option>
+<option>Other</option>
+</select>
 <div class="vip-form-btn">
 <button type="submit" id="local-submit-btn">Join the VIP List</button>
 <span id="local-feedback" class="vip-note"></span>
@@ -748,6 +758,7 @@ document.getElementById('local-form').addEventListener('submit',async function(e
       yearOfBirth:this.yearOfBirth.value,
       preferredTime:this.preferredTime.value,
       membershipInterest:this.membershipInterest.value,
+      heardAbout:this.heardAbout.value,
       tracking:F1T(),
     })});
     const result=await res.json();

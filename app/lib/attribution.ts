@@ -34,3 +34,15 @@ export function sourceLabel(t: Tracking | undefined, fallback: string): string {
   const parts = [t.utm_source, t.utm_medium, t.utm_campaign].filter(Boolean)
   return parts.length ? parts.join(' / ') : fallback
 }
+
+/**
+ * `heard::<answer>` — self-reported discovery channel. Captures the sources a
+ * UTM cannot see: signage, press, newsletters, word of mouth. On the root page
+ * it also indicates which cohort an organic lead belongs to, but the assignment
+ * is left to a human — "a friend or family member" could be either.
+ */
+export function heardTag(answer?: string): string | null {
+  if (!answer) return null
+  const s = slug(answer)
+  return s ? `heard::${s}` : null
+}

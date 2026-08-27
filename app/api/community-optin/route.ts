@@ -1,6 +1,6 @@
 import crypto from 'crypto'
 import { NextRequest, NextResponse } from 'next/server'
-import { channelTag, sourceLabel, type Tracking } from '@/app/lib/attribution'
+import { channelTag, heardTag, sourceLabel, type Tracking } from '@/app/lib/attribution'
 
 const GHL_BASE = 'https://services.leadconnectorhq.com'
 
@@ -99,6 +99,7 @@ export async function POST(req: NextRequest) {
   const payload = await req.json()
   const { firstName, lastName, email, phone, yearOfBirth, preferredTime, membershipInterest, isHakoahMember } = payload
   const tracking = payload.tracking as Tracking | undefined
+  const heard    = heardTag(payload.heardAbout as string | undefined)
 
   if (!firstName?.trim())
     return NextResponse.json({ ok: false, error: 'Please enter your first name.' }, { status: 400 })
@@ -141,6 +142,7 @@ export async function POST(req: NextRequest) {
   // GHL upsert replaces tags, so the channel tag has to travel with the rest.
   const channel = channelTag(tracking)
   if (channel) tags.push(channel)
+  if (heard) tags.push(heard)
 
   const body = {
     locationId,

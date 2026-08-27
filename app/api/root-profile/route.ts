@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { channelTag, type Tracking } from '@/app/lib/attribution'
+import { channelTag, heardTag, type Tracking } from '@/app/lib/attribution'
 
 const GHL_BASE = 'https://services.leadconnectorhq.com'
 
@@ -54,6 +54,7 @@ export async function POST(req: NextRequest) {
   const payload = await req.json()
   const { email, interest, preferredTime, yearOfBirth } = payload
   const tracking = payload.tracking as Tracking | undefined
+  const heard    = heardTag(payload.heardAbout as string | undefined)
 
   if (!email) {
     return NextResponse.json({ ok: false, error: 'Missing email.' }, { status: 400 })
@@ -76,6 +77,7 @@ export async function POST(req: NextRequest) {
   // Re-send the channel tag stage 1 applied — this upsert would otherwise drop it.
   const channel = channelTag(tracking)
   if (channel) tags.push(channel)
+  if (heard) tags.push(heard)
   if (interest === 'not-sure') {
     tags.push('type::not-sure')
   } else if (interest) {

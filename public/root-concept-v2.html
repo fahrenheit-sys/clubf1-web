@@ -412,7 +412,7 @@ nav{padding:0 20px}.nav-location{display:none}
 <div id="popup-form-state">
 <p class="popup-eyebrow">One more thing</p>
 <h3 class="popup-heading">Help us personalise<br>your experience.</h3>
-<p class="popup-sub">Three quick questions — so your updates are relevant to you, not just generic.</p>
+<p class="popup-sub">Four quick questions — so your updates are relevant to you, not just generic.</p>
 <div class="popup-field">
 <label class="popup-label" for="popup-interest">What interests you most?</label>
 <select class="popup-select" id="popup-interest">
@@ -433,6 +433,19 @@ nav{padding:0 20px}.nav-location{display:none}
 <option value="Afternoon (2–5pm)">Afternoon (2–5pm)</option>
 <option value="Evening (5–8pm)">Evening (5–8pm)</option>
 <option value="Weekends">Weekends</option>
+</select>
+</div>
+<div class="popup-field">
+<label class="popup-label" for="popup-heard">How did you hear about us?</label>
+<select class="popup-select" id="popup-heard">
+<option value="">Select an option</option>
+<option value="Instagram or Facebook">Instagram or Facebook</option>
+<option value="Google or web search">Google or web search</option>
+<option value="A friend or family member">A friend or family member</option>
+<option value="Hakoah newsletter">Hakoah newsletter</option>
+<option value="Synagogue, school or community organisation">Synagogue, school or community organisation</option>
+<option value="Saw a sign or drove past">Saw a sign or drove past</option>
+<option value="Other">Other</option>
 </select>
 </div>
 <div class="popup-field">
@@ -527,6 +540,7 @@ document.getElementById('profile-overlay').addEventListener('click',function(e){
 document.getElementById('popup-submit').addEventListener('click',async function(){
   const interest=document.getElementById('popup-interest').value;
   const preferredTime=document.getElementById('popup-time').value;
+  const heardAbout=document.getElementById('popup-heard').value;
   const yearOfBirth=document.getElementById('popup-yob').value.trim();
   const errorEl=document.getElementById('popup-error');
   errorEl.style.display='none';
@@ -537,7 +551,7 @@ document.getElementById('popup-submit').addEventListener('click',async function(
   const btn=this;
   btn.textContent='Saving…';btn.disabled=true;
   try{
-    await fetch('/api/root-profile',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:submittedEmail,interest,preferredTime,yearOfBirth,tracking:F1T()})});
+    await fetch('/api/root-profile',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:submittedEmail,interest,preferredTime,yearOfBirth,heardAbout,tracking:F1T()})});
   }catch{}
   document.getElementById('popup-form-state').style.display='none';
   document.getElementById('popup-done').style.display='block';

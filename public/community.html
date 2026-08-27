@@ -845,6 +845,16 @@ const F1T=(()=>{const K='f1_attr';
         <option value="No">Are you a Hakoah member? — No</option>
         <option value="Yes">Are you a Hakoah member? — Yes</option>
       </select>
+      <select name="heardAbout">
+        <option value="" disabled selected hidden>How did you hear about us? (optional)</option>
+        <option>Hakoah newsletter</option>
+        <option>Synagogue, school or community organisation</option>
+        <option>A friend or family member</option>
+        <option>Australian Jewish News</option>
+        <option>Instagram or Facebook</option>
+        <option>Google or web search</option>
+        <option>Other</option>
+      </select>
       <div class="community-form-btn">
         <button type="submit" id="community-submit-btn">Register Now</button>
         <span id="community-feedback" class="form-note"></span>
@@ -907,6 +917,7 @@ const F1T=(()=>{const K='f1_attr';
           preferredTime:      this.preferredTime.value,
           membershipInterest: this.membershipInterest.value,
           isHakoahMember:     this.isHakoahMember.value,
+          heardAbout:         this.heardAbout.value,
           tracking:          F1T(),
         }),
       });
