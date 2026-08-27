@@ -161,6 +161,35 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false, error: 'Something went wrong. Please try again.' }, { status: 500 })
     }
 
+    // Opportunity in Local — Eastern Suburbs @ VIP Waitlist. Created here rather than by a GHL
+    // workflow: tag triggers don't retro-enrol, and the workflow that used to do
+    // this no longer exists. Failure is logged, not fatal — the contact is saved.
+    const upsertData = await res.json()
+    const contactId  = upsertData?.contact?.id
+    if (contactId) {
+      const oppName = [firstName.trim(), lastName?.trim()].filter(Boolean).join(' ')
+      const oppRes  = await fetch(`${GHL_BASE}/opportunities/`, {
+        method: 'POST',
+        headers: {
+          Authorization:  `Bearer ${token}`,
+          Version:        '2021-07-28',
+          'Content-Type': 'application/json',
+          Accept:         'application/json',
+        },
+        body: JSON.stringify({
+          pipelineId:      '7fTiSRP3JaSVORKMTYux',
+          pipelineStageId: '4508b4f3-737f-444c-893b-d9467db67200',
+          locationId,
+          contactId,
+          name:   oppName || email.trim().toLowerCase(),
+          status: 'open',
+        }),
+      })
+      if (!oppRes.ok) {
+        console.error('GHL opportunity creation failed', oppRes.status, await oppRes.text())
+      }
+    }
+
     // Dashboard sync — best-effort
     const secret = process.env.GHL_WEBHOOK_SECRET
     if (secret) {
