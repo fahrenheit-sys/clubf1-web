@@ -4,8 +4,8 @@ import { channelTag, sourceLabel, type Tracking } from '@/app/lib/attribution'
 const GHL_BASE = 'https://services.leadconnectorhq.com'
 
 export async function POST(req: NextRequest) {
-  const { firstName, email, phone, tracking } = (await req.json()) as {
-    firstName?: string; email?: string; phone?: string; tracking?: Tracking
+  const { firstName, lastName, email, phone, tracking } = (await req.json()) as {
+    firstName?: string; lastName?: string; email?: string; phone?: string; tracking?: Tracking
   }
 
   if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())) {
@@ -27,6 +27,7 @@ export async function POST(req: NextRequest) {
   const body = {
     locationId,
     firstName: firstName?.trim() || undefined,
+    lastName: lastName?.trim() || undefined,
     email: email.trim().toLowerCase(),
     phone: phone?.trim() || undefined,
     source: sourceLabel(tracking, 'clubf1.com.au root waitlist'),

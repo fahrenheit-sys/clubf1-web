@@ -143,7 +143,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.4vw,46px);let
 .reason-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:7px}
 .reason-body{font-size:12.5px;line-height:1.75;color:var(--on-plum-muted)}
 .vip-form-label{font-size:10px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--on-plum-muted);margin-bottom:18px}
-.vip-form{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.vip-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .vip-form input{width:100%;padding:15px 18px;font-family:var(--sans);font-size:13.5px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#fff;outline:none;border-radius:4px;transition:border-color .2s}
 .vip-form input:focus{border-color:var(--clay-text)}
 .vip-form input::placeholder{color:rgba(255,255,255,.35)}
@@ -394,6 +394,7 @@ nav{padding:0 20px}.nav-location{display:none}
 <div id="form-success" style="display:none;padding:24px 0 8px;font-size:15px;font-weight:600;color:#fff;">You're on the list. We'll be in touch soon.</div>
 <form class="vip-form" id="vip-form">
 <input type="text" name="firstName" placeholder="First name">
+<input type="text" name="lastName" placeholder="Last name">
 <input type="email" name="email" placeholder="Email address" required>
 <input type="tel" name="phone" placeholder="Mobile number">
 <div class="vip-form-btn">
@@ -497,7 +498,7 @@ document.getElementById('vip-form').addEventListener('submit',async function(e){
   feedback.style.color='var(--on-plum-muted)';feedback.textContent='';
   const email=this.email.value.trim();
   try{
-    const res=await fetch('/api/waitlist',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({firstName:this.firstName.value.trim(),email,phone:this.phone.value.trim(),tracking:F1T()})});
+    const res=await fetch('/api/waitlist',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({firstName:this.firstName.value.trim(),lastName:this.lastName.value.trim(),email,phone:this.phone.value.trim(),tracking:F1T()})});
     const result=await res.json();
     if(result.ok){
       submittedEmail=email;
