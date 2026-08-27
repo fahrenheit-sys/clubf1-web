@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { channelTag, sourceLabel, type Tracking } from '@/app/lib/attribution'
+import { syncDashboard } from '@/app/lib/dashboard'
 
 const GHL_BASE = 'https://services.leadconnectorhq.com'
 
@@ -50,6 +51,13 @@ export async function POST(req: NextRequest) {
       console.error('GHL upsert failed', res.status, await res.text())
       return NextResponse.json({ ok: false, error: 'Something went wrong. Please try again.' }, { status: 500 })
     }
+
+    // Dashboard sync — root leads were previously never reaching Supabase,
+    // so every organic and Instagram lead was invisible on the dashboard.
+    syncDashboard({
+      firstName, lastName, email: email.trim().toLowerCase(), phone,
+      tags, track: 'local', tracking,
+    })
 
     return NextResponse.json({ ok: true })
   } catch (err) {

@@ -1,6 +1,7 @@
 import crypto from 'crypto'
 import { NextRequest, NextResponse } from 'next/server'
 import { channelTag, heardTag, sourceLabel, type Tracking } from '@/app/lib/attribution'
+import { syncDashboard } from '@/app/lib/dashboard'
 
 const GHL_BASE = 'https://services.leadconnectorhq.com'
 
@@ -200,25 +201,16 @@ export async function POST(req: NextRequest) {
     }
 
     // Dashboard sync — best-effort
-    const secret = process.env.GHL_WEBHOOK_SECRET
-    if (secret) {
-      fetch('https://dashboard.clubf1.tech/api/webhook/ghl', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json', 'x-ghl-secret': secret },
-        body:    JSON.stringify({
-          type: 'opt_in',
-          contact: {
-            firstName: firstName.trim(), lastName: lastName?.trim(),
-            email: email.trim().toLowerCase(), phone: phone.trim(),
-            tags, pipelineStage: 'VIP Waitlist',
-            customField: {
-              year_of_birth: String(yob), preferred_time: preferredTime,
-              membership_interest: membershipInterest,
-            },
-          },
-        }),
-      }).catch(err => console.error('Dashboard sync error', err))
-    }
+    syncDashboard({
+      firstName, lastName, email, phone,
+      tags,
+      track: 'local',
+      tracking, heardAbout: payload.heardAbout,
+      customField: {
+        year_of_birth: String(yob), preferred_time: preferredTime,
+        membership_interest: membershipInterest,
+      },
+    })
 
     // Meta CAPI — best-effort
     const pixelId    = process.env.NEXT_PUBLIC_META_PIXEL_ID

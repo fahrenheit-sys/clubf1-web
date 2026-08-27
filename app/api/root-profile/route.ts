@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { channelTag, heardTag, type Tracking } from '@/app/lib/attribution'
+import { syncDashboard } from '@/app/lib/dashboard'
 
 const GHL_BASE = 'https://services.leadconnectorhq.com'
 
@@ -154,6 +155,17 @@ export async function POST(req: NextRequest) {
         console.error('GHL opportunity creation failed', oppRes.status, await oppRes.text())
       }
     }
+
+    // Dashboard sync — upserts on email, enriching the stage-1 row.
+    syncDashboard({
+      firstName, lastName, email: email.trim().toLowerCase(),
+      tags, track: 'local', tracking, heardAbout: payload.heardAbout,
+      customField: {
+        year_of_birth: validYob ? String(yob) : undefined,
+        preferred_time: preferredTime,
+        membership_interest: interest,
+      },
+    })
 
     return NextResponse.json({ ok: true })
   } catch (err) {
