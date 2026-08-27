@@ -6,6 +6,7 @@ import { syncDashboard } from '@/app/lib/dashboard'
 const GHL_BASE = 'https://services.leadconnectorhq.com'
 
 const FIELD_IDS = {
+  track:               '2CAwgSqsn7xWUgGHkeNC',
   preferred_time:     'BpoSe2yPMFN59Y17l0Ag',
   membership_interest:'Kg9YVN5qI4GLbTsy9Nll',
   year_of_birth:      'Sf0Cb9ESgch7087rQyzo',
@@ -137,6 +138,7 @@ export async function POST(req: NextRequest) {
     { id: FIELD_IDS.membership_interest, value: membershipInterest },
     { id: FIELD_IDS.year_of_birth, value: String(yob) },
     { id: FIELD_IDS.is_hakoah_member, value: isHakoahMember === 'Yes' ? 'Yes' : 'No' },
+     { id: FIELD_IDS.track, value: 'community' },
   ]
   if (gen_tribe_code) customFields.push({ id: FIELD_IDS.gen_tribe_code, value: gen_tribe_code })
 

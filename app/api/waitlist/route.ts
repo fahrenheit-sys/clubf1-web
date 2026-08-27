@@ -33,6 +33,8 @@ export async function POST(req: NextRequest) {
     phone: phone?.trim() || undefined,
     source: sourceLabel(tracking, 'clubf1.com.au root waitlist'),
     tags,
+    // track — drives the track conditionals in the email templates
+    customFields: [{ id: '2CAwgSqsn7xWUgGHkeNC', value: 'local' }],
   }
 
   try {

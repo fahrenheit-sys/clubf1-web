@@ -5,6 +5,7 @@ import { syncDashboard } from '@/app/lib/dashboard'
 const GHL_BASE = 'https://services.leadconnectorhq.com'
 
 const FIELD_IDS = {
+  track:               '2CAwgSqsn7xWUgGHkeNC',
   preferred_time:     'BpoSe2yPMFN59Y17l0Ag',
   membership_interest:'Kg9YVN5qI4GLbTsy9Nll',
   year_of_birth:      'Sf0Cb9ESgch7087rQyzo',
@@ -87,7 +88,9 @@ export async function POST(req: NextRequest) {
   if (tribeTag)          tags.push(tribeTag)
   if (validYob)          tags.push(generationTag(yob))
 
-  const customFields: { id: string; value: string }[] = []
+  const customFields: { id: string; value: string }[] = [
+    { id: FIELD_IDS.track, value: 'local' },   // drives the track conditionals in the email templates
+  ]
   // Only set membership_interest for the three valid picklist values
   if (interest && interest !== 'not-sure') {
     customFields.push({ id: FIELD_IDS.membership_interest, value: interest })
