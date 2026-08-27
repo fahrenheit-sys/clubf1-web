@@ -342,6 +342,19 @@
       .access-reasons { grid-template-columns: 1fr; }
     }
   </style>
+<script>
+// First-touch campaign attribution — same helper as the root page.
+const F1T=(()=>{const K='f1_attr';
+  try{
+    const saved=sessionStorage.getItem(K);
+    if(saved)return()=>JSON.parse(saved);
+    const q=new URLSearchParams(location.search),t={};
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'].forEach(k=>{const v=q.get(k);if(v)t[k]=v.slice(0,120);});
+    if(Object.keys(t).length)sessionStorage.setItem(K,JSON.stringify(t));
+    return()=>t;
+  }catch{return()=>({});}
+})();
+</script>
 </head>
 <body>
 
@@ -894,6 +907,7 @@
           preferredTime:      this.preferredTime.value,
           membershipInterest: this.membershipInterest.value,
           isHakoahMember:     this.isHakoahMember.value,
+          tracking:          F1T(),
         }),
       });
       const result = await res.json();

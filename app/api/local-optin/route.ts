@@ -1,5 +1,6 @@
 import crypto from 'crypto'
 import { NextRequest, NextResponse } from 'next/server'
+import { channelTag, sourceLabel, type Tracking } from '@/app/lib/attribution'
 
 const GHL_BASE = 'https://services.leadconnectorhq.com'
 
@@ -94,7 +95,9 @@ const VALID_TIMES     = ['Early Morning (5–8am)', 'Mid Morning (8–11am)', 'L
 const VALID_INTERESTS = ['Fitness', 'Wellness', 'Lifestyle']
 
 export async function POST(req: NextRequest) {
-  const { firstName, lastName, email, phone, yearOfBirth, preferredTime, membershipInterest } = await req.json()
+  const payload = await req.json()
+  const { firstName, lastName, email, phone, yearOfBirth, preferredTime, membershipInterest } = payload
+  const tracking = payload.tracking as Tracking | undefined
 
   if (!firstName?.trim())
     return NextResponse.json({ ok: false, error: 'Please enter your first name.' }, { status: 400 })
@@ -133,13 +136,17 @@ export async function POST(req: NextRequest) {
   ]
   if (gen_tribe_code) customFields.push({ id: FIELD_IDS.gen_tribe_code, value: gen_tribe_code })
 
+  // GHL upsert replaces tags, so the channel tag has to travel with the rest.
+  const channel = channelTag(tracking)
+  if (channel) tags.push(channel)
+
   const body = {
     locationId,
     firstName:    firstName.trim(),
     lastName:     lastName?.trim() || undefined,
     email:        email.trim().toLowerCase(),
     phone:        phone.trim(),
-    source:       'clubf1.com.au local vip opt-in',
+    source:       sourceLabel(tracking, 'clubf1.com.au local vip opt-in'),
     tags,
     customFields,
   }
