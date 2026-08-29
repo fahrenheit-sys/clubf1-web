@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
 
     // Dashboard sync — root leads were previously never reaching Supabase,
     // so every organic and Instagram lead was invisible on the dashboard.
-    syncDashboard({
+    await syncDashboard({
       firstName, lastName, email: email.trim().toLowerCase(), phone,
       tags, track: 'local', tracking,
     })

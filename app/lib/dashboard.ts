@@ -1,6 +1,12 @@
-// Dashboard sync — best-effort POST to the Supabase-backed pre-sales dashboard.
-// Never throws: a lead is already saved in GHL by the time this runs, and a
-// dashboard outage must not fail the submission.
+// Dashboard sync — POST to the Supabase-backed pre-sales dashboard.
+//
+// This is AWAITED by its callers, deliberately. It used to be fire-and-forget,
+// and the stage-2 popup sync never arrived: on Vercel the function instance can
+// be frozen once the response is returned, so a pending fetch is simply dropped.
+// The route that did the most work before calling it lost every time.
+//
+// It still never throws — a dashboard outage must not fail a lead submission —
+// it just costs ~200ms to be sure the request actually left.
 
 import type { Tracking } from './attribution'
 
@@ -17,12 +23,12 @@ type SyncArgs = {
   customField?: Record<string, string | undefined>
 }
 
-export function syncDashboard(a: SyncArgs): void {
+export async function syncDashboard(a: SyncArgs): Promise<void> {
   const secret = process.env.GHL_WEBHOOK_SECRET
   if (!secret) return
 
   const t = a.tracking ?? {}
-  fetch('https://dashboard.clubf1.tech/api/webhook/ghl', {
+  await fetch('https://dashboard.clubf1.tech/api/webhook/ghl', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-ghl-secret': secret },
     body: JSON.stringify({

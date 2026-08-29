@@ -165,7 +165,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Dashboard sync — upserts on email, enriching the stage-1 row.
-    syncDashboard({
+    await syncDashboard({
       firstName, lastName, email: email.trim().toLowerCase(),
       tags, track: 'local', tracking, heardAbout: payload.heardAbout,
       customField: {

@@ -212,7 +212,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Dashboard sync — best-effort
-    syncDashboard({
+    await syncDashboard({
       firstName, lastName, email, phone,
       tags,
       track: 'community',
