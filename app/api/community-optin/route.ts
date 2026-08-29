@@ -204,6 +204,11 @@ export async function POST(req: NextRequest) {
           contactId,
           name:   oppName || email.trim().toLowerCase(),
           status: 'open',
+          // Carry the campaign onto the opportunity too. A workflow-created
+          // opportunity inherits the contact's source for free; one created
+          // here does not, so a code-created lead would show a blank Source
+          // on the pipeline card while a workflow-created one showed its channel.
+          source: sourceLabel(tracking, 'clubf1.com.au community opt-in'),
         }),
       })
       if (!oppRes.ok) {

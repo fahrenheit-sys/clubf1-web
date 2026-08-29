@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { channelTag, heardTag, type Tracking } from '@/app/lib/attribution'
+import { channelTag, heardTag, sourceLabel, type Tracking } from '@/app/lib/attribution'
 import { syncDashboard } from '@/app/lib/dashboard'
 import { FIELD_TRIBE_LABEL, FIELD_GENERATION_LABEL, tribeLabel, generationLabel } from '@/app/lib/labels'
 
@@ -156,6 +156,11 @@ export async function POST(req: NextRequest) {
           contactId,
           name:   fullName || email,
           status: 'open',
+          // Carry the campaign onto the opportunity too. A workflow-created
+          // opportunity inherits the contact's source for free; one created
+          // here does not, so a code-created lead would show a blank Source
+          // on the pipeline card while a workflow-created one showed its channel.
+          source: sourceLabel(tracking, 'clubf1.com.au root waitlist'),
         }),
       })
       if (!oppRes.ok) {
