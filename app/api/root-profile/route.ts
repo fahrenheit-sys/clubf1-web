@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { channelTag, heardTag, type Tracking } from '@/app/lib/attribution'
 import { syncDashboard } from '@/app/lib/dashboard'
+import { FIELD_TRIBE_LABEL, FIELD_GENERATION_LABEL, tribeLabel, generationLabel } from '@/app/lib/labels'
 
 const GHL_BASE = 'https://services.leadconnectorhq.com'
 
@@ -98,6 +99,10 @@ export async function POST(req: NextRequest) {
   if (preferredTime) {
     customFields.push({ id: FIELD_IDS.preferred_time, value: preferredTime })
   }
+  const tLabel = tribeLabel(preferredTime)
+  const gLabel = validYob ? generationLabel(yob) : null
+  if (tLabel) customFields.push({ id: FIELD_TRIBE_LABEL, value: tLabel })
+  if (gLabel) customFields.push({ id: FIELD_GENERATION_LABEL, value: gLabel })
   if (validYob) {
     customFields.push({ id: FIELD_IDS.year_of_birth, value: String(yob) })
     if (tribeCode) {

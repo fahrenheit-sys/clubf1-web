@@ -2,6 +2,7 @@ import crypto from 'crypto'
 import { NextRequest, NextResponse } from 'next/server'
 import { channelTag, heardTag, sourceLabel, type Tracking } from '@/app/lib/attribution'
 import { syncDashboard } from '@/app/lib/dashboard'
+import { FIELD_TRIBE_LABEL, FIELD_GENERATION_LABEL, tribeLabel, generationLabel } from '@/app/lib/labels'
 
 const GHL_BASE = 'https://services.leadconnectorhq.com'
 
@@ -137,7 +138,13 @@ export async function POST(req: NextRequest) {
     { id: FIELD_IDS.membership_interest, value: membershipInterest },
     { id: FIELD_IDS.year_of_birth,       value: String(yob) },
      { id: FIELD_IDS.track, value: 'local' },
-  ]
+   ]
+  // Labels derived here rather than by a GHL workflow, so the tag and the
+  // label can never disagree.
+  const tLabel = tribeLabel(preferredTime)
+  const gLabel = generationLabel(yob)
+  if (tLabel) customFields.push({ id: FIELD_TRIBE_LABEL, value: tLabel })
+  if (gLabel) customFields.push({ id: FIELD_GENERATION_LABEL, value: gLabel })
   if (gen_tribe_code) customFields.push({ id: FIELD_IDS.gen_tribe_code, value: gen_tribe_code })
 
   // GHL upsert replaces tags, so the channel tag has to travel with the rest.

@@ -54,6 +54,36 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false, error: 'Something went wrong. Please try again.' }, { status: 500 })
     }
 
+    // Opportunity in Local — Eastern Suburbs @ VIP Waitlist. Created here, not by
+    // a workflow: every other capture path already creates its own in code, and
+    // a workflow step that silently does nothing is exactly how a real lead went
+    // without a welcome email on 28 Aug.
+    const upsertData = await res.json()
+    const contactId  = upsertData?.contact?.id
+    if (contactId) {
+      const oppName = [firstName?.trim(), lastName?.trim()].filter(Boolean).join(' ')
+      const oppRes  = await fetch(`${GHL_BASE}/opportunities/`, {
+        method: 'POST',
+        headers: {
+          Authorization:  `Bearer ${token}`,
+          Version:        '2021-07-28',
+          'Content-Type': 'application/json',
+          Accept:         'application/json',
+        },
+        body: JSON.stringify({
+          pipelineId:      '7fTiSRP3JaSVORKMTYux',
+          pipelineStageId: '4508b4f3-737f-444c-893b-d9467db67200',
+          locationId,
+          contactId,
+          name:   oppName || email.trim().toLowerCase(),
+          status: 'open',
+        }),
+      })
+      if (!oppRes.ok) {
+        console.error('GHL opportunity creation failed', oppRes.status, await oppRes.text())
+      }
+    }
+
     // Dashboard sync — root leads were previously never reaching Supabase,
     // so every organic and Instagram lead was invisible on the dashboard.
     syncDashboard({
