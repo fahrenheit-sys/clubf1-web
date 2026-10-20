@@ -21,15 +21,15 @@ const mono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.clubf1.com.au"),
-  title: "Fahrenheit One @ Hakoah Paddington — Launching Soon",
+  metadataBase: new URL("https://grandstandpaddington.com.au"),
+  title: "The Grandstand @ Hakoah Paddington — Opening April 2027",
   description:
     "A premium fitness and wellness club coming to Hakoah Paddington, April 2027. Follow the journey and be first through the doors.",
   openGraph: {
-    title: "Fahrenheit One @ Hakoah Paddington — Launching Soon",
+    title: "The Grandstand @ Hakoah Paddington — Opening April 2027",
     description: "Something extraordinary is coming. Opening April 2027.",
     type: "website",
-    url: "https://www.clubf1.com.au",
+    url: "https://grandstandpaddington.com.au",
   },
   // Root brand page is public/indexable; campaign pages (/community, /local)
   // set their own robots:noindex.

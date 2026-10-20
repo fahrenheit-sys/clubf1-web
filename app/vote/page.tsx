@@ -50,17 +50,17 @@ export default async function VotePage(
           </p>
         )}
 
-        <a href="https://www.clubf1.com.au/?utm_source=email&utm_medium=vote&utm_campaign=shape-your-club"
+        <a href="https://grandstandpaddington.com.au/?utm_source=email&utm_medium=vote&utm_campaign=shape-your-club"
           style={{
             display: 'inline-block', padding: '15px 32px', background: CLAY, color: '#fff',
             textDecoration: 'none', fontSize: 13, fontWeight: 700,
             letterSpacing: '0.14em', textTransform: 'uppercase', borderRadius: 2,
           }}>
-          Back to Fahrenheit One
+          Back to The Grandstand
         </a>
 
         <p style={{ fontSize: 12, color: '#8A7185', marginTop: 40, letterSpacing: '0.04em' }}>
-          Fahrenheit One @ Hakoah Paddington · Opening April 2027
+          The Grandstand @ Hakoah Paddington · Opening April 2027
         </p>
       </div>
     </main>

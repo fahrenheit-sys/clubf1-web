@@ -64,7 +64,7 @@ export default function OptInForm({ track }: { track: "community" | "local" }) {
           {track === "community" ? "Welcome, founder." : "You're in."}
         </h3>
         <p className="mx-auto max-w-md text-cream/80">
-          You're on the Fahrenheit One list. Watch your inbox — we'll share the
+          You're on The Grandstand list. Watch your inbox — we'll share the
           journey, invite you to events, and give you first access when founding
           memberships open.
         </p>
