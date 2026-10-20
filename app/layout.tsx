@@ -21,7 +21,7 @@ const mono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://grandstandpaddington.com.au"),
+  metadataBase: new URL("https://thegrandstandpaddington.com.au"),
   title: "The Grandstand @ Hakoah Paddington — Opening April 2027",
   description:
     "A premium fitness and wellness club coming to Hakoah Paddington, April 2027. Follow the journey and be first through the doors.",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: "The Grandstand @ Hakoah Paddington — Opening April 2027",
     description: "Something extraordinary is coming. Opening April 2027.",
     type: "website",
-    url: "https://grandstandpaddington.com.au",
+    url: "https://thegrandstandpaddington.com.au",
   },
   // Root brand page is public/indexable; campaign pages (/community, /local)
   // set their own robots:noindex.

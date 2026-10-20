@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
     lastName: lastName?.trim() || undefined,
     email: email.trim().toLowerCase(),
     phone: phone?.trim() || undefined,
-    source: sourceLabel(tracking, 'grandstandpaddington.com.au root waitlist'),
+    source: sourceLabel(tracking, 'thegrandstandpaddington.com.au root waitlist'),
     tags,
     // track — drives the track conditionals in the email templates
     customFields: [{ id: '2CAwgSqsn7xWUgGHkeNC', value: 'local' }],
@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
           // opportunity inherits the contact's source for free; one created
           // here does not, so a code-created lead would show a blank Source
           // on the pipeline card while a workflow-created one showed its channel.
-          source: sourceLabel(tracking, 'grandstandpaddington.com.au root waitlist'),
+          source: sourceLabel(tracking, 'thegrandstandpaddington.com.au root waitlist'),
         }),
       })
       if (!oppRes.ok) {

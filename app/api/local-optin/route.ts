@@ -77,7 +77,7 @@ async function sendMetaLead(args: {
       event_time: Math.floor(Date.now() / 1000),
       action_source: 'website',
       event_id: args.eventId,
-      event_source_url: 'https://grandstandpaddington.com.au/local',
+      event_source_url: 'https://thegrandstandpaddington.com.au/local',
       user_data,
       custom_data: { content_name: 'local vip opt-in' },
     }],
@@ -158,7 +158,7 @@ export async function POST(req: NextRequest) {
     lastName:     lastName?.trim() || undefined,
     email:        email.trim().toLowerCase(),
     phone:        phone.trim(),
-    source:       sourceLabel(tracking, 'grandstandpaddington.com.au local vip opt-in'),
+    source:       sourceLabel(tracking, 'thegrandstandpaddington.com.au local vip opt-in'),
     tags,
     customFields,
   }
@@ -206,7 +206,7 @@ export async function POST(req: NextRequest) {
           // opportunity inherits the contact's source for free; one created
           // here does not, so a code-created lead would show a blank Source
           // on the pipeline card while a workflow-created one showed its channel.
-          source: sourceLabel(tracking, 'grandstandpaddington.com.au local vip opt-in'),
+          source: sourceLabel(tracking, 'thegrandstandpaddington.com.au local vip opt-in'),
         }),
       })
       if (!oppRes.ok) {

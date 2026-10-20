@@ -237,7 +237,7 @@ export async function submitOptIn(input: OptInInput): Promise<OptInResult> {
     lastName,
     email,
     phone: phone || undefined,
-    source: `grandstandpaddington.com.au ${track} opt-in`,
+    source: `thegrandstandpaddington.com.au ${track} opt-in`,
     tags,
     customFields,
   };
@@ -326,7 +326,7 @@ export async function submitWaitlist(input: WaitlistInput): Promise<OptInResult>
     locationId,
     firstName: firstName || undefined,
     email,
-    source: "grandstandpaddington.com.au launching-soon waitlist",
+    source: "thegrandstandpaddington.com.au launching-soon waitlist",
     tags: ["source::organic", "track::local"],
   };
 

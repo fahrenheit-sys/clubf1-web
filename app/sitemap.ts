@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 
-const BASE = 'https://grandstandpaddington.com.au'
+const BASE = 'https://thegrandstandpaddington.com.au'
 
 // Fixed, not `new Date()` — lastModified should mean "the content changed",
 // not "we deployed".

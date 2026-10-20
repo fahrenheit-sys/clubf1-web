@@ -50,7 +50,7 @@ export default async function VotePage(
           </p>
         )}
 
-        <a href="https://grandstandpaddington.com.au/?utm_source=email&utm_medium=vote&utm_campaign=shape-your-club"
+        <a href="https://thegrandstandpaddington.com.au/?utm_source=email&utm_medium=vote&utm_campaign=shape-your-club"
           style={{
             display: 'inline-block', padding: '15px 32px', background: CLAY, color: '#fff',
             textDecoration: 'none', fontSize: 13, fontWeight: 700,

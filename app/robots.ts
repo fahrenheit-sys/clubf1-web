@@ -19,7 +19,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: '*', allow: '/', disallow: ['/api/', '/vote'] },
       { userAgent: AI_CRAWLERS, allow: '/', disallow: ['/api/', '/vote'] },
     ],
-    sitemap: 'https://grandstandpaddington.com.au/sitemap.xml',
-    host: 'https://grandstandpaddington.com.au',
+    sitemap: 'https://thegrandstandpaddington.com.au/sitemap.xml',
+    host: 'https://thegrandstandpaddington.com.au',
   }
 }
